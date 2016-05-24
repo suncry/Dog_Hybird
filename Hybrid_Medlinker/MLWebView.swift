@@ -65,13 +65,13 @@ class MLWebView: UIView {
         
     }
     
-    
+    //设置userAgent
     func configUserAgent () {
         var userAgentStr: String = UIWebView().stringByEvaluatingJavaScriptFromString("navigator.userAgent") ?? ""
         
-        if (userAgentStr.rangeOfString("medlinker/") == nil) {
+        if (userAgentStr.rangeOfString("hybrid_/") == nil) {
             let versionStr = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"]
-            userAgentStr.appendContentsOf(" medlinker/\(versionStr!)")
+            userAgentStr.appendContentsOf(" hybrid_/\(versionStr!) ")
             NSUserDefaults.standardUserDefaults().registerDefaults(["UserAgent" : userAgentStr])
         }
     }
@@ -263,6 +263,19 @@ extension MLWebView: UIWebViewDelegate {
             }
         }
         context.setObject(unsafeBitCast(requestNative, AnyObject.self), forKeyedSubscript: "requestNative")
+        
+//        UIWebView* webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+//        NSString* secretAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+
+//        let secretAgent = self.myWebView.stringByEvaluatingJavaScriptFromString("navigator.userAgent")
+//        print(secretAgent)
+////        NSString *newUagent = [NSString stringWithFormat:@"%@ appname/3.5.2",secretAgent];
+////        NSDictionary *dictionary = [[NSDictionary alloc]
+////        initWithObjectsAndKeys:newUagent, @"UserAgent", nil nil];
+////        [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
+//        let newUagent = "\(secretAgent) hybrid_1.1.1 "
+//        print(newUagent)
+        
         return true
     }
 
