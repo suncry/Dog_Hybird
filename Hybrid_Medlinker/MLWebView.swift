@@ -106,11 +106,12 @@ class MLWebView: UIView {
     /**************************************************/
     //MARK: - h5交互协议
     
-    func handleEvent(funType: String, args: [String: AnyObject]) {
+    func handleEvent(funType: String, args: [String: AnyObject], callbackID: String = "") {
         print("   ")
         print("****************************************")
         print("funType === \(funType)")
         print("args === \(args)")
+        print("callbackID === \(callbackID)")
         print("****************************************")
         print("   ")
         if funType == "updateheader" {
@@ -119,6 +120,10 @@ class MLWebView: UIView {
             self.back(args)
         } else if funType == "forward" {
             self.forward(args)
+        } else if funType == "get" {
+            self.HybirdGet(args, callbackID: callbackID)
+        } else if funType == "post" {
+            self.HybirdPost(args, callbackID: callbackID)
         }
     }
     
@@ -213,7 +218,42 @@ class MLWebView: UIView {
         }
     }
 
+    func jsonStringWithObject(object: AnyObject) throws -> String {
+        let data = try NSJSONSerialization.dataWithJSONObject(object, options: NSJSONWritingOptions(rawValue: 0))
+        let string = String(data: data, encoding: NSUTF8StringEncoding)!
+        return string
+    }
+
+    func HybirdGet(args: [String: AnyObject], callbackID: String) {
+        let sessionManager = AFHTTPSessionManager(baseURL: nil)
+        var parameters = args
+        parameters.removeValueForKey("url")
+        let url = args["url"] as? String ?? ""
+        sessionManager.GET(url, parameters: parameters, progress: { (progress) in
+            
+            }, success: { (sessionDataTask, jsonObject) in
+                let callbackString = try! self.jsonStringWithObject(jsonObject!)
+                //                    print(callbackString)
+                self.myWebView.stringByEvaluatingJavaScriptFromString("Hybrid." + "\(callbackID)(\(callbackString));")
+            }, failure: { (sessionDataTask, error) in
+                print(error)
+        })
+    }
     
+    func HybirdPost(args: [String: AnyObject], callbackID: String) {
+        let sessionManager = AFHTTPSessionManager(baseURL: nil)
+        var parameters = args
+        parameters.removeValueForKey("url")
+        let url = args["url"] as? String ?? ""
+        sessionManager.POST(url, parameters: parameters, progress: { (progress) in
+            }, success: { (sessionDataTask, jsonObject) in
+                let callbackString = try! self.jsonStringWithObject(jsonObject!)
+                self.myWebView.stringByEvaluatingJavaScriptFromString("Hybrid." + "\(callbackID)(\(callbackString));")
+            }, failure: { (sessionDataTask, error) in
+                print(error)
+        })
+    }
+
     /**************************************************/
     //MARK: -  public
     
@@ -250,11 +290,12 @@ extension MLWebView: UIWebViewDelegate {
         let requestNative: @convention(block) String -> Bool = { input in
             let args = self.decodeJsonStr(input)
             if let tagname = args["tagname"] as? String {
+                let callBackId = args["callback"] as? String ?? ""
                 if let param = args["param"] as? [String: AnyObject] {
-                    self.handleEvent(tagname, args: param)
+                    self.handleEvent(tagname, args: param, callbackID: callBackId)
                 }
                 else {
-                    self.handleEvent(tagname, args: ["":""])
+                    self.handleEvent(tagname, args: ["":""], callbackID: callBackId)
                 }
                 return true
             }
@@ -263,18 +304,6 @@ extension MLWebView: UIWebViewDelegate {
             }
         }
         context.setObject(unsafeBitCast(requestNative, AnyObject.self), forKeyedSubscript: "requestNative")
-        
-//        UIWebView* webView = [[UIWebView alloc] initWithFrame:CGRectZero];
-//        NSString* secretAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
-
-//        let secretAgent = self.myWebView.stringByEvaluatingJavaScriptFromString("navigator.userAgent")
-//        print(secretAgent)
-////        NSString *newUagent = [NSString stringWithFormat:@"%@ appname/3.5.2",secretAgent];
-////        NSDictionary *dictionary = [[NSDictionary alloc]
-////        initWithObjectsAndKeys:newUagent, @"UserAgent", nil nil];
-////        [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
-//        let newUagent = "\(secretAgent) hybrid_1.1.1 "
-//        print(newUagent)
         
         return true
     }
