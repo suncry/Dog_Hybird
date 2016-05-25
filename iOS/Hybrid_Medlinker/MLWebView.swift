@@ -291,12 +291,20 @@ extension MLWebView: UIWebViewDelegate {
             }
             else {
                 print("tagname 空了哟")
-                let alert = UIAlertView(title: "提示", message: "tagname 空了哟", delegate: nil, cancelButtonTitle: "cancel", otherButtonTitles: "123")
+                let alert = UIAlertView(title: "提示", message: "tagname 空了哟", delegate: nil, cancelButtonTitle: "cancel")
                 alert.show()
                 return false
             }
         }
         context.setObject(unsafeBitCast(requestNative, AnyObject.self), forKeyedSubscript: "requestNative")
+
+//        NSDictionary *dic = @{@"name": @"Ider", @"#":@(21)};
+//        context[@"dic"] = dic;
+//        [context evaluateScript:@"log(dic.name, dic['#'])"];
+        
+        let jsObjDic = ["requestNative": requestNative]
+        context.setObject(unsafeBitCast(jsObjDic, AnyObject.self), forKeyedSubscript: "Hybrid")
+        
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
