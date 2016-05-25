@@ -161,9 +161,10 @@
             var url = 'train/list.html?1=1';
 
             for(var key in param) {
-                url += '&' + encodeURIComponent(key) + '=' + encodeURIComponent(param[key]);
+                url += '&' + key + '=' + encodeURIComponent(param[key]);
             }
 
+            alert(url);
 
             _.requestHybrid({
                 tagname: 'forward',
