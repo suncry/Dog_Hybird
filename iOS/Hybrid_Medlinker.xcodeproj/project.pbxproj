@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B586C9BE1CF59CEF00EAAE26 /* MagicMovePopTransion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B586C9BC1CF59CEF00EAAE26 /* MagicMovePopTransion.swift */; };
-		B586C9BF1CF59CEF00EAAE26 /* MagicMoveTransion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B586C9BD1CF59CEF00EAAE26 /* MagicMoveTransion.swift */; };
 		B586C9C21CF59D3700EAAE26 /* HybirdTransionPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = B586C9C11CF59D3700EAAE26 /* HybirdTransionPush.swift */; };
 		B5D2202F1CE46F6900750A50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2202E1CE46F6900750A50 /* AppDelegate.swift */; };
 		B5D220311CE46F6900750A50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D220301CE46F6900750A50 /* ViewController.swift */; };
@@ -65,8 +63,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B586C9BC1CF59CEF00EAAE26 /* MagicMovePopTransion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagicMovePopTransion.swift; sourceTree = "<group>"; };
-		B586C9BD1CF59CEF00EAAE26 /* MagicMoveTransion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagicMoveTransion.swift; sourceTree = "<group>"; };
 		B586C9C11CF59D3700EAAE26 /* HybirdTransionPush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HybirdTransionPush.swift; sourceTree = "<group>"; };
 		B5D2202B1CE46F6900750A50 /* Hybrid_Medlinker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hybrid_Medlinker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5D2202E1CE46F6900750A50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -165,8 +161,6 @@
 		B586C9C01CF59CF400EAAE26 /* HybirdTransion */ = {
 			isa = PBXGroup;
 			children = (
-				B586C9BC1CF59CEF00EAAE26 /* MagicMovePopTransion.swift */,
-				B586C9BD1CF59CEF00EAAE26 /* MagicMoveTransion.swift */,
 				B586C9C11CF59D3700EAAE26 /* HybirdTransionPush.swift */,
 			);
 			name = HybirdTransion;
@@ -450,7 +444,6 @@
 			files = (
 				B5D220A11CE5840D00750A50 /* UIProgressView+AFNetworking.m in Sources */,
 				B5D2209F1CE5840D00750A50 /* UIButton+AFNetworking.m in Sources */,
-				B586C9BE1CF59CEF00EAAE26 /* MagicMovePopTransion.swift in Sources */,
 				B5D220A21CE5840D00750A50 /* UIRefreshControl+AFNetworking.m in Sources */,
 				B5D220AE1CE5A34900750A50 /* NSObject+YYModel.m in Sources */,
 				B5D220311CE46F6900750A50 /* ViewController.swift in Sources */,
@@ -467,7 +460,6 @@
 				B5D220801CE5840000750A50 /* AFHTTPSessionManager.m in Sources */,
 				B5D2209B1CE5840D00750A50 /* AFAutoPurgingImageCache.m in Sources */,
 				B5D220831CE5840000750A50 /* AFURLRequestSerialization.m in Sources */,
-				B586C9BF1CF59CEF00EAAE26 /* MagicMoveTransion.swift in Sources */,
 				B5D220B41CE5A46D00750A50 /* Hybrid_naviButtonModel.swift in Sources */,
 				B5D220851CE5840000750A50 /* AFURLSessionManager.m in Sources */,
 				B5D2209C1CE5840D00750A50 /* AFImageDownloader.m in Sources */,
