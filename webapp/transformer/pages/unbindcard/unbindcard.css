@@ -1,0 +1,45 @@
+.bank-card-list li {
+    padding: .65rem .75rem;
+    color: #fff;
+    font-size: .65rem;
+}
+.bank-card-list li p.card-name {
+    font-size: .85rem;
+    margin-bottom: .15rem;
+}
+.bank-card-list li p.card-name span {
+    font-size: .65rem;
+}
+.card-num span {
+    margin-right: .5rem;
+    font-size: .95rem;
+    line-height: 1rem;
+    float: left;
+    vertical-align: middle;
+    margin-top: .2rem;
+}
+.bank-ccb {
+    background: #3991fc;
+}
+.bank-1 {
+    background: rgb(57, 145, 252);
+}
+.bank-2 {
+    background: rgb(250, 108, 57);
+}
+.bank-3 {
+    background: rgb(186, 54, 255);
+}
+.btn-fixed-blue {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    font-size: .85rem;
+    color: #fff;
+    background: #007eff;
+    text-align: center;
+}

@@ -1,0 +1,95 @@
+<%
+var date = new Date();
+var start, end, _date;
+
+date.setTime(treatStartTime * 1000);
+start = _.dateUtil.format(date, 'Y.M.D');
+date.setTime(treatEndTime * 1000);
+end = _.dateUtil.format(date, 'Y.M.D');
+date.setTime(treatTime * 1000);
+_date = _.dateUtil.format(date, 'Y.M.D H:F');
+_date = _date.split(' ')[1] == '00:00' ? _date.split(' ')[0] : _date;
+
+var pics = images || [];
+var flag = true;
+var _item;
+patientName = patientName.length > 6 ? patientName.substr(0,6) + '...'  : patientName;
+%>
+
+<div class="wrapper">
+    <div class="transform-user-block">
+        <div class="user-wrapper">
+        <div class="transform-user clearfix">
+            <p><%=patientName %></p>
+            <p><%=patientAge%>岁</p>
+            <p><%=patientGender == 1 ? '男' : '女'%></p>
+            <p class="md-right">转诊费用：<span><%=parseFloat(money)%></span>元</p>
+        </div>
+        <p>联系方式：<a href="tel://<%=patientPhone%>"><%=patientPhone%></a></p>
+            <p>身份证号：<%=patientIDNo%></p>
+
+            <% if(orderStatusId < 3) { %>
+            <p>希望接诊时间：<%=start%>－<%=end%></p>
+            <% } %>
+            <%if(rxDoctorHospital){%>
+            <p>接诊医院：<%=rxDoctorHospital%></p>
+            <p>接诊医生：<%=rxDoctorName%> <%=rxDoctorTitle%> <%=rxDoctorPhone%></p>
+            <%}%>
+
+            <% if(orderStatusId > 2){ %>
+            <p>希望接诊时间：<%=_date%></p>
+            <%}%>
+         </div>
+    </div>
+    <div class="transform-info">
+        <p class="title">病症类型：<%=symptomsType%></p>
+        <p><%=symptomsDesc%></p>
+
+        <% for(var i = 0, len = pics.length; i < len; i++) { %>
+
+            <img src="http://imgs.s0.medlinker.net/avatar/201601/11/145249340218929.jpg!50" data-src="<%=pics[i].fileUrl || pics[i]%>" alt="" />
+
+        <% } %>
+    </div>
+</div>
+
+<% if(typeof showOkBtn != 'undefined') { %>
+<a class="submit btn-fixed-blue js-ok" href="javascript:;">确认发布</a>
+<% } else { %>
+
+    <% for(i1 = 0, len1 = map.length; i1 < len1; i1++) { %>
+        <% _item = map[i1];  %>
+        <% for(k in _item) { %>
+            <% if(_.indexOf(_item[k], orderStatusId) != -1) { %>
+            <% flag = false;  break; %>
+            <% } %>
+        <% } %>
+    <% } %>
+<div class="footer">
+    <%if(orderStatus.list){%>
+    <div class="item-ft">
+        <span><%=orderStatus.list%></span>
+    </div>
+    <%}%>
+    <div class="footer-wrap" style="<%if(flag){%> display: none;<%}%>" >
+        <ul class="flex-box js-click-items user-record "
+        data-tel="<%=patientPhone%>"
+        data-time="<%=treatTime%>"
+        data-docId="<%=fromDoctorId%>"
+        data-id="<%=orderId%>" >
+
+        <% for(i1 = 0, len1 = map.length; i1 < len1; i1++) { %>
+        <% _item = map[i1]; %>
+        <% for(k in _item) { %>
+        <% if(_.indexOf(_item[k], orderStatusId) != -1) { %>
+        <%=k%>
+        <% } %>
+        <% } %>
+        <% } %>
+
+        </ul>
+    </div>
+</div>
+
+
+<%}%>

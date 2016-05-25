@@ -1,0 +1,24 @@
+
+<%
+var i, index, len, len1, item, k, cityData;
+%>
+
+<ul class="line-list js-list">
+    <li class="line-item js-item js-geo-item geo-data" >定位城市: <span class="js-geo-name">正在定位...</span></li>
+    <li class="line-item js-item last" data-id="0" data-name="全国" >全国</li>
+    <% for(i = 0, len = data.length; i < len; i++) { %>
+        <%
+            item = data[i];
+        %>
+        <% for(k in item) { %>
+            <% cityData = item[k]; %>
+            <% if(cityData.length > 0) { %>
+            <li class="line-divider js-group"><%=k%></li>
+            <% for(j = 0, len1 = cityData.length; j < len1; j++) { %>
+               <li class="<% if(j==len1-1 ) { %> line-item js-item last <% } else { %>line-item js-item <% } %>"  data-name="<%=cityData[j].name%>" data-id="<%=cityData[j].areaId%>">
+                   <%=cityData[j].name%></li>
+            <% } %>
+            <% } %>
+        <% } %>
+    <% } %>
+</ul>

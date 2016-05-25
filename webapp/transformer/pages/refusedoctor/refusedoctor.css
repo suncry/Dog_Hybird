@@ -1,0 +1,50 @@
+.title {
+    padding: 1.25rem 0 .9rem .65rem;
+    font-size: .8rem;
+}
+.title.next {
+    padding-bottom: .7rem;
+}
+.cm-radio-list {
+
+}
+
+.cm-radio-list li {
+    border: none;
+    padding-left: .65rem;
+    color: #8E8E8E;
+    line-height: 1.25rem;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin-bottom: .5rem;
+
+}
+.cm-radio-list li.active {
+    color: #1686F9;
+
+}
+.icon-radio {
+    width: .7rem;
+    height: .7rem;
+    border-color: #999;
+    box-sizing: content-box;
+}
+.icon-radio:before {
+    display: none;
+}
+.icon-radio:after {
+    width: .4rem;
+    height: .4rem;
+    border-radius: 50%;
+    border: none;
+    background: #1686F9;
+    top: .15rem;
+    left: .15rem;
+}
+.cm-radio-list .active:after {
+    display: none;
+}
+.text-area textarea {
+    border-radius: 0;
+}
+

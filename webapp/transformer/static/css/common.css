@@ -1,0 +1,397 @@
+
+/*首页*/
+
+/*页面级别样式 个人中心*/
+.page-personalcenter {
+    height: 100%;
+    background: #fff;
+}
+
+/*页面级别样式 编辑资料*/
+.page-editdata {
+    height: 100%;
+    background: #fff;
+}
+
+/*页面级别样式 接收转诊*/
+.page-rxaccept {
+    min-height: 100%;
+    background: #fff;
+}
+
+/*页面级别样式 接诊通知*/
+.page-visitnotice {
+    height: 100%;
+    background: #fff;
+}
+
+/*页面级别样式 拒绝接诊*/
+.page-refusedoctor {
+    height: 100%;
+    background: #fff;
+}
+
+/*页面级别样式 拒绝接诊*/
+.page-evaluatedoctor {
+    height: 100%;
+    background: #fff;
+}
+
+/*页面级别样式 医生接诊通知*/
+.page-acceptnotice {
+    height: 100%;
+    background: #fff;
+}
+
+/*页面级别样式 患者爽约*/
+.page-losepatient {
+    height: 100%;
+    background: #fff;
+}
+
+/*页面级别样式 患者爽约*/
+.page-details {
+    height: 100%;
+    background: #fff;
+}
+
+.page-publish01 {
+    height: 100%;
+    background: #fff;
+}
+
+.page-publish02 {
+    height: 100%;
+    background: #fff;
+}
+.page-mywallet {
+    height: 100%;
+    background: #fff;
+}
+.page-modifypassword {
+    height: 100%;
+    background: #fff;
+}
+.page-setpassword {
+    height: 100%;
+    background: #fff;
+}
+.page-login{
+    height: 100%;
+    background: #fff;
+}
+.page-mybankcard {
+    min-height: 100%;
+    background: #fff;
+}
+.page-bindcard {
+    height: 100%;
+    background: #fff;
+}
+.page-paymentorder {
+    height: 100%;
+    background: #fff;
+}
+
+.page-forgetpassword {
+    height: 100%;
+    background: #fff;
+}
+.page-paypassword {
+    height: 100%;
+    background: #fff;
+}
+
+
+.flex-box {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+}
+
+.flex-item {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.tabs-bar {
+    margin: .2rem;
+    padding-bottom: .35rem;
+    height: 1.5rem;
+    line-height: 1.4rem;
+}
+
+.tabs-bar .tabs-item {
+    text-align: center;
+    background-color: #fff;
+    border-right: 1px solid #d8d8d8;
+}
+
+.tabs-bar .tabs-item.active span {
+    display: inline-block;
+    border-bottom: .1rem solid #007eff;
+    color: #007eff;
+    padding: 0 .25rem;
+    height: 1.75rem;
+}
+
+.line {
+    margin: 0 .5rem;
+    border: none;
+    border-bottom: 1px solid  #E0E0E0;
+    line-height: 1px;
+}
+
+.line10 {
+    height: .5rem;
+    line-height: .5rem;
+    background: #EFEFEF;
+}
+
+.line2 {
+    margin: .5rem .5rem .5rem 0;
+    border: none;
+    border-bottom: 1px solid #E0E0E0;
+    line-height: 1px;
+}
+
+
+.line20 {
+    height: .65rem;
+    line-height: .65rem;
+    background: #EFEFEF;
+}
+
+
+.list-panel {
+    background: #fff;
+    padding: 0 .65rem;
+}
+
+.list-item {
+    position: relative;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    border-bottom: 1px solid #e6e6e6;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    font-size: .8rem;
+}
+
+.list-item.nonearrow {
+    padding-right: .25rem;
+}
+
+.list-item.nonearrow::after {
+    display: none;
+}
+.list-item.auto-height{
+    height: auto;
+}
+.list-panel >.list-item:last-child{
+    border-bottom: none;
+}
+
+.list-item::after {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: .4rem;
+    height: .4rem;
+    border-top: 1px solid #a2a2a2;
+    border-right: 1px solid #a2a2a2;
+    position: absolute;
+    right: .5rem;
+    bottom: 1rem;
+    margin-top: -1px;
+    -webkit-transform: rotate(45deg) translateY(-50%);
+    transform: rotate(45deg) translateY(-50%);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+.input-panel .list-item {
+    padding-left: 0.25rem;
+    padding-right: 1rem;
+
+}
+
+.input-panel .list-item.nonearrow {
+    padding-right: .25rem;
+    
+
+}
+
+.input-panel .list-item .v{
+    float: right;
+    color: #b3b3b3;
+}
+
+.input-panel .list-item .v input{
+    text-align: right;
+    border: none;
+    color: #777;
+}
+.input-panel .list-item .v input::-webkit-input-placeholder{
+    color: #B3B3B3;
+}
+.input-panel .text-area-input textarea::-webkit-input-placeholder{
+    color: #B3B3B3;
+}
+
+.input-panel .text-area-title {
+    padding: .75rem 0 0 .25rem;
+    font-size: .8rem;
+}
+
+.input-panel .text-area-input {
+    padding: .5rem 0 .5rem .25rem;
+}
+
+.input-panel .text-area-input textarea {
+    width: 100%;
+    padding: .5rem;
+    height: 4.6rem;
+    border: 1px solid #e6e6e6;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: .8rem;
+    border-radius: 0;
+    color: #777;
+}
+
+.text-tips {
+    margin: .8rem 1rem;
+    color: #b3b3b3;
+
+}
+
+.text-area  {
+    margin: 0 13px;
+}
+
+.text-area textarea {
+    width: 100%;
+    height: 8.4rem;
+    padding: .5rem;
+    border: 1px solid #EBEBEB;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #777;
+    border-raduis: 0;
+}
+
+.btn-wrap {
+    height: 2.5rem;
+    margin: 1rem 0;
+}
+
+.btn-wrap .footer-btn {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    color: #fff;
+    background: #007eff;
+    text-align: center;
+    font-size: .8rem;
+}
+
+
+
+.progress > div {
+    background-color: #007eff;
+    height: 100%;
+    width: .2rem;
+    margin: 0 .1rem;
+    display: inline-block;
+    -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+    animation: stretchdelay 1.2s infinite ease-in-out;
+}
+
+.progress .rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+
+.progress .rect3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+.progress .rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+.progress .rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+
+
+@-webkit-keyframes stretchdelay {
+    0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+    20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes stretchdelay {
+    0%, 40%, 100% {
+        transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4);
+    }  20% {
+           transform: scaleY(1.0);
+           -webkit-transform: scaleY(1.0);
+       }
+}
+
+.inline-page-msg {
+    text-align: center;
+    padding: 1rem 0;
+    font-size: .65rem;
+    color: #b2b2b2;
+}
+
+/*特殊页面处理*/
+
+.page-editdata{
+    background-color: #ededed !important;
+}
+.page-pageview{
+    width: 100%;
+    height: 100%;
+}
+@media screen and (max-width: 360px) {
+    .page-index .item-bd .js-to-item .p2 .fr  {
+        width: 11.2rem;
+    }
+    .page-publish .js-pics-wrap .pic-list li {
+        width: 4.9rem;
+        height: 4.9rem;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .page-index .user-info .user-desc.js-topage .user-name {
+        width: 9.5rem;
+    }
+    .page-index .item-bd .js-to-item .p2 .fr  {
+        width: 9rem;
+    }
+    .page-publish .js-pics-wrap .pic-list li {
+        width: 4.25rem;
+        height: 4.25rem;
+    }
+}
+

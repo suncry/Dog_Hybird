@@ -1,0 +1,143 @@
+
+.doc-info-wrap {
+    position: relative;
+}
+
+.doc-info-wrap .doc-img {
+    width: 63px;
+    height: 63px;
+    overflow: hidden;
+    padding: 20px 13px;
+    position: absolute;
+    left: 0;
+    top: 7px;
+
+}
+
+.doc-info-wrap .doc-img img {
+    width: 100%;
+    border-radius: 50%;
+
+}
+
+.doc-info {
+    margin: 0 0 20px 90px;
+    padding: 23px 0 0 0;
+}
+
+.doc-info .name {
+    font-size: 17px;
+
+}
+
+.doc-info-wrap .user-tips {
+    color: #BDBDBD;
+    font-size: 13px;
+}
+
+.doc-summary {
+    padding: 28px 13px;
+
+}
+
+.doc-summary .key {
+    font-size: 15px;
+    margin: 0 0 10px 0;
+}
+
+.doc-summary .value {
+    font-size: 14px;
+    color: #BDBDBD;
+}
+
+.status-bar-wrap {
+    position: relative;
+    text-align: center;
+    margin: 15px;
+}
+
+.status-bar-wrap .text-line {
+    position: absolute;
+    z-index: 1;
+    border-bottom: 1px solid #E0E0E0;
+    line-height: 1px;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+}
+
+.status-bar {
+    position: relative;
+    font-size: 15px;
+    text-align: center;
+    color: #3B93FA;
+    display: inline-block;
+    z-index: 10;
+    padding: 0 10px;
+    background-color: #fff;
+}
+
+.toolbar-wrap {
+    text-align: center;
+    color: #3B93FA;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    padding-top: 5px;
+}
+
+.toolbar-wrap .line {
+    margin-bottom: 5px;
+}
+
+.toolbar .flex-item {
+    border-right: 1px solid #E0E0E0;
+    height: 45px;
+    line-height: 38px;
+}
+
+.toolbar .flex-item:last-child {
+    border-right: none;
+}
+
+.user-tips {
+    position: relative;
+}
+
+.user-tips .cm-rated-wrap {
+    position: absolute;
+    left: 65px;
+    top: 0;
+}
+
+.doc-info-wrap .icon-tel{
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: 20px;
+    top: 40px;
+    background: url(./static/images/icon-tel.png) 0 0 no-repeat;
+    background-size: 100%;
+
+}
+
+.doc-info-wrap .icon-loc {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    right: 20px;
+    bottom: 6px;
+    background: url(./static/images/icon-loc.png) 0 0 no-repeat;
+    background-size: 100%;
+
+}
+
+
+
+
+
+
+
+

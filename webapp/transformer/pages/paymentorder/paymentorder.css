@@ -1,0 +1,57 @@
+.title {
+    border-bottom: 14px solid #efefef;
+}
+.title .list-item  {
+    border: 0;
+    font-size: .8rem;
+    color: #000;
+}
+.title .v span {
+    color: #fc5b1f;
+}
+.wechat span img {
+    width: 1rem;
+    margin-right: .5rem;
+}
+.wechat span {
+    color: #777777;
+}
+.check-wrapper {
+    color: #b3b3b3;
+}
+.check-wrapper.active .icon-checkbox {
+    background: #1787fb;
+    border-color: #1787fb;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+.icon-checkbox {
+    border-color: #b3b3b3;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    margin-right: 0;
+}
+.icon-checkbox::before {
+    content: "";
+    height: .2rem;
+    width: .4rem;
+    border: .05rem solid #fff;
+    border-width: 0 0 .1rem .1rem;
+    position: absolute;
+    top: .2rem;
+    left: .15rem;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    color: #fff;
+}
+.input-panel .list-item.nonearrow{
+	padding: 0;
+}
+.wechat .nonearrow{
+
+    border-bottom: 1px solid #ddd;
+}
+.input-panel .list-item .v{
+	color:#000 ;
+	
+}

@@ -1,0 +1,34 @@
+
+<%
+
+var date = new Date();
+var start;
+var money;
+
+date.setTime(treatTime * 1000);
+start = _.dateUtil.format(date, 'Y.M.D H:F');
+_money= parseInt(money);
+%>
+
+<article class="container paySuccess">
+  	<div class="paySucMsg">付款成功</div>
+  	<div class="paySucNotice">将于<%=start%>与您赴诊，请保持手机畅通，等待患者就诊</div>
+  	<section class="patient-card">
+  	<div class="patient-details">
+  		<div class="yo-patient">您的患者</div>
+  		<div>患者姓名:<%=patientName%></div>
+  		<div>患者性别:<%=patientGender == 1 ? '男' : '女'%></div>
+  		<div>患者年龄:<%=patientAge%>岁</div>
+  		<div>患者电话:<a href="tel://<%=patientPhone%>"><%=patientPhone%></a></div>
+  		<div>转诊费用:<%=_money%>元</div>
+  		<div>身份证号:<%=patientIDNo%></div>
+  		<div>病症类型:<%=symptomsType%></div>
+  	</div>		
+   </section>
+  </article>
+  <footer>
+  	 <ul class="paySuc-bottom">
+  	 	<li class="js-home">返回首页</li><span class="right-line"></span>
+  	 	<li class="js-detail">查看此接诊单</li>
+  	 </ul>
+  </footer>

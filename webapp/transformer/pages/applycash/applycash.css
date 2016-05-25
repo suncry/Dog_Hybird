@@ -1,0 +1,52 @@
+article.container{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 55px;
+}
+.apply-cash img {
+    display: block;
+    width: 3.5rem;
+    margin: 6.5rem auto 1.6rem auto;
+}
+footer{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2.5rem;
+}
+.center{
+    text-align:center;
+}
+.apply-tip{
+    color:#000;
+    font-size: .9rem;
+    margin-bottom: .8rem;
+}
+.apply-noticeMsg{
+    color:#b3b3b3;
+    font-size:.65rem;
+    margin-bottom: 4rem;
+}
+.apply-bottom{
+    line-height: 2.5rem;
+    text-align: center;
+    color: #fff;
+    background-color:#007eff;
+    font-size: .85rem;
+}
+.fl{float: left;}.fr{float: right;}
+.cash-count{background-color:#fff;padding: .75rem .5rem;color:#777777 ;overflow: hidden;}
+.black{color:#000000;}
+.apply-msg{
+    color:#b3b3b3;
+    font-size:.65rem ;
+    margin-top: .65rem;
+    padding-left: .5rem;
+    padding-bottom: 5rem;
+}
+.card-no {
+    margin-left: .3rem;
+}

@@ -1,0 +1,22 @@
+
+.nav-bar-list {
+    width: 1.4rem;
+    padding: 0.1rem 0 0;
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 2;
+    top: 8rem;
+    right: 0;
+    text-transform: uppercase;
+    color: #b3b3b3;
+    font-size: 0.7rem;
+    text-align: center;
+}
+
+.geo-data {
+    text-align: center;
+}
+
+.geo-data span {
+    color: #1686F9;
+}

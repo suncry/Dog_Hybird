@@ -1,0 +1,7 @@
+body{background-color:#fff;}
+article.wrapper{padding: 0px .75rem;padding-top:1rem;background-color:#fff;}
+.eligibleforf-content{text-align: center;color:#000 ;font-size:.75rem;}
+.eligibleforf-bottom{position:fixed;left: 0;right: 0;bottom: 0; background-color:#007eff;text-align: center;color:#fff;height:2.5rem;line-height:2.5rem;font-size:.85rem;}
+.eligibleforf-add{color:#7f7f7f ;    background: #fff url(static/images/zhengshu-bg.png) no-repeat center 1rem;padding-top: 5.5rem;background-size: 4rem auto;background-size: 2rem auto;border: 1px dashed #d8d8d8;border-radius: .75rem;margin-top: 1.25rem;padding-bottom:.75rem ;}
+.eligibleforf-self{color:#007eff;margin-top:1.6rem ;}
+.eligibleforf-self span{border-bottom:1px solid #007eff ;}

@@ -1,0 +1,119 @@
+{
+  "requirejs": {
+    "blade": {
+      "options": {
+        "uglify": {
+          "except": [
+            "$super"
+          ]
+        },
+        "baseUrl": "<%= config.srcDir %>",
+        "shim": {
+          "qiniu": {
+            "deps": ["uploader"],
+            "exports": "Qiniu"
+          },
+          "uploader": {
+            "exports": "uploader"
+          }
+        },
+        "paths": {
+
+          "uploader": "common/plupload.full.min",
+          "qiniu": "common/qiniu",
+          "BaseView": "common/base.view",
+          "TransPath": "pages",
+          "TransStylePath": "static/css",
+          "TransStore": "model/trans.store",
+          "TransModel": "model/trans.model",
+          "text": "../blade/libs/require.text",
+          "WXSDK": "http://res.wx.qq.com/open/js/jweixin-1.1.0",
+
+
+          "AbstractApp": "http://mvc/abstract.app",
+          "AbstractView": "http://mvc/abstract.view",
+          "ModuleView": "http://mvc/module.view",
+          "AbstractModel": "http://data/abstract.model",
+          "AbstractEntity": "http://mvc/abstract.entity",
+          "AbstractStore": "http://data/abstract.store",
+          "AbstractStorage": "http://data/abstract.storage",
+          "cValidate": "http://common/c.validate",
+          "cUser": "http://common/c.user",
+          "UIAbstractView": "http://ui/ui.abstract.view",
+          "UIMask": "http://ui/ui.mask",
+          "UILayer": "http://ui/ui.layer",
+          "UIPageView": "http://ui/ui.page.view",
+          "UIScroll": "http://ui/ui.scroll",
+
+          "UISlider": "http://ui/ui.slider",
+          "T_UISlider": "http://ui/ui.slider.html",
+          "UIImageSlider": "http://ui/ui.image.slider",
+
+          "UIIdentitycard": "http://ui/ui.identitycard",
+          "T_UIIdentitycard": "http://ui/ui.identitycard.html",
+
+          "UIScrollLayer": "http://ui/ui.scroll.layer",
+          "T_UIScrollLayer": "http://ui/ui.scroll.layer.html",
+
+          "UIAlert": "http://ui/ui.alert",
+          "T_UIAlert": "http://ui/ui.alert.html",
+
+          "UICalendar": "http://ui/ui.calendar",
+          "T_UICalendar": "http://ui/ui.calendar.html",
+
+          "UICalendarBox": "http://ui/ui.calendar.box",
+          "T_UICalendarBox": "ui/ui.calendar.box.html",
+
+          "UIRated": "http://ui/ui.rated",
+          "T_UIRated": "http://ui/ui.rated.html",
+
+          "UIRadioList": "http://ui/ui.radio.list",
+          "T_UIRadioList": "http://ui/ui.radio.list.html",
+
+          "APPUIHeader": "http://ui/app.ui.header",
+          "T_APPUIHeader": "http://ui/app.ui.header.html",
+
+          "UIHeader": "http://ui/ui.header",
+          "T_UIHeader": "http://ui/ui.header.html",
+
+          "UIToast": "http://ui/ui.toast",
+          "T_UIToast": "http://ui/ui.toast.html",
+
+          "UILoading": "http://ui/ui.loading",
+          "T_UILoading": "http://ui/ui.loading.html",
+
+          "UILayerList": "http://ui/ui.layer.list",
+          "T_UILayerList": "http://ui/ui.layer.list.html",
+
+          "UISelect": "http://ui/ui.select",
+          "T_UISelect": "http://ui/ui.select.html",
+
+          "UIGroupSelect": "http://ui/ui.group.select",
+          "T_UIGroupSelect": "http://ui/ui.group.select.html",
+          "T_UIGroupSelect2": "http://ui/ui.group.select2.html",
+
+          "UIDatetimepicker": "http://ui/ui.datetimepicker",
+          "T_UIDatetimepicker": "http://ui/ui.datetimepicker.html"
+
+        },
+        "exclude": [
+          "text",
+          "WXSDK",
+          "qiniu",
+          "uploader"
+        ],
+        "include": [
+
+          "BaseView",
+          "TransStore",
+          "TransModel",
+          "text!TransStylePath/common.css",
+
+          "main"
+
+        ],
+        "out": "<%= config.destDir %>/transformer.js"
+      }
+    }
+  }
+}

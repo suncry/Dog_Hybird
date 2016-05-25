@@ -1,0 +1,359 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta name="format-detection" content="telphone=no" />
+    <title>Header Demo</title>
+    <link href="../static/css/global.css" rel="stylesheet" type="text/css" />
+    <style>
+        .btn-primary {
+            margin: 20px;
+            display: block;
+        }
+        .url {
+            width: 90%;
+            margin: 20px;
+            line-height: 44px;
+            height: 44px;
+            padding: 0 10px;
+            display: block;
+            vertical-align: middle;
+            border-radius: 4px;
+            font-size: 16px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+
+    <div class="btn-primary" id="goTransformer">
+        去转诊1</div>
+
+    <div class="btn-primary" id="ajaxget">
+        ajax get 获取资源</div>
+
+    <div class="btn-primary" id="ajaxpost">
+        ajax post 获取资源</div>
+
+
+    <div class="btn-primary" id="setRight2">
+        右边按钮为自定义图标，读取http资源</div>
+
+
+    <div class="btn-primary" id="setTitle">
+        主标题子标题</div>
+
+
+    <div class="btn-primary" id="setSelectTitle">
+        设置title，使其右边有图标</div>
+
+
+    <div class="btn-primary" id="goIndex">
+        跳转首页</div>
+
+    <div class="btn-primary" id="forward">
+        forward 默认</div>
+
+    <div class="btn-primary" id="forward1">
+        forward pop</div>
+
+    <div class="btn-primary" id="forward2">
+        forward present</div>
+
+
+
+    <div class="btn-primary" id="forward4">
+        forward 没有导航</div>
+
+    <div class="btn-primary" id="forward5">
+        forward 载入页面</div>
+
+    <div class="btn-primary" id="forward6">
+        forward 载入频道</div>
+
+    <div class="btn-primary" id="forward7">
+        forward 跨频道</div>
+</div>
+
+    <script src="../libs/underscore.js" type="text/javascript"></script>
+    <script src="../libs/zepto.js" type="text/javascript"></script>
+    <script src="../libs/fastclick.js" type="text/javascript"></script>
+    <script src="../libs/libs.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        $.bindFastClick();
+
+        Hybrid.ui.header.set({
+            back: function () {
+                requestHybrid({
+                    tagname: 'back'
+                });
+            },
+            title: '设置右边按钮',
+            right: [
+                {
+                    tagname: 'gohome',
+                    value: '首页',
+                    callback: function () {
+
+                        alert(1);
+
+                    }
+                },
+                {
+                    tagname: 'test',
+                    value: '测试',
+                    callback: function () {
+                        alert(2);
+                    }
+                }
+            ]
+        });
+
+
+
+        $('#goTransformer').click(function () {
+            requestHybrid({
+                tagname: 'forward',
+                param: {
+                    topage: 'transformer/index.html',
+                    type: 'h5'
+                }
+            });
+        });
+
+        $('#goIndex').click(function () {
+            requestHybrid({
+                tagname: 'back',
+                param: {
+                    topage: 'index',
+                    type: 'native'
+                }
+            });
+        });
+
+        $('#forward').click(function () {
+            requestHybrid({
+                tagname: 'forward',
+                param: {
+                    topage: 'index2',
+                    type: 'native'
+                }
+            });
+        });
+
+        $('#forward1').click(function () {
+            requestHybrid({
+                tagname: 'forward',
+                param: {
+                    topage: 'index2',
+                    type: 'native',
+                    animate: 'pop'
+                }
+            });
+        });
+
+        $('#forward2').click(function () {
+            requestHybrid({
+                tagname: 'forward',
+                param: {
+                    topage: 'index2',
+                    type: 'native',
+                    animate: 'present'
+                }
+            });
+        });
+
+        $('#forward4').click(function () {
+            requestHybrid({
+                tagname: 'forward',
+                param: {
+                    topage: 'index2',
+                    type: 'native',
+                    navigateion: 'none'
+                }
+            });
+        });
+
+        $('#forward5').click(function () {
+            requestHybrid({
+                tagname: 'forward',
+                param: {
+                    topage: 'https://www.baidu.com/',
+                    type: 'h5'
+                }
+            });
+        });
+
+        $('#forward6').click(function () {
+            requestHybrid({
+                tagname: 'forward',
+                param: {
+                    topage: 'flight/index2.html',
+                    type: 'h5'
+                }
+            });
+        });
+
+        $('#forward7').click(function () {
+            requestHybrid({
+                tagname: 'forward',
+                param: {
+                    topage: 'hotel/index.html',
+                    type: 'h5'
+                }
+            });
+        });
+
+
+        $('#setRight').click(function () {
+            Hybrid.ui.header.set({
+                back: function () {
+                    requestHybrid({
+                        tagname: 'back',
+                        param: {
+                            topage: 'index',
+                            type: 'native'
+                        }
+                    });
+                },
+                title: '设置右边按钮',
+                right: [
+                    {
+                        tagname: 'gohome',
+                        value: '回到首页',
+                        callback: function () {
+                            requestHybrid({
+                                tagname: 'back',
+                                param: {
+                                    topage: 'index',
+                                    type: 'native'
+                                }
+                            });
+                        }
+                    }
+                ]
+            });
+        });
+
+        $('#setRight1').click(function () {
+            Hybrid.ui.header.set({
+                back: function () {
+                    requestHybrid({
+                        tagname: 'back',
+                        param: {
+                            topage: 'index',
+                            type: 'native'
+                        }
+                    });
+                },
+                title: '设置右边按钮1',
+                right: [
+                    {
+                        tagname: 'help',
+                        icon: 'flight/static/hybrid/help.png',
+                        callback: function () {
+                            alert('帮助我');
+                        }
+                    }
+                ]
+            });
+        });
+
+        $('#setRight2').click(function () {
+            Hybrid.ui.header.set({
+                back: function () {
+                    requestHybrid({
+                        tagname: 'back',
+                        param: {
+                            topage: 'index',
+                            type: 'native'
+                        }
+                    });
+                },
+                title: '设置右边按钮2',
+                right: [
+                    {
+                        tagname: 'search',
+                        icon: 'http://images2015.cnblogs.com/blog/294743/201511/294743-20151102143118414-1197511976.png',
+                        callback: function () {
+                            alert('读取线上资源')
+                        }
+                    }
+                ]
+            });
+        });
+
+        $('#setTitle').click(function () {
+            Hybrid.ui.header.set({
+                back: function () {
+                    requestHybrid({
+                        tagname: 'back',
+                        param: {
+                            topage: 'index',
+                            type: 'native'
+                        }
+                    });
+                },
+                title: ['主标题', '子标题']
+            });
+        });
+
+        $('#setSelectTitle').click(function () {
+            Hybrid.ui.header.set({
+                back: function () {
+                    alert('定制化回调1，然后回首页');
+                    requestHybrid({
+                        tagname: 'back'
+                    });
+                },
+                title: {
+                    tagname: 'title',
+                    title: '带图标title',
+                    lefticon: 'http://images2015.cnblogs.com/blog/294743/201511/294743-20151102143118414-1197511976.png',
+                    righticon: 'http://images2015.cnblogs.com/blog/294743/201511/294743-20151102143118414-1197511976.png',
+                    callback: function() {
+//                        alert('标题');
+                    }
+                }
+            });
+        });
+
+        $('#ajaxget').click(function () {
+            requestHybrid({
+                tagname: 'get',
+                param: {
+                    url: 'http://api.kuai.baidu.com/city/getstartcitys',
+                    param1: 'param1',
+                    param2: 'param2'
+                },
+                callback: function(data) {
+//                    alert(data)
+                }
+            });
+        });
+
+        $('#ajaxpost').click(function () {
+            requestHybrid({
+                tagname: 'post',
+                param: {
+                    url: 'http://api.kuai.baidu.com/city/getstartcitys',
+                    param1: 'param1',
+                    param2: 'param2'
+                },
+                callback: function(data) {
+//                    alert(data)
+                }
+            });
+        });
+
+
+    </script>
+</body>
+</html>

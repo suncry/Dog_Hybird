@@ -1,0 +1,82 @@
+.rx-info-wrap {
+    background: #fff;
+    overflow: hidden;
+}
+
+.rx-info-desc {
+    padding: 1rem 0 1rem .65rem;
+    font-size: .7rem;
+    color: #777;
+    line-height: 1.2rem;
+}
+.rx-info-desc .user-info {
+    font-size: .8rem;
+    color: #000;
+}
+
+.rx-info-cost {
+    padding: 1.9rem .65rem .65rem 0;
+    float: right;
+    text-align: center;
+}
+
+.rx-info-cost .price {
+    font-size: 1.25rem;
+    color: #ff5a00;
+}
+
+.rx-info-cost .tips {
+    font-size: .65rem;
+    color: #ABABAB;
+    text-align: center;
+}
+
+
+.btn-wrap {
+    height: 2.5rem;
+    margin: 1rem 0;
+}
+
+.btn-wrap .pay-box {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    color: #fff;
+    background: #007eff;
+    text-align: center;
+    font-size: .8rem;
+}
+.list-panel >.list-item:last-child {
+    border-bottom: 1px solid #e6e6e6;
+}
+
+
+.auto-height{
+    height: auto;
+}
+.two-col {
+    padding-top: .65rem;
+    padding-bottom: .65rem;
+    overflow: hidden;
+    height: auto;
+}
+.two-col span {
+    float: left;
+    line-height: 1.2rem;
+}
+.two-col span.v {
+    float: right;
+    width: 10rem;
+    line-height: 1.2rem;
+    text-align: right;
+}
+
+
+
+
+
+
+

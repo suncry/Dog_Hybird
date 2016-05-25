@@ -1,0 +1,145 @@
+
+.user-info {
+    background-color: #fff;
+    position: relative;
+}
+
+.user-info::after {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: .4rem;
+    height: .4rem;
+    border-top: 1px solid #a2a2a2;
+    border-right: 1px solid #a2a2a2;
+    position: absolute;
+    right: 1.2rem;
+    top: 2.55rem;
+    margin-top: -1px;
+    -webkit-transform: rotate(45deg) translateY(-50%);
+    transform: rotate(45deg) translateY(-50%);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.user-info .user-img {
+    width: 3.15rem;
+    height: 3.15rem;
+    overflow: hidden;
+    padding: 1.1rem .65rem;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-color: transparent;
+
+}
+
+.user-info .user-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    /*display: none;*/
+}
+
+.user-info .user-desc {
+    padding: 1.55rem 4.5rem;
+}
+
+.user-info .user-desc .user-name {
+    font-weight: 600;
+    font-size: .8rem;
+}
+
+
+.user-info .user-desc .user-tips {
+    color: #BDBDBD;
+}
+
+.user-record {
+    background-color: #fff;
+    padding: .9rem 0 .8rem 0;
+
+}
+
+.user-record li {
+    text-align: center;
+    border-right: 1px solid #E0E0E0;
+    padding: .45rem 0;
+}
+
+.user-record li:last-child {
+    border-right: none;
+}
+
+.user-record .name1 {
+    font-size: 1.5rem;
+    color: #0D83FF;
+}
+
+.user-record .name2 {
+    font-size: .7rem;
+}
+.user-record li {
+    padding: 0;
+}
+.rec-count,.trans-count {
+    color: #007eff;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+.bs-icon-icon1 {
+    background: url('static/images/icon-wallet.png') center center no-repeat;
+}
+.bs-icon-icon2 {
+    background: url('static/images/icon-voice.png') center center no-repeat;
+}
+.bs-icon-icon3 {
+    background: url('static/images/icon-flag.png') center center no-repeat;
+}
+.bs-icon-modal-default {
+    width: .8rem;
+    height: .8rem;
+    display: inline-block;
+    vertical-align: middle;
+    background-size: 100% auto;
+    margin-right: .75rem;
+    float: left;
+    margin-top: .82rem;
+}
+.bs-icon-modal-default.bs-icon-icon2, .bs-icon-modal-default.bs-icon-icon3 {
+    margin-top: .9rem;
+}
+
+.list-item {
+    padding-left: .5rem;
+    font-size: .8rem;
+    margin-left: 0;
+}
+.list-item span {
+    vertical-align: middle;
+}
+.list-item:last-child {
+    border-bottom: 1px solid #e6e6e6;
+}
+.line15 {
+    height: .65rem;
+    line-height: .65rem;
+    background: #EFEFEF;
+}
+.line {
+    margin: 0 .75rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

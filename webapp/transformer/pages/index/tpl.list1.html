@@ -1,0 +1,40 @@
+<%
+var item;
+
+var item1 = {};
+var k, i1, len1;
+var flag = true;
+%>
+
+
+<% for(var i = 0, len = list.length; i < len; i++) { %>
+<% flag = true; %>
+<%
+item = list[i];
+
+%>
+
+<div class="order-items js-order-items"
+     data-docId="<%= item.fromDoctorId%>"
+     data-id="<%=item.orderId%>" >
+    <div class="item-wrapper">
+        <div class="title">
+            <span><%=item.patientAge%> 岁</span>
+            <span><%=item.patientGender == 1 ? '男' : '女'%></span>
+            <span class="left">转诊费用：<strong><%=parseInt(item.money)%></strong>元</span>
+        </div>
+
+        <div class="title1">
+            <span>病症类型: <%=item.symptomsType%></span>
+        </div>
+
+        <div class="title content">
+            <%=_.mySubstr2(item.symptomsDesc, 56)%>
+        </div>
+    </div>
+</div>
+
+<% } %>
+
+
+

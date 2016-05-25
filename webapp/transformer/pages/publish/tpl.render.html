@@ -1,0 +1,104 @@
+﻿
+<%
+var date = new Date();
+var start, end;
+
+date.setTime(treatStartTime * 1000);
+start = _.dateUtil.format(date, 'Y.M.D');
+date.setTime(treatEndTime * 1000);
+end = _.dateUtil.format(date, 'Y.M.D');
+var pics = images || [];
+
+%>
+<div class="js-step0 js-step">
+
+    <div class="list-panel input-panel">
+        <div class="list-item nonearrow">
+            <span>患者姓名</span>
+            <span class="v">
+                <input class="js-name" type="text" maxlength="32" value="<%=patientName%>" placeholder="请输入患者姓名">
+            </span>
+        </div>
+        <div class="list-item nonearrow">
+            <span>患者手机</span>
+            <span class="v">
+                <input  class="js-tel" type="tel" value="<%=patientPhone%>" placeholder="请输入患者手机号">
+            </span>
+        </div>
+        <div class="list-item nonearrow">
+            <span>身份证号</span>
+            <span class="v">
+                <input  class="js-ids" type="text" value="<%=patientIDNo%>" placeholder="请输入患者身份证">
+            </span>
+        </div>
+
+        <div class="list-item nonearrow">
+            <span>性别</span>
+            <span class="v js-sex" ><%=(patientGender == 1 ? '男'  : '女' )%></span>
+        </div>
+
+        <div class="list-item nonearrow">
+            <span>年龄</span>
+            <span class="v js-age"><%=patientAge%></span>
+        </div>
+
+        <div class="list-item nonearrow">
+            <span>病症类型</span>
+             <span class="v">
+                <input type="tel" class="js-type" value="<%=symptomsType%>" placeholder="请输入患者病症类型">
+            </span>
+        </div>
+
+        <div class="text-area-input">
+            <textarea class="js-desc" placeholder="请输入患者病症说明"><%=symptomsDesc%></textarea>
+        </div>
+
+    </div>
+
+
+    <div class="js-pics-wrap">
+
+        <div class="tips1">
+            还可以上传 (<span><%=images.length%></span>/5)
+        </div>
+
+        <ul class="pic-list js-pic-list nofastclick" >
+            <% for(var i = 0, len = images.length; i < len; i++) { %>
+            <li class="js-pic-item js-cur-item progress-wrap"
+                data-id="<%=images[i].fileId%>"
+                data-url="<%=images[i].fileUrl%>" ><img
+                    src="<%=images[i].fileUrl%>" alt=""><span
+                    class="icon-input-clear js-remove-pic"><i class="icon-cross"></i></span></li>
+            <% } %>
+            <li class="add js-add " id="container" >
+                <i id="pickfiles"></i>
+            </li>
+        </ul>
+    </div>
+
+    <div class="tips2">
+        隐私说明:在单子未被接诊之前,其他人无法看到患者信息
+    </div>
+
+</div>
+
+<div class="js-step1 js-step" style="display: none;" >
+    <div class="list-panel input-panel">
+        <div class="list-item js-to-doctor">
+            <span>接诊医生</span>
+            <span class="v js-to-doctor-txt">
+                <%=rxDoctorName%>
+            </span>
+        </div>
+        <div class="list-item nonearrow">
+            <span>转诊费用</span>
+            <span class="v">
+                <input type="tel" class="js-money" value="<%=money%>元" placeholder="请输入费用">
+            </span>
+        </div>
+        <div class="list-item nonearrow js-time-action">
+            <span>希望接诊时间</span>
+            <span class="v js-time"><%=start%> - <%=end%></span>
+        </div>
+    </div>
+</div>
