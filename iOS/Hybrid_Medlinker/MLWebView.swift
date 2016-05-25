@@ -28,8 +28,7 @@ class MLWebView: UIView {
 
 //    let BASE_URL = "http://medlinker.com/webapp/"
     let BASE_URL = "http://kuai.baidu.com/webapp/"
-
-    let USER_AGENT_HEADER = "hybrid_/"
+    let USER_AGENT_HEADER = "hybrid_"
 
     
     /**************************************************/
