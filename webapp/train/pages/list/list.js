@@ -225,6 +225,11 @@ define([
         },
 
         toBooking: function (e) {
+
+            this.showToast('不要点击了!!!');
+
+            return;
+
             _hmt.push(['_trackEvent', 'train.list.tobooking', 'click']);
             var el = $(e.currentTarget);
 
