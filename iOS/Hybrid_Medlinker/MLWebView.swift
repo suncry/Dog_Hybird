@@ -14,23 +14,27 @@ import CoreMotion
 @objc protocol MLWebViewDelegate {
 }
 
-enum HybirdFunType {
-    case UpdateHeader
-    case Back
-    case Forward
-    case Get
-    case Post
-}
-extension MLWebView {
-    
-}
 class MLWebView: UIView {
 
+    //地址相关
 //    let BASE_URL = "http://medlinker.com/webapp/"
     let BASE_URL = "http://kuai.baidu.com/webapp/"
     let USER_AGENT_HEADER = "hybrid_"
 
-    
+    //事件类型
+    let UpdateHeader = "updateheader"
+    let Back = "back"
+    let Forward = "forward"
+    let Get = "get"
+    let Post = "post"
+
+    //Event前缀
+    let NaviHeaderEvent = "Hybrid.Header_Event."
+    let HybirdEvent = "Hybrid."
+
+    //导航栏本地资源前缀
+    let NaviImageHeader = "hybird_navi_"
+
     /**************************************************/
     //MARK: - property
     var context = JSContext()
@@ -125,15 +129,15 @@ class MLWebView: UIView {
         print("callbackID === \(callbackID)")
         print("****************************************")
         print("   ")
-        if funType == "updateheader" {
+        if funType == UpdateHeader {
             self.updateHeader(args)
-        } else if funType == "back" {
+        } else if funType == Back {
             self.back(args)
-        } else if funType == "forward" {
+        } else if funType == Forward {
             self.forward(args)
-        } else if funType == "get" {
+        } else if funType == Get {
             self.HybirdGet(args, callbackID: callbackID)
-        } else if funType == "post" {
+        } else if funType == Post {
             self.HybirdPost(args, callbackID: callbackID)
         }
     }
@@ -174,10 +178,10 @@ class MLWebView: UIView {
                 button.setImageForState(.Normal, withURL: NSURL(string: buttonModel.icon) ?? NSURL())
             }
             else if buttonModel.tagname.characters.count > 0 {
-                button.setImage(UIImage(named: "hybird_navi_" + buttonModel.tagname), forState: .Normal)
+                button.setImage(UIImage(named: NaviImageHeader + buttonModel.tagname), forState: .Normal)
             }
             button.addBlockForControlEvents(.TouchUpInside, block: { (sender) in
-                self.myWebView.stringByEvaluatingJavaScriptFromString("Hybrid.Header_Event." + "\(buttonModel.callback)();")
+                self.myWebView.stringByEvaluatingJavaScriptFromString(self.NaviHeaderEvent + "\(buttonModel.callback)();")
             })
             let menuButton = UIBarButtonItem(customView: button)
             buttons.append(menuButton)
@@ -245,7 +249,7 @@ class MLWebView: UIView {
             }, success: { (sessionDataTask, jsonObject) in
                 let callbackString = try! self.jsonStringWithObject(jsonObject!)
                 //                    print(callbackString)
-                self.myWebView.stringByEvaluatingJavaScriptFromString("Hybrid." + "\(callbackID)(\(callbackString));")
+                self.myWebView.stringByEvaluatingJavaScriptFromString(self.HybirdEvent + "\(callbackID)(\(callbackString));")
             }, failure: { (sessionDataTask, error) in
                 print(error)
         })
@@ -259,7 +263,7 @@ class MLWebView: UIView {
         sessionManager.POST(url, parameters: parameters, progress: { (progress) in
             }, success: { (sessionDataTask, jsonObject) in
                 let callbackString = try! self.jsonStringWithObject(jsonObject!)
-                self.myWebView.stringByEvaluatingJavaScriptFromString("Hybrid." + "\(callbackID)(\(callbackString));")
+                self.myWebView.stringByEvaluatingJavaScriptFromString(self.HybirdEvent + "\(callbackID)(\(callbackString));")
             }, failure: { (sessionDataTask, error) in
                 print(error)
         })
@@ -326,7 +330,6 @@ extension MLWebView: UIWebViewDelegate {
     }
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        
         return true
     }
 
