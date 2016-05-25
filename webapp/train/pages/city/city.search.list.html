@@ -1,0 +1,22 @@
+﻿<% for(var k in data) { 
+
+var items = data[k];
+
+var item = items.item;
+var data1 = items.data;
+
+%>
+
+<div class="city-list list-search js-list-search">
+     <h2 class="js_city_item" data-name="<%=item.city_name %>" data-filter="<%=item.city_name %>  <%=item.pinyin %> <%=item.station_short_name %> " >
+        <%=item.city_name %>
+     </h2>
+    <ul class="list-item js_city_list">
+    <% for(var i = 0, len = data1.length; i < len; i++) { %>
+      <li data-name="<%=data1[i].station_name %>" data-filter="<%=data1[i].station_name %>  <%=data1[i].pinyin %> <%=data1[i].station_short_name %> "><%=data1[i].station_name%></li>
+    <%} %>
+   </ul>
+</div>
+
+<%} %>
+  

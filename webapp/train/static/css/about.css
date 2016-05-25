@@ -1,0 +1,67 @@
+.page-about .logo-wrap {
+    background-color: #ededed;
+    color: #333;
+    padding-top: 45px;
+    padding-bottom: 40px;
+}
+
+.page-about .logo {
+    text-align: center;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    background: url(../images/logo.240.png) no-repeat 0 0;
+    background-size: 120px;
+}
+
+.page-about .logo-wrap p {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.page-about .navagation-list .list-item {
+    height: 55px;
+    line-height: 55px;
+    font-size: 15px;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 0 5px 0 15px;
+}
+
+.page-about .navagation-list .list-item:last-child {
+    border-bottom: none;
+}
+
+.page-about .navagation-list .icon-arrow {
+    height: 55px;
+}
+
+/** tips **/
+.about-tips ol {
+    list-style-type: decimal;
+    padding-left: 2em;
+}
+
+.about-tips ul {
+    list-style-type: none;
+    padding-left: 2em;
+}
+
+.about-tips .warn {
+    color: #ff5a00;
+}
+
+.page-about .phone {
+    padding: 15px;
+}
+
+.page-about .phone .txt {
+    float: left;
+}
+
+.page-about .phone .phone-num {
+    float: right;
+}
+.page-about .phone .phone-num .time{
+    color: #c5c5c5;
+}

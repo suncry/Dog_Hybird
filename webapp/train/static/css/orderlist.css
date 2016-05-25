@@ -1,0 +1,326 @@
+
+
+.page-orderlist {
+  padding-bottom: 45px; 
+ }
+ 
+.page-orderlist .booking-info-detail{
+  position: relative;
+  height: 110px;
+  border: 1px solid #e5e5e5;
+  border-left: none;
+  border-right: none;
+  background-color: #fff;
+  
+}
+.page-orderlist .booking-info-detail::before {
+  
+  top: -1px;
+  position: absolute;
+  left: 50%;
+  margin-left: -16px;
+  content: '';
+  width: 34px;
+  height: 15px;
+  background-color: #faf0e4;
+  border-radius: 0 0 30px 30px;
+  border: 1px solid #e5e5e5;
+  border-top: none;
+}
+
+
+.page-orderlist .booking-info-detail .c{
+  position: absolute;
+  top: 18px;
+  
+  width: 108px;
+  height: 110px;
+  text-align: center;
+  
+}
+
+.page-orderlist .booking-info-detail .c h3{
+  font-size: 24px;
+  color: #333333;
+  font-weight: 200;
+    width: 108px;
+  overflow: hidden;
+  height: 48px;
+}
+
+.page-orderlist .booking-info-detail .c h4{
+  font-size: 12px;
+  color: #333333;
+  font-weight: normal;
+  color: #00b358;
+}
+
+.page-orderlist .booking-info-detail .start{
+  left: 0;
+  
+}
+
+.page-orderlist .booking-info-detail .end{
+  right: 0;
+  
+}
+
+.booking-info-detail .detail{
+  margin: 28px 100px;
+  
+}
+
+.page-orderlist .booking-info-detail .detail .time{
+  text-align: center;  
+}
+
+.page-orderlist .booking-info-detail .detail .time div {
+  position: relative;
+  display: inline-block;
+  
+  width: 70px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 30px;
+  text-align: center;
+  background-color: #00b358;
+  font-family: Arial;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  
+}
+
+.page-orderlist .booking-info-detail .detail .time .icon-next1 {
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: #00b358;
+  top: 9px;
+  left: -20px;
+}
+
+.page-orderlist .booking-info-detail .detail .time .icon-next1::before {
+  position: absolute;
+  content: '';
+  background-color: #00b358;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  top: -2px;
+  left: -2px;
+}
+
+.page-orderlist .booking-info-detail .detail .time .icon-next2 {
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: #00b358;
+  top: 9px;
+  right: -20px;
+}
+
+.page-orderlist .booking-info-detail .detail .time .icon-next2::before {
+content: '';
+  position: absolute;
+  top: -4px;
+  right: 1px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #00b358;
+  border-left: 0;
+  border-top: 0;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.page-orderlist .booking-info-detail .detail .time .icon-next2::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 4px;
+  background-color: #00b358;
+  top: 4px;
+  left: 13px;
+  border-radius: 1px;
+  box-shadow: 0 -15px 0 #00b358;
+  -webkit-box-shadow: 0 -10px 0 #00b358;
+}
+
+
+.page-orderlist .booking-info-detail .detail .price{
+  text-align: center;  
+   font-family: Arial;
+  color: #5c5c5c;
+  font-size: 12px;  
+  margin-top: 5px;
+}
+
+.page-orderlist .booking-info-detail .detail .price span {
+  color: #fd7e01;
+  font-size: 15px;
+  font-weight: bold;
+  
+}
+
+
+
+.page-orderlist .order-list .list-item{
+  position: relative;
+  margin-top: 10px;
+  font-size: 15px;
+  background-color: #fff;
+  border-bottom : 1px solid #e5e5e5;
+}
+
+.page-orderlist .order-list .list-item::after, .order-list .list-item::before{
+  content: '';
+  position: absolute;
+  left: 50%;
+  margin-left: -6px;
+  width: 12px;
+  height: 6px;
+  background-color: #efefef;
+  border: 1px solid #e5e5e5;
+  z-index: 2;
+}
+
+.page-orderlist .order-list .list-item::before{
+  border-radius: 0 0 30px 30px;
+  border-top: none;
+  top: 0;
+}
+
+.page-orderlist .order-list .list-item::after {
+  border-radius: 30px 30px 0 0;
+  border-bottom: none;
+  bottom: -1px;
+}
+
+
+
+.page-orderlist .order-list .list-item .booking-info-detail::before {
+  content: none;
+  
+}
+
+.page-orderlist .order-list .order-info {
+ height: 44px;
+ line-height: 44px; 
+}
+
+.page-orderlist .order-info .fl {
+  margin-left: 10px;  
+}
+
+.page-orderlist .order-info .price{
+  color: #fd7e01;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.page-orderlist .order-info .num{
+  color: #01b258;
+}
+
+.page-orderlist .order-info  .fr{
+  display: inline-block;
+  font-size: 18px;
+  height: 44px;
+  padding: 0 20px;
+  line-height: 44px;
+  text-align: center;
+  font-weight: bold;
+}
+.page-orderlist .order-info .waitting{
+  background-color: #00b358;
+  color: #fff;
+}
+
+.page-orderlist .order-info .cancel{
+  color: #c0c0c0;
+}
+
+
+.page-orderlist .order-info .finished{
+  color: #00b44d;
+}
+
+.page-orderlist .order-info .refund{
+  color: #f95b58;
+}
+
+.page-orderlist .order-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  height: 55px;
+  
+  border-top: 1px solid #e5e5e5;
+}
+
+.page-orderlist .order-nav .tabs-item {
+   padding-top: 15px;  
+}
+
+.page-orderlist .order-nav .tabs-item.active {
+   color: #00b358;
+}
+
+.page-orderlist .order-nav .tabs-item .line{
+  height: 20px;
+  line-height: 20px;
+}
+
+
+.page-orderlist .order-nav .tabs-item .icon-file {
+  color: #777777;
+  top: -8px;
+}
+
+.page-orderlist .order-nav .tabs-item.active .icon-file{
+   color: #00b358;
+}
+
+.page-orderlist .order-nav .tabs-item .icon-file:before {
+
+  background-color: #fff;
+}
+
+.page-orderlist .order-nav .tabs-item .icon-search {
+    border: 2px solid #777777;
+    top: -4px;
+    left: -2px;
+}
+
+.page-orderlist .order-nav .tabs-item.active  .icon-search {
+    border: 2px solid #00b358;
+}
+
+.page-orderlist .order-nav .tabs-item  .icon-search::after{
+    background-color: #777777;
+}
+
+.page-orderlist .order-nav .tabs-item.active  .icon-search::after {
+    background-color: #00b358;
+}
+
+.page-orderlist .order-nav .tabs-item.active  .icon-user {
+    color: #00b358;
+}
+
+.page-orderlist .order-tab {
+    height: 35px;
+    line-height: 35px;
+    background: #08C563;
+    color: #fff;
+}
+.page-orderlist .order-tab li {
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+.page-orderlist .order-tab .active {
+    background: #169D57;
+}

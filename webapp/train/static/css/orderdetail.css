@@ -1,0 +1,730 @@
+
+
+
+.page-orderdetail .booking-guide {
+    background-color: #00b358;
+ }
+ 
+.page-orderdetail .booking-guide ul{
+  padding-top: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+ .page-orderdetail .booking-guide li {
+     position: relative;
+     -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+    border-top: 1px solid #00a14f;
+    font-size: 12px;
+    color: #107e45;
+    height: 30px;
+    padding: 5px 0 10px;
+    
+ }
+ 
+  .page-orderdetail .booking-guide li span{
+    position:  absolute;
+    right: -25%;
+ }
+ 
+  .page-orderdetail .booking-guide li.active {
+    border-top: 1px solid #adff8e;
+    color: #adff8e;
+ }
+ 
+  .page-orderdetail .booking-guide li::after {
+    position: absolute;
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    top: -3px;
+    right: 0;
+    background-color: #107e45;
+ }
+ 
+  .page-orderdetail .booking-guide li.active::after {
+    background-color: #adff8e;
+ }
+ 
+ .page-orderdetail .booking-guide li:last-child  {
+    -webkit-box-flex: 2;
+  -moz-box-flex: 2;
+  -webkit-flex: 2;
+  -ms-flex: 2;
+ }
+ 
+ .page-orderdetail .booking-guide li:last-child span {
+     top: -9px;
+      right: 0;
+   padding: 0 15px;
+   height: 18px;
+   line-height: 18px;
+   background-color: #00984b;
+   color: #adff8e;
+   border-radius: 10px;
+ }
+ 
+  .page-orderdetail .booking-guide li:last-child::after  {
+  display: none;
+ }
+ 
+.page-orderdetail .booking-info-top {
+  background-color: #faf0e4;
+  height: 33px;
+  line-height: 33px;
+  padding: 0 10px;
+    font-size: 13px;
+  color: #545454
+ }
+ 
+.page-orderdetail .booking-info-detail{
+  position: relative;
+  border: 1px solid #e5e5e5;
+  border-left: none;
+  border-right: none;
+  background-color: #fff;
+  
+}
+
+.page-orderdetail .unpaid {
+  padding: 2px 10px;
+  font-size: 15px;
+}
+
+.page-orderdetail .time {
+  color: #fffd53;
+}
+
+.page-orderdetail .price {
+  color: #fffd53;
+  font-family: Arial;
+}
+
+.page-orderdetail .booking-info-detail::before {
+  
+  top: -1px;
+  position: absolute;
+  left: 50%;
+  margin-left: -16px;
+  content: '';
+  width: 34px;
+  height: 15px;
+  background-color: #faf0e4;
+  border-radius: 0 0 30px 30px;
+  border: 1px solid #e5e5e5;
+  border-top: none;
+}
+
+
+.page-orderdetail .booking-info-detail .c{
+  position: absolute;
+  top: 18px;
+  
+  width: 108px;
+  height: 110px;
+  text-align: center;
+  
+}
+
+.page-orderdetail .booking-info-detail .c h3{
+  font-size: 24px;
+  color: #333333;
+  font-weight: 200;
+    width: 108px;
+  overflow: hidden;
+  height: 48px;
+  
+}
+.page-orderdetail .booking-info-detail .c h4{
+  font-size: 12px;
+  color: #333333;
+  font-weight: normal;
+  color: #00b358;
+}
+
+.page-orderdetail .booking-info-detail .start{
+  left: 0;
+  
+}
+
+.page-orderdetail .booking-info-detail .end{
+  right: 0;
+  
+}
+
+.page-orderdetail .booking-info-detail .detail{
+  margin: 28px 100px;
+  
+}
+
+.page-orderdetail .booking-info-detail .detail .time{
+  text-align: center;  
+}
+
+.page-orderdetail .booking-info-detail .detail .time div {
+  position: relative;
+  display: inline-block;
+  
+  width: 70px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 30px;
+  text-align: center;
+  background-color: #00b358;
+  font-family: Arial;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  
+}
+
+.page-orderdetail .booking-info-detail .detail .time .icon-next1 {
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: #00b358;
+  top: 9px;
+  left: -20px;
+}
+
+.page-orderdetail .booking-info-detail .detail .time .icon-next1::before {
+  position: absolute;
+  content: '';
+  background-color: #00b358;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  top: -2px;
+  left: -2px;
+}
+
+.page-orderdetail .booking-info-detail .detail .time .icon-next2 {
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: #00b358;
+  top: 9px;
+  right: -20px;
+}
+
+.page-orderdetail .booking-info-detail .detail .time .icon-next2::before {
+content: '';
+  position: absolute;
+  top: -4px;
+  right: 1px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #00b358;
+  border-left: 0;
+  border-top: 0;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.page-orderdetail .booking-info-detail .detail .time .icon-next2::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 4px;
+  background-color: #00b358;
+  top: 4px;
+  left: 13px;
+  border-radius: 1px;
+  box-shadow: 0 -15px 0 #00b358;
+  -webkit-box-shadow: 0 -10px 0 #00b358;
+}
+
+
+.page-orderdetail .booking-info-detail .detail .price{
+  text-align: center;  
+   font-family: Arial;
+  color: #5c5c5c;
+  font-size: 12px;
+}
+
+.page-orderdetail .booking-info-detail .detail .price span {
+  color: #fd7e01;
+  font-size: 15px;
+  font-weight: bold;
+  
+}
+
+.page-orderdetail .booking-info-passenger {
+  background-color: #fff;
+  border-bottom: 1px dashed #e5e5e5;
+  overflow: hidden;
+}
+
+.page-orderdetail .booking-info-passenger  .tips {
+ font-size: 12px;
+ color: #c5c5c5; 
+}
+
+.page-orderdetail .booking-info-ccr {
+ background: #fff;
+  
+}
+
+.page-orderdetail .booking-info-ccr .total-price {
+  color: #fd7e01;
+  font-size: 15px;
+  font-weight: bold;
+  
+}
+
+.page-orderdetail .booking-info-ccr .ccr-item {
+ position: relative; 
+  
+}
+
+.page-orderdetail .booking-info-ccr .ccr-item .ccr-txt {
+   float: right;
+   height : 55px;
+   line-height: 55px;
+   padding: 0 10px 0 10px;
+}
+
+.page-orderdetail .booking-info-ccr .ccr-item .field-text{
+  height: 43px;
+  padding: 7px 5px;
+  border: 0 none;
+  width: 100%;
+  float: right;
+}
+
+.page-orderdetail .booking-info-ccr .ccr-item .ccr-info {
+ 
+ border-top: 1px solid #e5e5e5;
+}
+
+.page-orderdetail .booking-info-ccr .select-ccr .ccr-info {
+  border-top: none;
+}
+
+.page-orderdetail .ccr-item .ccr-icon {
+  position: absolute;
+  left: 18px;
+  top: 16px;
+}
+
+.page-orderdetail .ccr-item .ccr-icon.icon-users {
+  position: absolute;
+  left: 18px;
+  top: 14px;
+}
+
+.page-orderdetail .ccr-item .icon-circle-minus {
+  left: 14px;
+  top: 11px;
+}
+
+.page-orderdetail .ccr-item .icon-circle-minus::before {
+  background-color: #f06463;
+}
+
+.page-orderdetail .ccr-item .ccr-info {
+  margin-left: 52px;
+  height: 55px;
+  line-height: 55px;
+  padding-right: 15px;
+}
+
+.page-orderdetail .ccr-item .ccr-info .name{
+  display: inline-block;
+  min-width: 48px;
+}
+
+.page-orderdetail .ccr-item .ccr-info .tel{
+  display: inline-block;
+}
+
+.page-orderdetail .ccr-item .ccr-info .ids{
+  color: #00b358;
+  font-size: 15px;
+}
+
+.page-orderdetail .ccr-item .ccr-info .id{
+  color: #01b258;
+  padding-left: 10px;
+}
+
+.page-orderdetail .booking-info-ccr li {
+  overflow: hidden; 
+  height: 55px;
+  line-height: 55px;
+}
+
+
+.page-orderdetail .booking-info-qpr {
+  position: relative;
+  background-color: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0 0 0 15px;
+  
+}
+
+.page-orderdetail .qpr-item .qpr-icon {
+  position: absolute;
+  left: 15px;
+  top: 23px;
+}
+
+.page-orderdetail .qpr-item .icon-arrow {
+  height: 46px;
+  line-height: 54px;
+  margin-right : 14px;
+}
+
+.page-orderdetail .booking-info-qpr .qpr-item {
+  overflow: hidden;
+  margin-left: 38px;
+  height: 54px;
+  line-height: 54px;
+  border-bottom: 1px dashed #e5e5e5;
+ }
+ 
+.page-orderdetail  .booking-info-qpr .qpr-item:last-child {
+  border-bottom: none;
+ }
+ 
+.page-orderdetail  .booking-info-qpr .qpr-item .qpr-txt {
+   margin-left: 65px;
+ }
+ 
+.page-orderdetail   .booking-info-qpr .qpr-item .qpr-txt .field-text {
+    height: 53px;
+    line-height: 53px;
+    width: 100%;
+    border: none;
+      font-size: 15px;
+  color: #333333;
+  font: 400 14px/1.5 Arial, "Lucida Grande", Verdana, "Microsoft YaHei", hei;
+ }
+
+.page-orderdetail .booking-info-qpr  .tips {
+ font-size: 12px;
+ color: #c5c5c5; 
+}
+
+.page-orderdetail .pay-wrapper{
+  height: 50px;
+  
+}
+
+
+
+.page-orderdetail .pay-wrapper .pay-box{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background-color: #333333;
+  opacity: 0.85;
+  color: #fff;
+  height: 50px;
+  
+}
+
+.page-orderdetail .pay-box .pay-info{
+  margin: 0 125px 0 10px;
+ overflow: hidden; 
+}
+
+.page-orderdetail .pay-box .pay-info .t-price{
+   font-family: Arial;
+   color: #fd7e01;
+   font-size: 23px;
+}
+
+
+.page-orderdetail .pay-info .t-name {
+  line-height: 50px;
+}
+
+.page-orderdetail .pay-box .to-pay{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  background-color: #00b358;
+  font-size: 18px;
+  width: 120px;
+  height: 50px;
+  text-align: center;
+}
+
+.page-orderdetail .pay-box .to-app{
+  font-size: 16px;
+}
+
+.page-orderdetail .booking-info-more {
+  position: relative;
+  font-size: 13px;
+  background-color: #fff;
+  overflow: hidden;
+  height: 40px;
+  line-height: 40px;
+ border-top: 1px solid #e5e5e5;
+  
+}
+
+.page-orderdetail .booking-info-more .icon-location3{
+  top: 4px;
+}
+
+.page-orderdetail .booking-info-more li {
+  float: left;
+  position: relative;
+  text-align: center;
+  width: 50%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.page-orderdetail .booking-info-more li:first-child {
+ border-right: 1px solid #e5e5e5;
+}
+
+.page-orderdetail  .b-icon-exclamatory{
+  position: relative;
+  top: -2px;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  line-height: 20px;
+  border-radius: 50%;
+  border: 1px solid #5c5c5c;
+  vertical-align: middle;
+  text-align: center;
+  background-color: #fff;
+  margin-right: 2px;
+  font-size: 16px;
+}
+
+.page-orderdetail .order-detail-wrapper {
+  position: relative;
+  background-color: #00b358;
+  border-top: 1px solid #13bd65;
+  color: #fff;
+  line-height: 28px;
+  font-size: 16px;
+}
+
+.page-orderdetail .order-detail {
+    position: relative;
+    margin: 5px 65px 0 10px;
+    padding-bottom: 5px;
+}
+
+.page-orderdetail .order-detail .icon-file-horizontal {
+  position: absolute;
+  top: 2px;
+  left: -21px;
+
+}
+
+.page-orderdetail .order-detail .b-icon-question {
+  position: absolute;
+   bottom: 15px;
+  left: -20px;
+  border-color: #92f388;
+  color: #92f388;
+  width: 15px;
+  height: 15px;
+  line-height: 16px;
+  font-size: 12px;
+}
+
+.page-orderdetail .order-detail .name {
+  display: inline-block;
+}
+
+.page-orderdetail .order-detail .ticket-code .name {
+  display: inline-block;
+  padding-left: 10px;
+  
+}
+
+.page-orderdetail .order-detail .tips{
+  font-size: 13px ;
+  display: inline-block;
+  border-radius: 15px;
+  padding: 0 10px;
+  color: #afff8e;
+  line-height: 22px;
+  height: 22px;
+ 
+}
+
+.page-orderdetail .order-price {
+  position: absolute;
+  top: 7px;
+  right: 0;
+  width: 110px;
+  height: 70px;
+  padding-top: 20px;
+  line-height: 40px;
+  border-left: 1px dashed #52d33b;
+  text-align: center;
+}
+
+.page-orderdetail .order-price h2{
+  height: 35px;
+  line-height: 35px;
+  font-size: 20px;
+  font-family: Arial;
+}
+
+.page-orderdetail .order-bottom {
+ margin-top: 10px;
+ background-color: #fff;
+  
+}
+
+.page-orderdetail .order-bottom li{
+  font-size: 15px;
+  color: #333333;
+  line-height: 54px;
+  border-top: 1px solid #e6e6e6;
+  padding-left: 20px;
+}
+.page-orderdetail .order-bottom li .name {
+    width: 70px;
+    display: inline-block;
+}
+
+.page-orderdetail .order-bottom .value{
+   padding-left: 10px;
+     font-family: Arial;
+}
+
+
+.page-orderdetail .share-box {
+ width: 100%;
+ background-color: #fff;
+ color: #8c8c8c;
+ font-size: 14px;
+ padding: 10px;
+ -webkit-box-sizing: border-box;
+ box-sizing: border-box;
+  
+}
+
+.page-orderdetail .share-box h3{
+ margin: 0 10px 10px 10px;
+ text-align: center;
+}
+
+.page-orderdetail strong {
+ font-weight: normal;
+  
+}
+
+.page-orderdetail .share-items {
+ overflow: hidden;
+}
+
+.page-orderdetail .share-items li{
+  float: left;
+  width: 62px;
+  padding: 2px;
+  text-align: center;
+}
+
+.page-orderdetail .share-items  img {
+ width: 45px;
+ height: 45px;
+ margin-bottom: 5px;
+}
+
+.page-orderdetail .to-pay .icon-img-share1 {
+  width: 22px;
+  height: 18px;
+  background-size: 22px 18px;
+  margin: 10px 10px 0 0;
+  vertical-align: text-bottom;
+}
+
+.page-orderdetail .ad-share {
+  position: fixed;
+  left: 0;
+  bottom: 50px;
+  width: 100%;
+  background-color: #efefef;
+}
+
+.page-orderdetail .ad-share  .icon-close{
+  right: 0;
+  top: 0;
+}
+
+.page-orderdetail .ad-share img{
+  width: 100%;
+}
+
+.page-orderdetail .share-suc-wrapper{
+   padding: 10px 20px;
+   height: 180px;
+}
+.page-orderdetail .share-suc-money {
+  position: relative;
+  overflow: hidden;
+  margin: 10px auto;
+  width: 260px;
+  height: 78px;
+  background: url(../images/share-suc.png) no-repeat 0 center;
+  background-size: 260px 78px;
+  font-family: Arial;
+  vertical-align:middle;
+  line-height: 78px;
+  padding-left: 20px;
+   font-size: 50px;
+  font-weight: 600;
+  color: #e96628;
+    
+}
+
+.page-orderdetail .share-suc-msg {
+  text-align: center;  
+}
+.page-orderdetail .share-suc-goto{
+  margin: 10px 0;
+  text-align: center;
+  font-size: 15px;
+  color: #00b358;
+}
+.page-orderdetail .code-str {
+    background: url(../images/code-str.png) center center no-repeat;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 15px;
+    background-size: 40px 40px;
+    top: 50%;
+    margin-top: -20px;
+}
+
+.page-orderdetail .instruction-link {
+    color: #00b358;
+    margin-right: 15px;
+    font-size: 13px;
+    float: right;
+}
+.page-orderdetail .instruction-desc {
+    white-space: nowrap;
+    margin-right: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
