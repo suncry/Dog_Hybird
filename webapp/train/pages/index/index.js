@@ -78,7 +78,7 @@
                 view: this,
                 title: '火车票查询',
                 back: function() {
-                    this.goHome();
+                    this.jump('flight/index');
                 }
             };
 

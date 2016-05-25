@@ -562,20 +562,6 @@ define([
             return mappingPath ? mappingPath : this.viewRootPath + '/' + path + '/' + path;
         },
 
-        goHome: function() {
-            if(_.getHybridInfo().platform == 'hybrid') {
-                requestHybrid({
-                    tagname: 'forward',
-                    param: {
-                        topage: 'index',
-                        type: 'native',
-                        animate: 'pop'
-                    }
-                });
-            }
-
-        },
-
         //此处需要一个更新逻辑，比如在index view再点击到index view不会有反应，下次改**************************
         forward: function (viewId, param, replace, animateName) {
 
@@ -593,7 +579,11 @@ define([
             //hybrid跳转封装
             if(_.getHybridInfo().platform == 'hybrid') {
 
-                hybridPage = this.curView.project + '/' + viewId + '.html';
+                if (viewId.indexOf('/') != -1) {
+                    hybridPage = viewId + '.html';
+                } else {
+                    hybridPage = this.curView.project + '/' + viewId + '.html';
+                }
 
                 for(var key in param) {
                     if(index == 0) {
@@ -603,8 +593,6 @@ define([
                     }
                     index++;
                 }
-
-                alert(animateName);
 
                 _.requestHybrid({
                     tagname: 'forward',
@@ -624,7 +612,19 @@ define([
             //一定不使用pageview
             this.loadViewByUrl('forward');
         },
+
+        goHome: function() {
+
+        },
+
+        //跨频道跳转
         jump: function (path, param, replace) {
+            //hybrid跳转封装
+            if(_.getHybridInfo().platform == 'hybrid') {
+                this.forward(path, param, replace);
+                return;
+            }
+
             var viewId;
             var project;
             if (!path) {
@@ -636,6 +636,7 @@ define([
             }
             viewId = path.pop();
             project = path.length === 1 ? path.join('') + '/' : path.join('');
+
             this.setUrlRule(viewId, param, replace, project);
             this.loadViewByUrl();
         },
