@@ -621,7 +621,7 @@ define([
         jump: function (path, param, replace, animateName) {
             //hybrid跳转封装
             if(_.getHybridInfo().platform == 'hybrid') {
-                this.forward(path, param, replace);
+                this.forward(path, param, replace, animateName);
                 return;
             }
 
