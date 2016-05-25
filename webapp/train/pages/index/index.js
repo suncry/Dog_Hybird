@@ -158,6 +158,24 @@
             this.startCityStore.set(start_id);
             this.endCityStore.set(end_id);
 
+            var url = 'train/list.html?1=1';
+
+            for(var key in param) {
+                url += '&' + key + '=' + param[key]
+            }
+
+            alert(url)
+
+            _.requestHybrid({
+                tagname: 'forward',
+                param: {
+                    topage: url,
+                    type: 'h5'
+                }
+            })
+
+            return;
+
             this.forward('list', param);
 
         },
