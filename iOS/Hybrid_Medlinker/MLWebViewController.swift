@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class MLWebViewController: UIViewController {
 
     var URLPath: String?

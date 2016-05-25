@@ -23,7 +23,9 @@ class ViewController: UIViewController {
     @IBAction func buttonClick(sender: AnyObject) {
         let web = MLWebViewController()
         web.hidesBottomBarWhenPushed = true
-        web.URLPath = "http://medlinker.com/webapp/flight/index.html"
+//        web.URLPath = "http://medlinker.com/webapp/flight/index.html"
+        web.URLPath = "http://kuai.baidu.com/webapp/flight/index.html"
+
         self.navigationController?.pushViewController(web, animated: true)
     }
 
