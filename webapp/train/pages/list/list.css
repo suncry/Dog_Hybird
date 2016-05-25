@@ -188,7 +188,11 @@
   position: fixed;
 }
 
- .calendar-bar .tabs-item {
+.baidubox .calendar-bar{
+    top: 0;
+}
+
+.calendar-bar .tabs-item {
   font-size: 13px;
   border-right: 1px solid #02ad56;
 }

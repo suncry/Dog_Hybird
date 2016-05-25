@@ -128,7 +128,7 @@ var _hmt = _hmt || [];
                 if (isHybrid) {
                     setTimeout(function () {
                         $('body').addClass('baidubox');
-                    }, 20);
+                    }, 1);
                 }
 
             },
