@@ -1,0 +1,169 @@
+
+
+.trainno-header{
+    background-color: #00b358;
+    border-top: 1px solid #00a14f;
+    position: relative;
+    height: 60px;
+    
+}
+
+h2{
+    position: absolute;
+    width: 30%;
+    height: 60px;
+    line-height: 60px;
+    font-size: 18px;
+}
+
+.setout{
+    left: 0;
+    text-align: right;
+}
+
+.arrive{
+    right: 0;
+    text-align: left;
+}
+
+.tainno{
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    vertical-align: top;
+    background: url(./static/images/train.png) center 30px no-repeat;
+    background-size: 38px 20px;
+}
+
+.tainno span{
+    height: 30px;
+    line-height: 30px;
+    vertical-align: top;
+}
+
+.buy-bar-wrapper {
+    height: 36px;
+}
+
+.buy-bar-wrapper .buy-bar{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background-color: #fff;
+    border-top: #d2d2d2;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    z-index: 1000;
+}
+
+.buy-bar-wrapper .setout-arrive {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 0 10px;
+    color: #999999;
+    font-size: 14px;
+    
+}
+
+.buy-bar-wrapper .buy-btn-wrapper {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.buy-bar-wrapper .buy-btn-wrapper span {
+ margin-right: 10px;
+ padding: 10px 25px;
+ background-color: #999a9a;
+ color: #fff;   
+ border-radius: 3px;
+}
+
+.buy-bar-wrapper .active .setout-arrive {
+    color: #333;
+    
+}
+
+.buy-bar-wrapper .active span {
+   background-color: #00b358;
+}
+
+.list-header {
+    height: 36px;
+    line-height: 36px;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 14px;
+    color: #333333;
+}
+
+.list-item {
+   height: 40px;
+   line-height: 40px;
+   position: relative;
+}
+
+.list-wrapper {
+  position: relative;
+     
+}
+
+.list-wrapper .list-item::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    left: 15px;
+    top: 15px;
+    border: 1px solid #cdcdcd;
+}
+
+.list-wrapper .list-item::after {
+    content: '';
+    position: absolute;
+    width: 86%;
+    height: 1px;
+    border-bottom: 1px solid #e5e5e5;
+    right: 10px;
+    bottom: 0;
+}
+
+.list-item .item-alter {
+    position: absolute;
+    content: "";
+    left: 20px;
+    top: 41px;
+    vertical-align: middle;
+    width: 2px;
+    height: 2px;
+    border-radius: 3px;
+    background-color: #d6d6d6;
+    -webkit-box-shadow: 5px 0 0 #d6d6d6, -5px 0 0 #d6d6d6, -10px 0 0 #d6d6d6;
+    box-shadow: 5px 0 0 #d6d6d6, -5px 0 0 #d6d6d6, -10px 0 0 #d6d6d6;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.list-wrapper .list-item.active {
+    color: #00b358;
+}
+
+.list-wrapper .list-item.error {
+    color: #f06463;
+}
+
+.list-wrapper .list-item.active::before  {
+    border: 1px solid #00b358;
+}
+
+.list-wrapper .list-item.error::before  {
+    border: 1px solid #f06463;
+}
+
+.list-wrapper .list-item.disabled {
+    color: #cdcdcd;
+}
+
+

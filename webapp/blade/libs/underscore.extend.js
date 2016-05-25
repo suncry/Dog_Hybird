@@ -750,6 +750,9 @@
         if (params.callback) {
             tmpFn = params.callback;
             params.callback = t;
+
+            alert(params.tagname)
+
             window.Hybrid[t] = function (data) {
                 tmpFn(data);
                 delete window.Hybrid[t];
@@ -763,8 +766,6 @@
         var platform_version = {};
         var na = navigator.userAgent;
         na = na.toLowerCase();
-
-        alert(na)
 
         var info = na.match(/hybrid_d\.\d\.\d/);
 

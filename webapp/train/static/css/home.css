@@ -1,0 +1,85 @@
+
+
+.page-home .user-info {
+  background-color: #00b358;
+  height: 136px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.page-home .user-info .login-btn {
+  font-size: 18px;
+  color: #adff8c;
+  border: 1px solid #adff8c;
+  border-radius: 20px;
+  padding: 5px 25px;
+  margin: 20px auto 0;
+  width: 160px;
+  -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+}
+
+.page-home .user-info .user-pic  {
+  padding-top: 0;
+}
+
+.page-home .user-info .user-pic img{
+    width: 80px;
+  height: 80px;
+  border-radius: 40px;
+}
+
+.page-home .user-info .user-nick{
+  background-color: #00b358;
+  font-size: 15px;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.page-home .navagation-list {
+ background-color: #fff;
+ margin: 10px 0; 
+  
+}
+
+.page-home .navagation-list li {
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  
+ }
+  
+.page-home   .navagation-list li:last-child {
+  border-bottom: none;
+  border-bottom: 1px solid #e5e5e5;
+  
+ }
+ 
+.page-home   .navagation-list .icon {
+    position: absolute;
+    left: 14px;
+    top: 7px;
+ }
+ 
+.page-home  .navagation-list .info {
+   margin-left: 50px;
+  border-bottom: 1px solid #e5e5e5;
+ }
+ 
+.page-home  .navagation-list .icon-arrow{
+   height: 48px;
+   
+ }
+ 
+.page-home  .home-btn-wrapper  {
+  margin: 15px 30px 50px;  
+  padding: 0 0 30px 0;
+ }
+ 
+.page-home .home-btn-wrapper  .btn-primary{
+  border: 1px solid #f06463;
+  border-radius: 20px;
+  background: transparent;
+  color: #f06463;
+ }
+ 
