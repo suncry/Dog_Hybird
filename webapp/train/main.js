@@ -8,12 +8,13 @@ var _hmt = _hmt || [];
     s.parentNode.insertBefore(hm, s);
 })();
 
-
 (function () {
 
     var project = './';
     var viewRoot = 'pages';
     var templateRoot = 'templates';
+    var hybridInfo = _.getHybridInfo();
+
 
     window.GetViewTemplatePath = function (path) {
         return 'text!' + templateRoot + '/' + path + '.html';
@@ -52,20 +53,13 @@ var _hmt = _hmt || [];
     });
 
 
-    var isbaidubox = _.getHybridInfo().platform == 'baidubox';
+    var isHybrid = hybridInfo.platform == 'hybrid';
     var modules = ['AbstractApp', 'AbstractStore'];
 
-    //处理header
-    if(_.getHybridInfo().platform == 'baidubox' ||  _.getHybridInfo().platform == 'baidumap' || _.getHybridInfo().platform == 'baidu_bus') {
-        modules.push('APPUIHeader');
-    } else if(_.getHybridInfo().platform == 'nuomi') {
-        modules.push('NuomiHeader');
+    if (isHybrid) {
+        modules.push('HybridHeader');
     } else {
         modules.push('UIHeader');
-    }
-
-    if (isbaidubox) {
-        modules.push('BaiduBox');
     }
 
     //t为用户期待在该时间后的用户，全部清理缓存再使用
@@ -116,119 +110,36 @@ var _hmt = _hmt || [];
             initAppMapping: function () {
                 var _k, _name, _item;
                 var App_Mapping = {
-                    andriod: {
-                    },
-                    ios: {
-                    },
-                    baidubus: {
-                    },
+                    andriod: {},
+                    ios: {},
+                    baidubus: {},
                     baidubox: {}
                 };
 
-            for (_k in App_Mapping) {
-                _item = App_Mapping[_k];
-                for (_name in _item) {
-                    App_Mapping[_k][_name] = _k + '/' + _item[_name];
-                }
-            }
-            this.App_Mapping = App_Mapping;
-
-            //如果处于手白或者地图中，需要去头处理
-            if (_.getHybridInfo().platform == 'baidubox' || _.getHybridInfo().platform == 'baidumap' || _.getHybridInfo().platform == 'nuomi' || _.getHybridInfo().platform == 'baidu_bus') {
-                setTimeout(function () {
-                    $('body').addClass('baidubox');
-                }, 20);
-            }
-
-        },
-        buildUrl: function (path) {
-
-            var viewsign = path;
-            var phoneHost = $.os.ios ? 'ios' : 'andriod';
-            var hybridInfo = _.getHybridInfo();
-
-            if (hybridInfo.platform == 'baidu_bus') {
-                //快行独立app
-                if (this.App_Mapping[phoneHost][viewsign]) path = this.App_Mapping[phoneHost][viewsign];
-
-                //若是公共的，以公共为主
-                if (this.App_Mapping['baidubus'][viewsign]) path = this.App_Mapping['baidubus'][viewsign];
-
-            } else if (hybridInfo.platform == 'baidubox') {
-                //手机百度容器
-                if (this.App_Mapping['baidubox'][viewsign]) path = this.App_Mapping['baidubox'][viewsign];
-
-                var appid = '2387396';
-                var ak = 'iDVSEkCVfX4GUB1NORMk6LTr';
-
-                if (window.location.host.indexOf('kuai.baidu.com') != -1) {
-                    appid = '6417053';
-                    ak = 'M0ttcxR0z3EQXGWTPODnoqVy';
-                }
-
-                window.bd && bd._qdc && bd._qdc.init({
-                    app_id: appid
-                });
-
-                //如果是手机百度内部需要加载其框架
-                clouda.lightInit({
-                    ak: ak,
-                    module: ["account", "pay"]
-                });
-            }
-
-            var mappingPath = this.viewMapping[path] ? this.viewMapping[path] : null;
-
-            if (_.getUrlParam().view) {
-                return _.getUrlParam().view;
-            }
-
-            return mappingPath ? mappingPath : this.viewRootPath + '/' + path;
-        },
-        viewRootPath: viewRoot
-    });
-
-        
-        //糯米渠道
-        if(_.getHybridInfo().platform == 'nuomi') {
-            var BNJSReady = function (readyCallback) {
-                if (readyCallback && typeof readyCallback == 'function') {
-                    if (window.BNJS && typeof window.BNJS == 'object' && BNJS._isAllReady) {
-                        readyCallback();
-                    } else {
-                        document.addEventListener('BNJSReady', function () {
-                            readyCallback();
-                        }, false)
+                for (_k in App_Mapping) {
+                    _item = App_Mapping[_k];
+                    for (_name in _item) {
+                        App_Mapping[_k][_name] = _k + '/' + _item[_name];
                     }
                 }
-            };
-            BNJSReady(function () {
+                this.App_Mapping = App_Mapping;
 
-                window.BNJS.ui.hideLoadingPage();
-                window.APP.initApp();
+                //如果处于手白或者地图中，需要去头处理
+                if (isHybrid) {
+                    setTimeout(function () {
+                        $('body').addClass('baidubox');
+                    }, 20);
+                }
 
-            });
-            return;
-        }
+            },
+
+            viewRootPath: viewRoot
+        });
 
         window.APP.initApp();
 
-        if (window.Box) {
-            window.Box.nativeShare({
-                source: 'test',
-                theme: 'test',
-                // 内容
-                content: '过年回家走一“票”--最走心的抢票工具',
-                iconUrl: 'http://kuai.baidu.com/webapp/bus/static/images/logo.240.png',
-                imageUrl: 'http://kuai.baidu.com/webapp/bus/static/images/logo.240.png',
-                // 分享的url
-                linkUrl: 'http://kuai.baidu.com/webapp/train/index.html',
-                // 分享的面板，一般是all，全面版
-                title: '百度快行-春运抢票！'
-            });
-        }
 
-});
+    });
 
 })();
 
