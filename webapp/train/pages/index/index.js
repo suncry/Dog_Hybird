@@ -164,7 +164,6 @@
                 url += '&' + key + '=' + param[key]
             }
 
-            alert(url)
 
             _.requestHybrid({
                 tagname: 'forward',

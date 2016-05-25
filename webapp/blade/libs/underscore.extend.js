@@ -711,7 +711,7 @@
         if ($.os.ios) {
 
             //使用jsCore与native通信
-            window.requestNative && requestNative(JSON.stringify(params));
+            window.requestNative && requestNative(encodeURIComponent(JSON.stringify(params)));
         } else {
             //Android实现
             var ifr = $('<iframe style="display: none;" src="' + url + '"/>');
@@ -751,8 +751,6 @@
             tmpFn = params.callback;
             params.callback = t;
 
-            alert(params.tagname)
-
             window.Hybrid[t] = function (data) {
                 tmpFn(data);
                 delete window.Hybrid[t];
@@ -768,7 +766,6 @@
         na = na.toLowerCase();
 
         var info = na.match(/hybrid_\d\.\d\.\d/);
-
 
         if (info && info[0]) {
             info = info[0].split('_');
