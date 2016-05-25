@@ -589,6 +589,7 @@
                 ]
             };
 
+
             this.header.set(opts);
             // this.header.hide();
         },

@@ -37,7 +37,7 @@
         }
     });
 
-    var modules = ['AbstractApp', 'AbstractStore', 'UIHeader'];
+    var modules = ['AbstractApp', 'AbstractStore', typeof requestNative == 'function' ? 'HybridHeader' : 'UIHeader'];
 
     //t为用户期待在该时间后的用户，全部清理缓存再使用
     function initCacheSet(AbstractStore, t) {

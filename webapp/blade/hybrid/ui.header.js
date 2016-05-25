@@ -5,14 +5,12 @@ define([], function () {
   return _.inherit({
 
     propertys: function () {
-
       this.left = [];
       this.right = [];
       this.title = {};
       this.view = null;
 
       this.hybridEventFlag = 'Header_Event';
-
     },
 
     //全部更新
@@ -23,7 +21,6 @@ define([], function () {
       var right = [];
       var title = { tagname: 'title' };
       var tmp = {};
-
       if (opts.back) {
         tmp = { tagname: 'back' };
         if (typeof opts.back == 'string') tmp.value = opts.back;
@@ -51,6 +48,7 @@ define([], function () {
       this.right = right;
       this.title = title;
       this.view = opts.view;
+
 
       this.registerEvents();
 

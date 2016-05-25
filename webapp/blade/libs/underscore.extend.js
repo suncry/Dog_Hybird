@@ -709,6 +709,8 @@
 
     var bridgePostMsg = function (url) {
         if ($.os.ios) {
+
+            alert(window.requestNative)
             //使用jsCore与native通信
             window.requestNative && requestNative(JSON.stringify(params));
         } else {
