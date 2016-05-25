@@ -710,7 +710,7 @@
     var bridgePostMsg = function (url) {
         if ($.os.ios) {
             //使用jsCore与native通信
-            Hybrid.requestNative && Hybrid.requestNative(JSON.stringify(params));
+            window.requestNative && requestNative(JSON.stringify(params));
         } else {
             //Android实现
             var ifr = $('<iframe style="display: none;" src="' + url + '"/>');
