@@ -322,6 +322,14 @@ extension MLWebView: UIWebViewDelegate {
         
     }
     
+//    private func decodeUrl (url: String) -> String {
+//        let mutStr = NSMutableString(string: url)
+//        
+//        mutStr.replaceOccurrencesOfString("+", withString: " ", options: NSStringCompareOptions.LiteralSearch, range: NSMakeRange(0, mutStr.length))
+//        
+//        return mutStr.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding) ?? ""
+//    }
+
     func webViewDidFinishLoad(webView: UIWebView) {
     }
     

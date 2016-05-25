@@ -71,8 +71,9 @@ class MLWebViewController: UIViewController {
     
     private func getRequestFromUrl(url: String) -> NSURLRequest? {
         
-        let mutUrl = NSMutableString(string: self.decodeUrl(url))
-        
+//        let mutUrl = NSMutableString(string: self.decodeUrl(url))
+        let mutUrl = NSMutableString(string: url)
+
         if let uRL = NSURL(string: String(mutUrl)) {
             let request = NSMutableURLRequest(URL: uRL)
             return request
