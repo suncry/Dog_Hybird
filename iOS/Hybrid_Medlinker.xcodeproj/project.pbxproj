@@ -43,6 +43,9 @@
 		B5D220B21CE5A44900750A50 /* Hybrid_titleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D220B11CE5A44900750A50 /* Hybrid_titleModel.swift */; };
 		B5D220B41CE5A46D00750A50 /* Hybrid_naviButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D220B31CE5A46D00750A50 /* Hybrid_naviButtonModel.swift */; };
 		B5D220B61CE5AA0000750A50 /* Hybrid_headerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D220B51CE5AA0000750A50 /* Hybrid_headerModel.swift */; };
+		B5DFF95D1CF5B43000B2191B /* hotel in Resources */ = {isa = PBXBuildFile; fileRef = B5DFF95C1CF5B43000B2191B /* hotel */; };
+		B5DFF9601CF5B45200B2191B /* libs in Resources */ = {isa = PBXBuildFile; fileRef = B5DFF95E1CF5B45200B2191B /* libs */; };
+		B5DFF9611CF5B45200B2191B /* static in Resources */ = {isa = PBXBuildFile; fileRef = B5DFF95F1CF5B45200B2191B /* static */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +132,9 @@
 		B5D220B11CE5A44900750A50 /* Hybrid_titleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hybrid_titleModel.swift; sourceTree = "<group>"; };
 		B5D220B31CE5A46D00750A50 /* Hybrid_naviButtonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hybrid_naviButtonModel.swift; sourceTree = "<group>"; };
 		B5D220B51CE5AA0000750A50 /* Hybrid_headerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hybrid_headerModel.swift; sourceTree = "<group>"; };
+		B5DFF95C1CF5B43000B2191B /* hotel */ = {isa = PBXFileReference; lastKnownFileType = folder; path = hotel; sourceTree = "<group>"; };
+		B5DFF95E1CF5B45200B2191B /* libs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = libs; sourceTree = "<group>"; };
+		B5DFF95F1CF5B45200B2191B /* static */ = {isa = PBXFileReference; lastKnownFileType = folder; path = static; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +175,9 @@
 		B5D220221CE46F6900750A50 = {
 			isa = PBXGroup;
 			children = (
+				B5DFF95E1CF5B45200B2191B /* libs */,
+				B5DFF95F1CF5B45200B2191B /* static */,
+				B5DFF95C1CF5B43000B2191B /* hotel */,
 				B5D220601CE4710A00750A50 /* CFNetwork.framework */,
 				B5D2205E1CE470FA00750A50 /* JavaScriptCore.framework */,
 				B5D2202D1CE46F6900750A50 /* Hybrid_Medlinker */,
@@ -415,8 +424,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5DFF9601CF5B45200B2191B /* libs in Resources */,
 				B5D220391CE46F6900750A50 /* LaunchScreen.storyboard in Resources */,
+				B5DFF95D1CF5B43000B2191B /* hotel in Resources */,
 				B5D220361CE46F6900750A50 /* Assets.xcassets in Resources */,
+				B5DFF9611CF5B45200B2191B /* static in Resources */,
 				B5D220341CE46F6900750A50 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -202,12 +202,16 @@ class MLWebView: UIView {
                     let web = MLWebViewController()
                     web.hidesBottomBarWhenPushed = true
                     
-                    if url.hasPrefix("http") {
-                        web.URLPath = url
-                    } else {
-                        web.URLPath = BASE_URL + url
+                    if let _ = NSBundle.mainBundle().pathForResource("hotel/index", ofType: "html") {
+                        //读取本地资源   url留空
                     }
-                    
+                    else {
+                        if url.hasPrefix("http") {
+                            web.URLPath = url
+                        } else {
+                            web.URLPath = BASE_URL + url
+                        }
+                    }
                     
                     if let animate = args["animate"] as? String where animate == "pop" {
                         vc.animateType = .Pop

@@ -56,6 +56,16 @@ class MLWebViewController: UIViewController {
         } else if let string = self.HTMLString {
             self.webView.loadHTMLString(string, baseURL: nil)
         }
+        else {
+            if let htmlPath = NSBundle.mainBundle().pathForResource("hotel/index", ofType: "html") {
+                let url = NSURL(fileURLWithPath: htmlPath)
+                let request = NSURLRequest(URL: url)
+                self.webView.loadRequest(request)
+            }
+            else {
+                print("未找到本地html文件")
+            }
+        }
     }
 
     
