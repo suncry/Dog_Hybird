@@ -618,7 +618,7 @@ define([
         },
 
         //跨频道跳转
-        jump: function (path, param, replace) {
+        jump: function (path, param, replace, animateName) {
             //hybrid跳转封装
             if(_.getHybridInfo().platform == 'hybrid') {
                 this.forward(path, param, replace);
@@ -640,6 +640,7 @@ define([
             this.setUrlRule(viewId, param, replace, project);
             this.loadViewByUrl();
         },
+
         back: function (viewId, param, replace) {
             if (viewId) {
                 this.forward(viewId, param, replace, 'pop')
