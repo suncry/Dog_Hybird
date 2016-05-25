@@ -14,9 +14,9 @@ import CoreMotion
 @objc protocol MLWebViewDelegate {
 }
 
-@objc protocol JSExportTest: JSExport{
-    func requestNative(params: [String])
-}
+//@objc protocol JSExportTest: JSExport{
+//    func requestNative(params: [String])
+//}
 
 class MLWebView: UIView {
 
@@ -272,17 +272,6 @@ class MLWebView: UIView {
 extension MLWebView: UIWebViewDelegate {
     
     func webViewDidStartLoad(webView: UIWebView) {
-
-    }
-    
-    func webViewDidFinishLoad(webView: UIWebView) {
-    }
-    
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
-
-    }
-    
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         self.context = webView.valueForKeyPath("documentView.webView.mainFrame.javaScriptContext") as? JSContext
         self.context.exceptionHandler = { context, exception in
             print("JS Error: \(exception)")
@@ -304,6 +293,16 @@ extension MLWebView: UIWebViewDelegate {
             }
         }
         context.setObject(unsafeBitCast(requestNative, AnyObject.self), forKeyedSubscript: "requestNative")
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+    }
+    
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+
+    }
+    
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
         return true
     }
