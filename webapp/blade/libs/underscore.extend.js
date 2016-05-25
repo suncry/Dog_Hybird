@@ -767,10 +767,11 @@
         var na = navigator.userAgent;
         na = na.toLowerCase();
 
-        var info = na.match(/hybrid_d\.\d\.\d/);
+        var info = na.match(/hybrid_\d\.\d\.\d/);
+
 
         if (info && info[0]) {
-            info = info[0].split('/');
+            info = info[0].split('_');
             if (info && info.length == 2) {
                 platform_version.platform = info[0];
                 platform_version.version = info[1];
