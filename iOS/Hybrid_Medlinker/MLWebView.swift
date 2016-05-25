@@ -278,6 +278,7 @@ extension MLWebView: UIWebViewDelegate {
         }
         let requestNative: @convention(block) String -> Bool = { input in
             let args = self.decodeJsonStr(input)
+            print("requestNative args == \(args)")
             if let tagname = args["tagname"] as? String {
                 let callBackId = args["callback"] as? String ?? ""
                 if let param = args["param"] as? [String: AnyObject] {
@@ -289,6 +290,9 @@ extension MLWebView: UIWebViewDelegate {
                 return true
             }
             else {
+                print("tagname 空了哟")
+                let alert = UIAlertView(title: "提示", message: "tagname 空了哟", delegate: nil, cancelButtonTitle: "cancel", otherButtonTitles: "123")
+                alert.show()
                 return false
             }
         }
@@ -309,3 +313,6 @@ extension MLWebView: UIWebViewDelegate {
 
 }
 
+class JsBridgeObject: NSObject {
+    
+}
