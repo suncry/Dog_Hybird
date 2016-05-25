@@ -201,9 +201,10 @@ class MLWebView: UIView {
                 if let url = args["topage"] as? String {
                     let web = MLWebViewController()
                     web.hidesBottomBarWhenPushed = true
-                    
-                    if let _ = NSBundle.mainBundle().pathForResource("hotel/index", ofType: "html") {
-                        //读取本地资源   url留空
+                    let localUrl = url.stringByReplacingOccurrencesOfString(".html", withString: "")
+                    if let _ = NSBundle.mainBundle().pathForResource(localUrl, ofType: "html") {
+                        //设置本地资源路径
+                        web.localUrl = localUrl
                     }
                     else {
                         if url.hasPrefix("http") {
@@ -212,15 +213,12 @@ class MLWebView: UIView {
                             web.URLPath = BASE_URL + url
                         }
                     }
-                    
                     if let animate = args["animate"] as? String where animate == "pop" {
                         vc.animateType = .Pop
                     }
                     else {
                         vc.animateType = .Normal
                     }
-                    
-                    
                     vc.navigationController?.pushViewController(web, animated: true)
                 }
             } else {

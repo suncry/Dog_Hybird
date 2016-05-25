@@ -20,6 +20,8 @@ class MLWebViewController: UIViewController {
     var originNaviHidden: Bool?
     var originTabBarHidden: Bool?
     var viewInitY: CGFloat = 0
+    var localUrl: String = ""
+
     
     var animateType: AnimateType = .Normal
     private var percentDrivenTransition: UIPercentDrivenInteractiveTransition?
@@ -57,7 +59,7 @@ class MLWebViewController: UIViewController {
             self.webView.loadHTMLString(string, baseURL: nil)
         }
         else {
-            if let htmlPath = NSBundle.mainBundle().pathForResource("hotel/index", ofType: "html") {
+            if let htmlPath = NSBundle.mainBundle().pathForResource(self.localUrl, ofType: "html") {
                 let url = NSURL(fileURLWithPath: htmlPath)
                 let request = NSURLRequest(URL: url)
                 self.webView.loadRequest(request)
