@@ -190,7 +190,7 @@ class MLWebView: UIView {
                     if url.hasPrefix("http") {
                         web.URLPath = url
                     } else {
-                        web.URLPath = "http://web.test.pdt5.medlinker.net/webapp/" + url
+                        web.URLPath = "http://medlinker.com/webapp/" + url
                     }
                     vc.navigationController?.pushViewController(web, animated: true)
                 }

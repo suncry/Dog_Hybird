@@ -20,9 +20,6 @@ class WebTestViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        let urlReq = NSURLRequest(URL: NSURL(string: "http://web.test.pdt5.medlinker.net/webapp/flight/index.html")!)
-//        self.webView.loadRequest(urlReq)
     }
 
     override func didReceiveMemoryWarning() {
