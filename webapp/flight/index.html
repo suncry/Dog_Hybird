@@ -94,9 +94,18 @@
 
         Hybrid.ui.header.set({
             back: function () {
+//                requestHybrid({
+//                    tagname: 'back'
+//                });
+
                 requestHybrid({
-                    tagname: 'back'
+                    tagname: 'forward',
+                    param: {
+                        topage: 'rootview',
+                        type: 'h5'
+                    }
                 });
+
             },
             title: '设置右边按钮',
             right: [
