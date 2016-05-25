@@ -19,8 +19,14 @@ class HybirdTransionPush: NSObject, UIViewControllerAnimatedTransitioning {
         let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         let container = transitionContext.containerView()!
 
+        
+        var toViewRect = toVC.view.frame
+        toViewRect.origin.x = -UIScreen.mainScreen().bounds.size.width/2
+        toVC.view.frame = toViewRect
+
         container.addSubview(toVC.view)
         container.addSubview(fromVC.view)
+
 
         UIView.animateWithDuration(transitionDuration(transitionContext), delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             toVC.view.frame = transitionContext.finalFrameForViewController(toVC)

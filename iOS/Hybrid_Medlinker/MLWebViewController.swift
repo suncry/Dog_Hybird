@@ -22,6 +22,7 @@ class MLWebViewController: UIViewController {
     var viewInitY: CGFloat = 0
     
     var animateType: AnimateType = .Normal
+    private var percentDrivenTransition: UIPercentDrivenInteractiveTransition?
 
     private var webView: MLWebView!
     
@@ -40,6 +41,10 @@ class MLWebViewController: UIViewController {
         self.webView.delegate = self
 
         self.navigationController?.delegate = self
+        //手势监听器
+        let edgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(MLWebViewController.edgePanGesture(_:)))
+        edgePan.edges = UIRectEdge.Left
+        self.view.addGestureRecognizer(edgePan)
 
         self.view.addSubview(self.webView)
         
@@ -116,6 +121,24 @@ extension MLWebViewController: MLWebViewDelegate {
 
 extension MLWebViewController: UINavigationControllerDelegate {
     
+    func edgePanGesture(edgePan: UIScreenEdgePanGestureRecognizer) {
+        let progress = edgePan.translationInView(self.view).x / self.view.bounds.width
+        
+        if edgePan.state == UIGestureRecognizerState.Began {
+            self.percentDrivenTransition = UIPercentDrivenInteractiveTransition()
+            self.navigationController?.popViewControllerAnimated(true)
+        } else if edgePan.state == UIGestureRecognizerState.Changed {
+            self.percentDrivenTransition?.updateInteractiveTransition(progress)
+        } else if edgePan.state == UIGestureRecognizerState.Cancelled || edgePan.state == UIGestureRecognizerState.Ended {
+            if progress > 0.5 {
+                self.percentDrivenTransition?.finishInteractiveTransition()
+            } else {
+                self.percentDrivenTransition?.cancelInteractiveTransition()
+            }
+            self.percentDrivenTransition = nil
+        }
+    }
+
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if operation == UINavigationControllerOperation.Push {
             if self.animateType == .Pop {
@@ -129,5 +152,13 @@ extension MLWebViewController: UINavigationControllerDelegate {
         }
     }
     
+    func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        if animationController is HybirdTransionPush {
+            return self.percentDrivenTransition
+        } else {
+            return nil
+        }
+    }
+
 }
 
