@@ -43,6 +43,33 @@
     <script src="../libs/libs.js" type="text/javascript"></script>
     <script type="text/javascript">
 
+        Hybrid.ui.header.set({
+            back: function () {
+                requestHybrid({
+                    tagname: 'back'
+                });
+            },
+            title: '设置右边按钮',
+            right: [
+                {
+                    tagname: 'gohome',
+                    value: '首页',
+                    callback: function () {
+
+                        alert(1);
+
+                    }
+                },
+                {
+                    tagname: 'test',
+                    value: '测试',
+                    callback: function () {
+                        alert(2);
+                    }
+                }
+            ]
+        });
+
         $('#webview').click(function () {
             requestHybrid({
                 tagname: 'forward',
