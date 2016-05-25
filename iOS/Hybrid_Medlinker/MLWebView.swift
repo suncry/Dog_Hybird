@@ -124,8 +124,8 @@ class MLWebView: UIView {
     func handleEvent(funType: String, args: [String: AnyObject], callbackID: String = "") {
         print("   ")
         print("****************************************")
-        print("funType === \(funType)")
-        print("args === \(args)")
+        print("funType    === \(funType)")
+        print("args       === \(args)")
         print("callbackID === \(callbackID)")
         print("****************************************")
         print("   ")
@@ -196,7 +196,7 @@ class MLWebView: UIView {
     }
     
     func forward(args: [String: AnyObject]) {
-        if let vc = self.delegate as? UIViewController {
+        if let vc = self.delegate as? MLWebViewController {
             if  args["type"] as? String == "h5" {
                 if let url = args["topage"] as? String {
                     let web = MLWebViewController()
@@ -207,6 +207,16 @@ class MLWebView: UIView {
                     } else {
                         web.URLPath = BASE_URL + url
                     }
+                    
+                    
+                    if let animate = args["animate"] as? String where animate == "pop" {
+                        vc.animateType = .Pop
+                    }
+                    else {
+                        vc.animateType = .Normal
+                    }
+                    
+                    
                     vc.navigationController?.pushViewController(web, animated: true)
                 }
             } else {

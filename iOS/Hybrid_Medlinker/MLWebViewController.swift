@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum AnimateType {
+    case Normal
+    case Push
+    case Pop
+}
 class MLWebViewController: UIViewController {
 
     var URLPath: String?
@@ -16,6 +21,8 @@ class MLWebViewController: UIViewController {
     var originTabBarHidden: Bool?
     var viewInitY: CGFloat = 0
     
+    var animateType: AnimateType = .Normal
+
     private var webView: MLWebView!
     
     
@@ -31,6 +38,9 @@ class MLWebViewController: UIViewController {
         self.webView = MLWebView(frame: CGRectMake(0, viewInitY, self.view.bounds.size.width, self.view.bounds.height - viewInitY))
         self.webView.autoresizingMask = [ .FlexibleHeight, .FlexibleWidth ]
         self.webView.delegate = self
+
+        self.navigationController?.delegate = self
+
         self.view.addSubview(self.webView)
         
         if let path = self.URLPath {
@@ -100,6 +110,23 @@ extension MLWebViewController: MLWebViewDelegate {
     
     func mlWebViewDidOpenPageWithUrl(url: String) {
 
+    }
+    
+}
+
+extension MLWebViewController: UINavigationControllerDelegate {
+    
+    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if operation == UINavigationControllerOperation.Push {
+            if self.animateType == .Pop {
+                return HybirdTransionPush()
+            }
+            else {
+                return nil
+            }
+        } else {
+            return nil
+        }
     }
     
 }
