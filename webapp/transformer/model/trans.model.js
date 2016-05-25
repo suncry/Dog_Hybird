@@ -97,6 +97,7 @@
             if (data.errcode == ERROR_CODE['NOT_LOGIN']) {
                 // cUser.login();
 
+
                 return;
 
                 window.APP.showToast(data.errmsg, function () {
