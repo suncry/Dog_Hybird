@@ -633,10 +633,8 @@ textarea::-webkit-input-placeholder {
     position: absolute;
     height: 0;
     width: 0;
-}
-
-.baidubox #headerview {
     z-index: 5000;
+    display: none;
 }
 
 .cm-app-header {

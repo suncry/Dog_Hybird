@@ -164,8 +164,6 @@
                 url += '&' + key + '=' + encodeURIComponent(param[key]);
             }
 
-            alert(url);
-
             _.requestHybrid({
                 tagname: 'forward',
                 param: {
@@ -400,6 +398,15 @@
                 return;
             }
 
+            _.requestHybrid({
+                tagname: 'forward',
+                param: {
+                    topage: 'train/home.html',
+                    type: 'h5'
+                }
+            })
+
+            return;
             this.forward(name);
         },
 

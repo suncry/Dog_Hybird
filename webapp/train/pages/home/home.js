@@ -98,6 +98,11 @@ function (AbstractView, bodyTpl, css, BusModel, cUser) {
             }
 
             if (name == 'feedback') {
+
+                window.location.reload()
+
+                return;
+
                 url = 'http://ufosdk.baidu.com/?m=Client&a=postView&appid=1528&hasRt=true&u=' + window.location.href;
                 if (_.getHybridInfo().platform == 'nuomi') {
                     url = 'http://ufosdk.baidu.com/?m=Client&a=postView&appid=1528&hasRt=true&hasTitle=false&u=' + window.location.href;
