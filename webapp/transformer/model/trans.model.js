@@ -97,9 +97,6 @@
             if (data.errcode == ERROR_CODE['NOT_LOGIN']) {
                 // cUser.login();
 
-
-                return;
-
                 window.APP.showToast(data.errmsg, function () {
                     window.APP.showLoading();
                     window.location.href=window.location.protocol+'//'+window.location.host+'/transform/';
