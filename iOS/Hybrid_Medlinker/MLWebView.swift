@@ -14,12 +14,25 @@ import CoreMotion
 @objc protocol MLWebViewDelegate {
 }
 
+enum HybirdFunType {
+    case UpdateHeader
+    case Back
+    case Forward
+    case Get
+    case Post
+}
 //@objc protocol JSExportTest: JSExport{
 //    func requestNative(params: [String])
 //}
 
 class MLWebView: UIView {
 
+//    let BASE_URL = "http://medlinker.com/webapp/"
+    let BASE_URL = "http://kuai.baidu.com/webapp"
+
+    let USER_AGENT_HEADER = "hybrid_/"
+
+    
     /**************************************************/
     //MARK: - property
     var context = JSContext()
@@ -69,9 +82,9 @@ class MLWebView: UIView {
     func configUserAgent () {
         var userAgentStr: String = UIWebView().stringByEvaluatingJavaScriptFromString("navigator.userAgent") ?? ""
         
-        if (userAgentStr.rangeOfString("hybrid_/") == nil) {
+        if (userAgentStr.rangeOfString(USER_AGENT_HEADER) == nil) {
             let versionStr = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"]
-            userAgentStr.appendContentsOf(" hybrid_/\(versionStr!) ")
+            userAgentStr.appendContentsOf(" \(USER_AGENT_HEADER)\(versionStr!) ")
             NSUserDefaults.standardUserDefaults().registerDefaults(["UserAgent" : userAgentStr])
         }
     }
@@ -190,7 +203,7 @@ class MLWebView: UIView {
                     if url.hasPrefix("http") {
                         web.URLPath = url
                     } else {
-                        web.URLPath = "http://medlinker.com/webapp/" + url
+                        web.URLPath = BASE_URL + url
                     }
                     vc.navigationController?.pushViewController(web, animated: true)
                 }
@@ -302,8 +315,8 @@ extension MLWebView: UIWebViewDelegate {
 //        context[@"dic"] = dic;
 //        [context evaluateScript:@"log(dic.name, dic['#'])"];
         
-        let jsObjDic = ["requestNative": requestNative]
-        context.setObject(unsafeBitCast(jsObjDic, AnyObject.self), forKeyedSubscript: "Hybrid")
+//        let jsObjDic = ["requestNative": requestNative]
+//        context.setObject(unsafeBitCast(jsObjDic, AnyObject.self), forKeyedSubscript: "Hybrid")
         
     }
     
@@ -319,8 +332,4 @@ extension MLWebView: UIWebViewDelegate {
         return true
     }
 
-}
-
-class JsBridgeObject: NSObject {
-    
 }
