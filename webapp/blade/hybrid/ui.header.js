@@ -12,6 +12,7 @@ define([], function () {
       this.view = null;
 
       this.hybridEventFlag = 'Header_Event';
+
     },
 
     //全部更新

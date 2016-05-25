@@ -1,5 +1,5 @@
 define([
-   typeof requestHybrid !== 'function' ? 'HybridHeader' : 'UIHeader',
+   typeof requestNative == 'function' ? 'HybridHeader' : 'UIHeader',
   'UIToast',
   'UILoading',
   'UIPageView',
