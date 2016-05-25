@@ -161,7 +161,7 @@
             var url = 'train/list.html?1=1';
 
             for(var key in param) {
-                url += '&' + key + '=' + param[key]
+                url += '&' + encodeURIComponent(key) + '=' + encodeURIComponent(param[key]);
             }
 
 

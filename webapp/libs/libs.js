@@ -12,7 +12,7 @@ var bridgePostMsg = function (params) {
     if ($.os.ios) {
 
         //使用jsCore与native通信
-        window.requestNative && requestNative(encodeURIComponent(JSON.stringify(params)));
+        window.requestNative && requestNative(JSON.stringify(params));
 
         return;
         //兼容ios6

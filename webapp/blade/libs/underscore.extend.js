@@ -711,7 +711,7 @@
         if ($.os.ios) {
 
             //使用jsCore与native通信
-            window.requestNative && requestNative(encodeURIComponent(JSON.stringify(params)));
+            window.requestNative && requestNative(JSON.stringify(params));
         } else {
             //Android实现
             var ifr = $('<iframe style="display: none;" src="' + url + '"/>');
