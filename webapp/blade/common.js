@@ -29,8 +29,6 @@
             'cUser': app + 'common/c.user',
 
             'HybridHeader': app + 'hybrid/ui.header',
-            'NuomiHeader': app + 'hybrid/ui.nuomi.header',
-
 
             'UIAbstractView': app + 'ui/ui.abstract.view',
             'UIMask': app + 'ui/ui.mask',
