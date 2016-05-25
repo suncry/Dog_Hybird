@@ -707,10 +707,8 @@
     window.Hybrid = window.Hybrid || {};
     window.Hybrid.ui = window.Hybrid.ui || {};
 
-    var bridgePostMsg = function (url) {
+    var bridgePostMsg = function (params) {
         if ($.os.ios) {
-
-            alert(JSON.stringify(params))
 
             //使用jsCore与native通信
             window.requestNative && requestNative(JSON.stringify(params));
