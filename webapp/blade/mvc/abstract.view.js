@@ -39,6 +39,8 @@ define([], function () {
             this.id = _.uniqueId('page-view-');
             this.classname = '';
 
+            //当前频道
+            this.project = 'train';
             this.viewId = null;
             this.refer = null;
 

@@ -562,31 +562,65 @@ define([
             return mappingPath ? mappingPath : this.viewRootPath + '/' + path + '/' + path;
         },
 
-        //此处需要一个更新逻辑，比如在index view再点击到index view不会有反应，下次改**************************
-        forward: function (viewId, param, replace) {
+        goHome: function() {
+            if(_.getHybridInfo().platform == 'hybrid') {
+                requestHybrid({
+                    tagname: 'forward',
+                    param: {
+                        topage: 'index',
+                        type: 'native',
+                        animate: 'pop'
+                    }
+                });
+            }
 
-            //防止糯米假死
-            //            if (_.getHybridInfo().platform == 'nuomi') {
-            //                BNJS.ui.title.setTitle('正在加载...');
-            //                BNJS.page.onBtnBackClick({
-            //                    callback: function () {
-            //                        BNJS.page.back();
-            //                    }
-            //                });
-            //            }
+        },
+
+        //此处需要一个更新逻辑，比如在index view再点击到index view不会有反应，下次改**************************
+        forward: function (viewId, param, replace, animateName) {
 
             if (!viewId) return;
             viewId = viewId.toLowerCase();
 
             var url = decodeURIComponent(location.href).toLowerCase();
             var _viewId = this.getViewIdRule(url);
+            var hybridPage, index = 0;
 
             if(viewId == _viewId) return;
+
+            if(!this.curView) return;
+
+            //hybrid跳转封装
+            if(_.getHybridInfo().platform == 'hybrid') {
+
+                hybridPage = this.curView.project + '/' + viewId + '.html';
+
+                for(var key in param) {
+                    if(index == 0) {
+                        hybridPage += '?' + key + '=' + encodeURIComponent(param[key]);
+                    } else {
+                        hybridPage += '&' + key + '=' + encodeURIComponent(param[key]);
+                    }
+                    index++;
+                }
+
+                alert(animateName);
+
+                _.requestHybrid({
+                    tagname: 'forward',
+                    param: {
+                        topage: hybridPage,
+                        type: 'h5',
+                        animate: animateName || 'push'
+                    }
+                });
+
+                return;
+            }
 
             if (this.setUrlRule(viewId, param, replace)) {
                 return;
             }
-
             //一定不使用pageview
             this.loadViewByUrl('forward');
         },
@@ -607,7 +641,7 @@ define([
         },
         back: function (viewId, param, replace) {
             if (viewId) {
-                this.forward(viewId, param, replace)
+                this.forward(viewId, param, replace, 'pop')
             } else {
                 if (window.history.length == 1) {
                     this.forward(this.defaultView, param, replace)

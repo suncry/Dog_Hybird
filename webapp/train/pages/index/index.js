@@ -76,25 +76,11 @@
             var u = _.getUrlParam().u;
             var opts = {
                 view: this,
-                title: '火车票查询'
+                title: '火车票查询',
+                back: function() {
+                    this.goHome();
+                }
             };
-
-            if (u) {
-                opts.back = function () {
-                    _hmt.push(['_trackEvent', 'train.index.back', 'click']);
-
-                    if (u) window.location.href = u;
-                    else history.back();
-                }
-            }
-
-            if (_.getHybridInfo().platform == 'nuomi') {
-                opts.title = '百度快行-火车票';
-                opts.back = function () {
-                    //                    BNJS.page.start("bainuo://home");
-                    BNJS.page.back();
-                }
-            }
 
             this.header.set(opts);
         },
@@ -157,22 +143,6 @@
             this.insertHisRoute(name);
             this.startCityStore.set(start_id);
             this.endCityStore.set(end_id);
-
-            var url = 'train/list.html?1=1';
-
-            for(var key in param) {
-                url += '&' + key + '=' + encodeURIComponent(param[key]);
-            }
-
-            _.requestHybrid({
-                tagname: 'forward',
-                param: {
-                    topage: url,
-                    type: 'h5'
-                }
-            })
-
-            return;
 
             this.forward('list', param);
 
@@ -398,15 +368,6 @@
                 return;
             }
 
-            _.requestHybrid({
-                tagname: 'forward',
-                param: {
-                    topage: 'train/home.html',
-                    type: 'h5'
-                }
-            })
-
-            return;
             this.forward(name);
         },
 
