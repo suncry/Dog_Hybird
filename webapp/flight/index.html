@@ -89,6 +89,7 @@
     <script src="../libs/libs.js" type="text/javascript"></script>
     <script type="text/javascript">
 
+
         $.bindFastClick();
 
 
@@ -352,17 +353,16 @@
         });
 
         $('#ajaxpost').click(function () {
-            requestHybrid({
-                tagname: 'post',
-                param: {
-                    url: 'http://api.kuai.baidu.com/city/getstartcitys',
-                    param1: 'param1',
-                    param2: 'param2'
-                },
-                callback: function(data) {
-//                    alert(data)
-                }
-            });
+requestHybrid({
+    tagname: 'post',
+    param: {
+        url: 'http://api.kuai.baidu.com/city/getstartcitys',
+        param1: 'param1',
+        param2: 'param2'
+    },
+    callback: function(data) {
+    }
+});
         });
 
 
