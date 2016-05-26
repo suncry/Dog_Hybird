@@ -138,6 +138,7 @@ var _hmt = _hmt || [];
 
         if(isHybrid) {
             Hybrid.ready = function () {
+                alert()
                 window.APP.initApp();
             };
         } else {
