@@ -247,10 +247,10 @@
 		B5D2202D1CE46F6900750A50 /* Hybrid_Medlinker */ = {
 			isa = PBXGroup;
 			children = (
+				B555E6991CF699FA00003B4E /* DogHybird */,
 				B555E69E1CF6A08000003B4E /* View */,
 				B555E69D1CF6A07400003B4E /* Controller */,
 				B555E69C1CF6A06100003B4E /* Resources */,
-				B555E6991CF699FA00003B4E /* DogHybird */,
 			);
 			path = Hybrid_Medlinker;
 			sourceTree = "<group>";
