@@ -104,19 +104,10 @@
 
     $.bindFastClick();
 
-    var t1 = new Date().getTime();
 
-    Hybrid.ready = function() {
-        var t2 = new Date().getTime();
-
-        alert(t2 - t1);
-
-        hybridInit();
-    }
-
-Hybrid.ui.header.set({
-    title: '设置右边按钮',
-});
+Hybrid.ready = function() {
+    hybridInit();
+}
 
     function hybridInit() {
 
