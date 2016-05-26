@@ -40,6 +40,13 @@ class MLWebView: UIView {
     //MARK: - property
     var context = JSContext()
     
+//    var didFinishPickingAssets : ((assets: [ALAsset]) -> ())?
+    var requestNative: (@convention(block) String -> Bool)?
+    
+
+    
+    
+    
     var myWebView = UIWebView()
     var urlStr = "" {
         didSet {
@@ -71,6 +78,30 @@ class MLWebView: UIView {
 
         myWebView.delegate = self
         self.addSubview(myWebView)
+        
+        self.requestNative = { input in
+            print(self)
+            let args = MLWebView().decodeJsonStr(input)
+            print("requestNative args == \(args)")
+            if let tagname = args["tagname"] as? String {
+                let callBackId = args["callback"] as? String ?? ""
+                if let param = args["param"] as? [String: AnyObject] {
+                    self.handleEvent(tagname, args: param, callbackID: callBackId)
+                }
+                else {
+                    self.handleEvent(tagname, args: ["":""], callbackID: callBackId)
+                }
+                return true
+            }
+            else {
+                print("tagname 空了哟")
+                let alert = UIAlertView(title: "提示", message: "tagname 空了哟", delegate: nil, cancelButtonTitle: "cancel")
+                alert.show()
+                return false
+            }
+        }
+
+        
     }
     
     func loadUrl () {
@@ -242,6 +273,9 @@ class MLWebView: UIView {
                 }
             }
         }
+        else {
+            print("self.delegate 未找到")
+        }
     }
 
     func jsonStringWithObject(object: AnyObject) throws -> String {
@@ -303,27 +337,27 @@ extension MLWebView: UIWebViewDelegate {
         self.context.exceptionHandler = { context, exception in
             print("JS Error: \(exception)")
         }
-        let requestNative: @convention(block) String -> Bool = { input in
-            let args = self.decodeJsonStr(input)
-            print("requestNative args == \(args)")
-            if let tagname = args["tagname"] as? String {
-                let callBackId = args["callback"] as? String ?? ""
-                if let param = args["param"] as? [String: AnyObject] {
-                    self.handleEvent(tagname, args: param, callbackID: callBackId)
-                }
-                else {
-                    self.handleEvent(tagname, args: ["":""], callbackID: callBackId)
-                }
-                return true
-            }
-            else {
-                print("tagname 空了哟")
-                let alert = UIAlertView(title: "提示", message: "tagname 空了哟", delegate: nil, cancelButtonTitle: "cancel")
-                alert.show()
-                return false
-            }
-        }
-        context.setObject(unsafeBitCast(requestNative, AnyObject.self), forKeyedSubscript: "requestNative")
+//        let requestNative: @convention(block) String -> Bool = { input in
+//            let args = self.decodeJsonStr(input)
+//            print("requestNative args == \(args)")
+//            if let tagname = args["tagname"] as? String {
+//                let callBackId = args["callback"] as? String ?? ""
+//                if let param = args["param"] as? [String: AnyObject] {
+//                    self.handleEvent(tagname, args: param, callbackID: callBackId)
+//                }
+//                else {
+//                    self.handleEvent(tagname, args: ["":""], callbackID: callBackId)
+//                }
+//                return true
+//            }
+//            else {
+//                print("tagname 空了哟")
+//                let alert = UIAlertView(title: "提示", message: "tagname 空了哟", delegate: nil, cancelButtonTitle: "cancel")
+//                alert.show()
+//                return false
+//            }
+//        }
+//        self.context.setObject(unsafeBitCast(self.requestNative, AnyObject.self), forKeyedSubscript: "requestNative")
 
 //        NSDictionary *dic = @{@"name": @"Ider", @"#":@(21)};
 //        context[@"dic"] = dic;
@@ -333,6 +367,9 @@ extension MLWebView: UIWebViewDelegate {
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
+        self.context.setObject(unsafeBitCast(self.requestNative, AnyObject.self), forKeyedSubscript: "requestNative")
+        self.myWebView.stringByEvaluatingJavaScriptFromString(self.NaviHeaderEvent + "Hybrid.ready();")
+
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
