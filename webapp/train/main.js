@@ -136,7 +136,13 @@ var _hmt = _hmt || [];
             viewRootPath: viewRoot
         });
 
-        window.APP.initApp();
+        if(isHybrid) {
+            Hybrid.ready = function () {
+                window.APP.initApp();
+            };
+        } else {
+            window.APP.initApp();
+        }
 
 
     });
