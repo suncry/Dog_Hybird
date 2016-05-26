@@ -104,7 +104,13 @@
 
     $.bindFastClick();
 
+    var t1 = new Date().getTime();
+
     Hybrid.ready = function() {
+        var t2 = new Date().getTime();
+
+        alert(t2 - 1);
+
         hybridInit();
     }
 
