@@ -10,7 +10,6 @@
 import UIKit
 import CoreMotion
 
-
 @objc protocol MLWebViewDelegate {
 }
 
@@ -32,7 +31,7 @@ class MLWebView: UIView {
     let NaviHeaderEvent = "Hybrid.Header_Event."
     let HybirdEvent = "Hybrid."
 
-    //资源相关
+    //资源路径相关
     let NaviImageHeader = "hybird_navi_"
     let LocalResources = "DogHybirdResources/"
     
@@ -329,7 +328,6 @@ extension MLWebView: UIWebViewDelegate {
 //        NSDictionary *dic = @{@"name": @"Ider", @"#":@(21)};
 //        context[@"dic"] = dic;
 //        [context evaluateScript:@"log(dic.name, dic['#'])"];
-        
 //        let jsObjDic = ["requestNative": requestNative]
 //        context.setObject(unsafeBitCast(jsObjDic, AnyObject.self), forKeyedSubscript: "Hybrid")
     }

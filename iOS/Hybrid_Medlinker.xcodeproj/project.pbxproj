@@ -174,12 +174,43 @@
 		B555E6991CF699FA00003B4E /* DogHybird */ = {
 			isa = PBXGroup;
 			children = (
+				B5D220B01CE5A3A100750A50 /* Model */,
+				B555E6981CF699AE00003B4E /* Tool */,
 				B586C9C01CF59CF400EAAE26 /* HybirdTransion */,
 				B5D220621CE4728800750A50 /* MLWebViewController.swift */,
 				B5D2205C1CE4708000750A50 /* MLWebView.swift */,
 				B5D220A41CE589B700750A50 /* HybridNaviTitleView.swift */,
 			);
 			name = DogHybird;
+			sourceTree = "<group>";
+		};
+		B555E69C1CF6A06100003B4E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B5D220671CE4A3DC00750A50 /* Hybrid_Medlinker-Bridging-Header.h */,
+				B5D220351CE46F6900750A50 /* Assets.xcassets */,
+				B5D220371CE46F6900750A50 /* LaunchScreen.storyboard */,
+				B5D2203A1CE46F6900750A50 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		B555E69D1CF6A07400003B4E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B5D2202E1CE46F6900750A50 /* AppDelegate.swift */,
+				B5D220301CE46F6900750A50 /* ViewController.swift */,
+				B5D220641CE4756400750A50 /* WebTestViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		B555E69E1CF6A08000003B4E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5D220321CE46F6900750A50 /* Main.storyboard */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		B586C9C01CF59CF400EAAE26 /* HybirdTransion */ = {
@@ -216,17 +247,10 @@
 		B5D2202D1CE46F6900750A50 /* Hybrid_Medlinker */ = {
 			isa = PBXGroup;
 			children = (
-				B5D220671CE4A3DC00750A50 /* Hybrid_Medlinker-Bridging-Header.h */,
+				B555E69E1CF6A08000003B4E /* View */,
+				B555E69D1CF6A07400003B4E /* Controller */,
+				B555E69C1CF6A06100003B4E /* Resources */,
 				B555E6991CF699FA00003B4E /* DogHybird */,
-				B555E6981CF699AE00003B4E /* Tool */,
-				B5D220B01CE5A3A100750A50 /* Model */,
-				B5D2202E1CE46F6900750A50 /* AppDelegate.swift */,
-				B5D220301CE46F6900750A50 /* ViewController.swift */,
-				B5D220321CE46F6900750A50 /* Main.storyboard */,
-				B5D220351CE46F6900750A50 /* Assets.xcassets */,
-				B5D220371CE46F6900750A50 /* LaunchScreen.storyboard */,
-				B5D2203A1CE46F6900750A50 /* Info.plist */,
-				B5D220641CE4756400750A50 /* WebTestViewController.swift */,
 			);
 			path = Hybrid_Medlinker;
 			sourceTree = "<group>";

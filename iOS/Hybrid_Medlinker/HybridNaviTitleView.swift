@@ -25,7 +25,6 @@ class HybridNaviTitleView: UIView {
         self.titleLabel.frame = CGRectMake(0, 0, titleWidth, 22)
         self.titleLabel.center = self.center
         self.titleLabel.textAlignment = .Center
-//        self.titleLabel.backgroundColor = UIColor.yellowColor()
         self.addSubview(self.titleLabel)
         
         //副标题
@@ -39,7 +38,6 @@ class HybridNaviTitleView: UIView {
             self.subtitleLabel.center.y = self.center.y + 10
             self.titleLabel.center.y = self.center.y - 10
             self.subtitleLabel.textAlignment = .Center
-            //        self.titleLabel.backgroundColor = UIColor.yellowColor()
             self.addSubview(self.subtitleLabel)
         }
 
@@ -47,14 +45,12 @@ class HybridNaviTitleView: UIView {
         self.righticon.frame = CGRectMake(self.titleLabel.frame.origin.x + self.titleLabel.frame.size.width + 5, 0, 15, 15)
         self.righticon.setImageWithURL(righticonUrl)
         self.righticon.center.y = self.center.y
-//        self.righticon.backgroundColor = UIColor.blueColor()
         self.addSubview(self.righticon)
         
         //左图标
         self.lefticon.frame = CGRectMake(self.titleLabel.frame.origin.x - 20, 0, 15, 15)
         self.lefticon.setImageWithURL(lefticonUrl)
         self.lefticon.center.y = self.center.y
-        //        self.righticon.backgroundColor = UIColor.blueColor()
         self.addSubview(self.lefticon)
 
         //事件按钮
