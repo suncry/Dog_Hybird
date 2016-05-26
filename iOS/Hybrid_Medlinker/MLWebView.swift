@@ -362,13 +362,16 @@ extension MLWebView: UIWebViewDelegate {
 //        NSDictionary *dic = @{@"name": @"Ider", @"#":@(21)};
 //        context[@"dic"] = dic;
 //        [context evaluateScript:@"log(dic.name, dic['#'])"];
-//        let jsObjDic = ["requestNative": requestNative]
-//        context.setObject(unsafeBitCast(jsObjDic, AnyObject.self), forKeyedSubscript: "Hybrid")
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
+//        let jsObjDic = ["requestNative": self.requestNative]
+//        self.context.setObject(unsafeBitCast(jsObjDic, AnyObject.self), forKeyedSubscript: "Hybrid")
+//        self.context.setObject(<#T##object: AnyObject!##AnyObject!#>, forKeyedSubscript: <#T##protocol<NSCopying, NSObjectProtocol>!#>)
+//        self.context.setObject(jsObjDic, forKeyedSubscript: "Hybrid")
         self.context.setObject(unsafeBitCast(self.requestNative, AnyObject.self), forKeyedSubscript: "requestNative")
         self.myWebView.stringByEvaluatingJavaScriptFromString("Hybrid.ready();")
+        print("Hybrid.ready(); <----------------")
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
@@ -376,8 +379,6 @@ extension MLWebView: UIWebViewDelegate {
     }
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-//        self.context.setObject(unsafeBitCast(self.requestNative, AnyObject.self), forKeyedSubscript: "requestNative")
-
         return true
     }
 
