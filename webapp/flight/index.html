@@ -95,9 +95,11 @@
 
         Hybrid.ui.header.set({
             back: function () {
-//                requestHybrid({
-//                    tagname: 'back'
-//                });
+                requestHybrid({
+                    tagname: 'back'
+                });
+
+                return;
 
                 requestHybrid({
                     tagname: 'forward',
@@ -112,10 +114,11 @@
             right: [
                 {
                     tagname: 'gohome',
-                    value: '首页',
+                    value: '刷新',
                     callback: function () {
 
-                        alert(1);
+                        alert('刷新')
+                       window.location.reload()
 
                     }
                 },
