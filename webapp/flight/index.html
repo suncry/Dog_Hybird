@@ -2,17 +2,18 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
-    <meta content="yes" name="apple-mobile-web-app-capable" />
-    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
-    <meta name="format-detection" content="telphone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta name="format-detection" content="telphone=no"/>
     <title>Header Demo</title>
-    <link href="../static/css/global.css" rel="stylesheet" type="text/css" />
+    <link href="../static/css/global.css" rel="stylesheet" type="text/css"/>
     <style>
         .btn-primary {
             margin: 20px;
             display: block;
         }
+
         .url {
             width: 90%;
             margin: 20px;
@@ -33,65 +34,82 @@
 <div>
 
     <div class="btn-primary" id="forward7">
-        forward 跨频道内嵌</div>
+        forward 跨频道内嵌
+    </div>
 </div>
 
-    <div class="btn-primary" id="goTransformer">
-        去转诊1</div>
+<div class="btn-primary" id="goTransformer">
+    去转诊1
+</div>
 
-    <div class="btn-primary" id="ajaxget">
-        ajax get 获取资源</div>
+<div class="btn-primary" id="ajaxget">
+    ajax get 获取资源
+</div>
 
-    <div class="btn-primary" id="ajaxpost">
-        ajax post 获取资源</div>
-
-
-    <div class="btn-primary" id="setRight2">
-        右边按钮为自定义图标，读取http资源</div>
-
-
-    <div class="btn-primary" id="setTitle">
-        主标题子标题</div>
+<div class="btn-primary" id="ajaxpost">
+    ajax post 获取资源
+</div>
 
 
-    <div class="btn-primary" id="setSelectTitle">
-        设置title，使其右边有图标</div>
+<div class="btn-primary" id="setRight2">
+    右边按钮为自定义图标，读取http资源
+</div>
 
 
-    <div class="btn-primary" id="goIndex">
-        跳转首页</div>
-
-    <div class="btn-primary" id="forward">
-        forward 默认</div>
-
-    <div class="btn-primary" id="forward1">
-        forward pop</div>
-
-    <div class="btn-primary" id="forward2">
-        forward present</div>
+<div class="btn-primary" id="setTitle">
+    主标题子标题
+</div>
 
 
-
-    <div class="btn-primary" id="forward4">
-        forward 没有导航</div>
-
-    <div class="btn-primary" id="forward5">
-        forward 载入页面</div>
-
-    <div class="btn-primary" id="forward6">
-        forward 载入频道</div>
+<div class="btn-primary" id="setSelectTitle">
+    设置title，使其右边有图标
+</div>
 
 
+<div class="btn-primary" id="goIndex">
+    跳转首页
+</div>
 
-    <script src="../libs/underscore.js" type="text/javascript"></script>
-    <script src="../libs/zepto.js" type="text/javascript"></script>
-    <script src="../libs/fastclick.js" type="text/javascript"></script>
-    <script src="../libs/libs.js" type="text/javascript"></script>
-    <script type="text/javascript">
+<div class="btn-primary" id="forward">
+    forward 默认
+</div>
+
+<div class="btn-primary" id="forward1">
+    forward pop
+</div>
+
+<div class="btn-primary" id="forward2">
+    forward present
+</div>
 
 
-        $.bindFastClick();
+<div class="btn-primary" id="forward4">
+    forward 没有导航
+</div>
 
+<div class="btn-primary" id="forward5">
+    forward 载入页面
+</div>
+
+<div class="btn-primary" id="forward6">
+    forward 载入频道
+</div>
+
+
+<script src="../libs/underscore.js" type="text/javascript"></script>
+<script src="../libs/zepto.js" type="text/javascript"></script>
+<script src="../libs/fastclick.js" type="text/javascript"></script>
+<script src="../libs/libs.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    $.bindFastClick();
+
+    Hybrid.readey = function() {
+        hybridInit();
+    }
+
+
+    function hybridInit() {
 
         Hybrid.ui.header.set({
             back: function () {
@@ -108,7 +126,6 @@
                         type: 'h5'
                     }
                 });
-
             },
             title: '设置右边按钮',
             right: [
@@ -118,7 +135,7 @@
                     callback: function () {
 
                         alert('刷新')
-                       window.location.reload()
+                        window.location.reload()
 
                     }
                 },
@@ -131,7 +148,6 @@
                 }
             ]
         });
-
 
 
         $('#goTransformer').click(function () {
@@ -334,7 +350,7 @@
                     title: '带图标title',
                     lefticon: 'http://images2015.cnblogs.com/blog/294743/201511/294743-20151102143118414-1197511976.png',
                     righticon: 'http://images2015.cnblogs.com/blog/294743/201511/294743-20151102143118414-1197511976.png',
-                    callback: function() {
+                    callback: function () {
 //                        alert('标题');
                     }
                 }
@@ -349,26 +365,26 @@
                     param1: 'param1',
                     param2: 'param2'
                 },
-                callback: function(data) {
+                callback: function (data) {
 //                    alert(data)
                 }
             });
         });
 
         $('#ajaxpost').click(function () {
-requestHybrid({
-    tagname: 'post',
-    param: {
-        url: 'http://api.kuai.baidu.com/city/getstartcitys',
-        param1: 'param1',
-        param2: 'param2'
-    },
-    callback: function(data) {
-    }
-});
+            requestHybrid({
+                tagname: 'post',
+                param: {
+                    url: 'http://api.kuai.baidu.com/city/getstartcitys',
+                    param1: 'param1',
+                    param2: 'param2'
+                },
+                callback: function (data) {
+                }
+            });
         });
+    }
 
-
-    </script>
+</script>
 </body>
 </html>

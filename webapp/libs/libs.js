@@ -8,6 +8,7 @@
 window.Hybrid = window.Hybrid || {};
 Hybrid.ui = {};
 
+
 var bridgePostMsg = function (params) {
     if ($.os.ios) {
 
@@ -65,6 +66,9 @@ var requestHybrid = function (params) {
             delete window.Hybrid[t];
         }
     }
+
+    console.log(_getHybridUrl(params));
+
     bridgePostMsg(params);
 };
 //获取版本信息，约定APP的navigator.userAgent版本包含版本信息：scheme/xx.xx.xx
