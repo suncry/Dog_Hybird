@@ -70,7 +70,6 @@ class MLWebViewController: UIViewController {
         }
     }
 
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -93,41 +92,19 @@ class MLWebViewController: UIViewController {
         
         self.webView.stopLoading()
     }
-
-    
     
     private func getRequestFromUrl(url: String) -> NSURLRequest? {
-        
-//        let mutUrl = NSMutableString(string: self.decodeUrl(url))
         let mutUrl = NSMutableString(string: url)
-
         if let uRL = NSURL(string: String(mutUrl)) {
             let request = NSMutableURLRequest(URL: uRL)
             return request
         }
-        
         return nil
-    }
-    
-    private func decodeUrl (url: String) -> String {
-        let mutStr = NSMutableString(string: url)
-        
-        mutStr.replaceOccurrencesOfString("+", withString: " ", options: NSStringCompareOptions.LiteralSearch, range: NSMakeRange(0, mutStr.length))
-        
-        return mutStr.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding) ?? ""
     }
     
 }
 
 extension MLWebViewController: MLWebViewDelegate {
-    
-    func mlWebViewDidGetTitle(title: String) {
-        // 不需要自动设置
-    }
-    
-    func mlWebViewDidOpenPageWithUrl(url: String) {
-
-    }
     
 }
 

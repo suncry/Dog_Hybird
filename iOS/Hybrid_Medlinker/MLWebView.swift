@@ -32,9 +32,11 @@ class MLWebView: UIView {
     let NaviHeaderEvent = "Hybrid.Header_Event."
     let HybirdEvent = "Hybrid."
 
-    //导航栏本地资源前缀
+    //资源相关
     let NaviImageHeader = "hybird_navi_"
-
+    let LocalResources = "DogHybirdResources/"
+    
+    
     /**************************************************/
     //MARK: - property
     var context = JSContext()
@@ -99,9 +101,7 @@ class MLWebView: UIView {
      */
     private func decodeUrl (url: String) -> String {
         let mutStr = NSMutableString(string: url)
-        
         mutStr.replaceOccurrencesOfString("+", withString: " ", options: NSStringCompareOptions.LiteralSearch, range: NSMakeRange(0, mutStr.length))
-        
         return mutStr.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding) ?? ""
     }
     
@@ -109,12 +109,11 @@ class MLWebView: UIView {
         
         if let jsonData = jsonStr.dataUsingEncoding(NSUTF8StringEncoding) {
             do {
-                return try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers) as! [String: AnyObject]
+                return try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers) as? [String: AnyObject] ?? ["":""]
             } catch let error as NSError {
                 print(error)
             }
         }
-        
         return [String: AnyObject]()
     }
     
@@ -201,7 +200,7 @@ class MLWebView: UIView {
                 if let url = args["topage"] as? String {
                     let web = MLWebViewController()
                     web.hidesBottomBarWhenPushed = true
-                    let localUrl = url.stringByReplacingOccurrencesOfString(".html", withString: "")
+                    let localUrl = LocalResources + url.stringByReplacingOccurrencesOfString(".html", withString: "")
                     if let _ = NSBundle.mainBundle().pathForResource(localUrl, ofType: "html") {
                         //设置本地资源路径
                         web.localUrl = localUrl
@@ -222,6 +221,7 @@ class MLWebView: UIView {
                     vc.navigationController?.pushViewController(web, animated: true)
                 }
             } else {
+                //这里指定跳转到本地某页面   需要一个判断映射的方法
                 if  args["topage"] as! String == "index2" {
                     let webTestViewController = WebTestViewController.instance()
                     
@@ -259,9 +259,9 @@ class MLWebView: UIView {
         sessionManager.GET(url, parameters: parameters, progress: { (progress) in
             
             }, success: { (sessionDataTask, jsonObject) in
-                let callbackString = try! self.jsonStringWithObject(jsonObject!)
-                //                    print(callbackString)
-                self.myWebView.stringByEvaluatingJavaScriptFromString(self.HybirdEvent + "\(callbackID)(\(callbackString));")
+                if let callbackString = try? self.jsonStringWithObject(jsonObject!) {
+                    self.myWebView.stringByEvaluatingJavaScriptFromString(self.HybirdEvent + "\(callbackID)(\(callbackString));")
+                }
             }, failure: { (sessionDataTask, error) in
                 print(error)
         })
@@ -274,8 +274,9 @@ class MLWebView: UIView {
         let url = args["url"] as? String ?? ""
         sessionManager.POST(url, parameters: parameters, progress: { (progress) in
             }, success: { (sessionDataTask, jsonObject) in
-                let callbackString = try! self.jsonStringWithObject(jsonObject!)
-                self.myWebView.stringByEvaluatingJavaScriptFromString(self.HybirdEvent + "\(callbackID)(\(callbackString));")
+                if let callbackString = try? self.jsonStringWithObject(jsonObject!) {
+                    self.myWebView.stringByEvaluatingJavaScriptFromString(self.HybirdEvent + "\(callbackID)(\(callbackString));")
+                }
             }, failure: { (sessionDataTask, error) in
                 print(error)
         })
