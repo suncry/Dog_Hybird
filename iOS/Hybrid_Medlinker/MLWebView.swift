@@ -368,8 +368,7 @@ extension MLWebView: UIWebViewDelegate {
     
     func webViewDidFinishLoad(webView: UIWebView) {
         self.context.setObject(unsafeBitCast(self.requestNative, AnyObject.self), forKeyedSubscript: "requestNative")
-        self.myWebView.stringByEvaluatingJavaScriptFromString(self.NaviHeaderEvent + "Hybrid.ready();")
-
+        self.myWebView.stringByEvaluatingJavaScriptFromString("Hybrid.ready();")
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
@@ -377,6 +376,8 @@ extension MLWebView: UIWebViewDelegate {
     }
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+//        self.context.setObject(unsafeBitCast(self.requestNative, AnyObject.self), forKeyedSubscript: "requestNative")
+
         return true
     }
 
