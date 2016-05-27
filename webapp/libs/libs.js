@@ -10,8 +10,14 @@ Hybrid.ui = {};
 
 Hybrid.callback = function (callbackId, data) {
 
+    alert(typeof data);
     alert(callbackId);
-    showFormatData(data);
+
+    showFormatData(Hybrid);
+
+    if(typeof data == 'string') data = JSON.parse(data);
+    Hybrid[callbackId] && Hybrid[callbackId](data);
+
 
 };
 
