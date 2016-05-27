@@ -706,6 +706,11 @@
 (function () {
     window.Hybrid = window.Hybrid || {};
     window.Hybrid.ui = window.Hybrid.ui || {};
+    Hybrid.callback = function (data) {
+        var callbackId = data.callback;
+        if(typeof data == 'string') data = JSON.parse(data);
+        Hybrid[callbackId] && Hybrid[callbackId](data);
+    };
 
     var bridgePostMsg = function (params) {
         if ($.os.ios) {
