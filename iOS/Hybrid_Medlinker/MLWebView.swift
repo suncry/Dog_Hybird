@@ -451,7 +451,8 @@ extension MLWebView: UIWebViewDelegate {
                 
 //                let callBackIdStr: String = componentList[2] ?? ""
 //                let jsonStr: String = componentList[3] ?? ""
-                let args = self.decodeJsonStr(paramDic["param"]!)
+                
+                let args = self.decodeJsonStr(paramDic["param"] ?? "")
                 let callBackId = paramDic["callback"] ?? ""
                 
                 //                    self.handleCall(function, callBackId: callBackId, args: args)
