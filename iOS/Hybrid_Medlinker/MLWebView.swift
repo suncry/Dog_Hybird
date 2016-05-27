@@ -459,7 +459,6 @@ extension MLWebView: UIWebViewDelegate {
                 //                    self.handleCall(function, callBackId: callBackId, args: args)
                 self.handleEvent(function, args: args, callbackID: callBackId)
 
-                return false
             }
         }
         
