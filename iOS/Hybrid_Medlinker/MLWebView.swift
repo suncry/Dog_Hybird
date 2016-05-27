@@ -30,8 +30,7 @@ class MLWebView: UIView {
     let HideLoading = "hideLoading"
     
     //Event前缀
-    let NaviHeaderEvent = "Hybrid.Header_Event."
-    let HybirdEvent = "Hybrid."
+    let HybirdEvent = "Hybrid.callback"
 
     //资源路径相关
     let NaviImageHeader = "hybird_navi_"
@@ -215,7 +214,7 @@ class MLWebView: UIView {
                 button.setImage(UIImage(named: NaviImageHeader + buttonModel.tagname), forState: .Normal)
             }
             button.addBlockForControlEvents(.TouchUpInside, block: { (sender) in
-                self.myWebView.stringByEvaluatingJavaScriptFromString(self.NaviHeaderEvent + "\(buttonModel.callback)();")
+                self.callBack("", errno: 0, msg: "成功", callback: buttonModel.callback)
             })
             let menuButton = UIBarButtonItem(customView: button)
             buttons.append(menuButton)
@@ -310,7 +309,7 @@ class MLWebView: UIView {
             
             }, success: { (sessionDataTask, jsonObject) in
                 if let callbackString = try? self.jsonStringWithObject(jsonObject!) {
-                    self.myWebView.stringByEvaluatingJavaScriptFromString(self.HybirdEvent + "\(callbackID)(\(callbackString));")
+                    self.callBack(callbackString, errno: 0, msg: "成功", callback: callbackID)
                 }
             }, failure: { (sessionDataTask, error) in
                 print(error)
@@ -325,7 +324,7 @@ class MLWebView: UIView {
         sessionManager.POST(url, parameters: parameters, progress: { (progress) in
             }, success: { (sessionDataTask, jsonObject) in
                 if let callbackString = try? self.jsonStringWithObject(jsonObject!) {
-                    self.myWebView.stringByEvaluatingJavaScriptFromString(self.HybirdEvent + "\(callbackID)(\(callbackString));")
+                    self.callBack(callbackString, errno: 0, msg: "成功", callback: callbackID)
                 }
             }, failure: { (sessionDataTask, error) in
                 print(error)
@@ -333,18 +332,7 @@ class MLWebView: UIView {
     }
 
     func demoApi(args: [String: AnyObject], callbackID: String) {
-//        let dataString = "{data: {\"key\":\"value\"},errno: 0,msg: success,callback: \(callbackID)}"
-        let data = ["data": "123123123",
-                    "errno": 0,
-                    "msg": "success",
-                    "callback": callbackID]
-        
-        let dataString = self.toJSONString(data)
-        
-//        let parms = [callbackID, dataString]
-        self.myWebView.stringByEvaluatingJavaScriptFromString("Hybrid.callback" + "(\(dataString));")
-
-//        self.myWebView.stringByEvaluatingJavaScriptFromString("Hybrid.callback" + "(\(dataString));")
+        self.callBack("磊哥你好", errno: 0, msg: "成功", callback: callbackID)
     }
     
     func toJSONString(dict: NSDictionary!)->NSString{
@@ -361,7 +349,15 @@ class MLWebView: UIView {
         }
     }
 
-    
+    func callBack(data:AnyObject, errno: Int, msg: String, callback: String) {
+        let data = ["data": data,
+                    "errno": errno,
+                    "msg": msg,
+                    "callback": callback]
+        
+        let dataString = self.toJSONString(data)
+        self.myWebView.stringByEvaluatingJavaScriptFromString(self.HybirdEvent + "(\(dataString));")
+    }
     /**************************************************/
     //MARK: -  public
     
