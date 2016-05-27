@@ -419,7 +419,62 @@ extension MLWebView: UIWebViewDelegate {
 //        }
 
         
+        if let requestStr = request.URL?.absoluteString {
+            var decodeStr =  self.decodeUrl(requestStr)
+            if decodeStr.hasPrefix("hybrid://") {
+                let dataString = decodeStr.stringByReplacingOccurrencesOfString("hybrid://", withString: "")
+                let dataArray = dataString.componentsSeparatedByString("?")
+                
+//                var componentList = [String]()
+//                var retPair: (preStr: String?, leftStr: String) = (nil, decodeStr)
+//                var i = 0
+//                while i < 3 {
+//                    retPair = self.getPrefixOfStr(retPair.leftStr)
+//                    componentList.append(retPair.preStr!)
+//                    i += 1
+//                }
+//                componentList.append(retPair.leftStr)
+//                
+//                
+//                if componentList.count > 3 {
+//                }
+                
+                let function: String = dataArray[0] ?? ""
+                
+                let paramArray = dataArray[1].componentsSeparatedByString("&")
+                
+                var paramDic: Dictionary = ["": ""]
+                for str in paramArray {
+                    let tempArray = str.componentsSeparatedByString("=")
+                    paramDic.updateValue(tempArray[1], forKey: tempArray[0])
+                }
+                
+//                let callBackIdStr: String = componentList[2] ?? ""
+//                let jsonStr: String = componentList[3] ?? ""
+                let args = self.decodeJsonStr(paramDic["param"]!)
+                let callBackId = paramDic["callback"] ?? ""
+                
+                //                    self.handleCall(function, callBackId: callBackId, args: args)
+                self.handleEvent(function, args: args, callbackID: callBackId)
+
+                return false
+            }
+        }
+        
         return true
+    }
+    private func getPrefixOfStr(urlStr: String) -> (preStr: String?, leftStr: String) {
+        let mutUrl = NSMutableString(string: urlStr)
+        let range = mutUrl.rangeOfString(":")
+        
+        if range.length > 0 {
+            let preStr = mutUrl.substringToIndex(range.location)
+            let leftStr = mutUrl.substringFromIndex(range.location + 1)
+            
+            return (preStr, leftStr)
+        }
+        
+        return (nil, urlStr)
     }
 
 }
