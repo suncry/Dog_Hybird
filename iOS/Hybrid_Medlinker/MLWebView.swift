@@ -76,9 +76,8 @@ class MLWebView: UIView {
         self.addSubview(myWebView)
         
         self.requestNative = { input in
-            print(self)
             let args = MLWebView().decodeJsonStr(input)
-            print("requestNative args == \(args)")
+//            print("requestNative args == \(args)")
             if let tagname = args["tagname"] as? String {
                 let callBackId = args["callback"] as? String ?? ""
                 if let param = args["param"] as? [String: AnyObject] {
@@ -146,13 +145,13 @@ class MLWebView: UIView {
     //MARK: - h5交互协议
     
     func handleEvent(funType: String, args: [String: AnyObject], callbackID: String = "") {
-        print("   ")
-        print("****************************************")
-        print("funType    === \(funType)")
-        print("args       === \(args)")
-        print("callbackID === \(callbackID)")
-        print("****************************************")
-        print("   ")
+//        print("   ")
+//        print("****************************************")
+//        print("funType    === \(funType)")
+//        print("args       === \(args)")
+//        print("callbackID === \(callbackID)")
+//        print("****************************************")
+//        print("   ")
         if funType == UpdateHeader {
             self.updateHeader(args)
         } else if funType == Back {
@@ -377,50 +376,18 @@ class MLWebView: UIView {
 extension MLWebView: UIWebViewDelegate {
     
     func webViewDidStartLoad(webView: UIWebView) {
+        
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
         self.context = webView.valueForKeyPath("documentView.webView.mainFrame.javaScriptContext") as? JSContext
         self.context.exceptionHandler = { context, exception in
             let alert = UIAlertView(title: "JS Error", message: exception.description, delegate: nil, cancelButtonTitle: "ok")
             alert.show()
             print("JS Error: \(exception)")
         }
-        print("webViewDidStartLoad")
-//        let requestNative: @convention(block) String -> Bool = { input in
-//            let args = self.decodeJsonStr(input)
-//            print("requestNative args == \(args)")
-//            if let tagname = args["tagname"] as? String {
-//                let callBackId = args["callback"] as? String ?? ""
-//                if let param = args["param"] as? [String: AnyObject] {
-//                    self.handleEvent(tagname, args: param, callbackID: callBackId)
-//                }
-//                else {
-//                    self.handleEvent(tagname, args: ["":""], callbackID: callBackId)
-//                }
-//                return true
-//            }
-//            else {
-//                print("tagname 空了哟")
-//                let alert = UIAlertView(title: "提示", message: "tagname 空了哟", delegate: nil, cancelButtonTitle: "cancel")
-//                alert.show()
-//                return false
-//            }
-//        }
-//        self.context.setObject(unsafeBitCast(self.requestNative, AnyObject.self), forKeyedSubscript: "requestNative")
-
-//        NSDictionary *dic = @{@"name": @"Ider", @"#":@(21)};
-//        context[@"dic"] = dic;
-//        [context evaluateScript:@"log(dic.name, dic['#'])"];
-    }
-    
-    func webViewDidFinishLoad(webView: UIWebView) {
-        print("webViewDidFinishLoad")
-//        let jsObjDic = ["Hybrid": unsafeBitCast(self.requestNative, AnyObject.self)]
-//        self.context.setObject(unsafeBitCast(jsObjDic, AnyObject.self), forKeyedSubscript: "Hybrid")
-//        self.context.setObject(object: AnyObject!, forKeyedSubscript: protocol<NSCopying, NSObjectProtocol>!)
-//        self.context.setObject(jsObjDic, forKeyedSubscript: "Hybrid")
-//        self.context.setObject(jsObjDic, forKeyedSubscript: "Hybrid")
         self.context.setObject(unsafeBitCast(self.requestNative, AnyObject.self), forKeyedSubscript: "HybridRequestNative")
         self.myWebView.stringByEvaluatingJavaScriptFromString("Hybrid.ready();")
-        print("Hybrid.ready(); <----------------")
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {

@@ -77,6 +77,9 @@ class MLWebViewController: UIViewController {
         self.originTabBarHidden = self.tabBarController?.tabBar.hidden
         self.navigationController?.navigationBar.hidden = false
         self.tabBarController?.tabBar.hidden = true
+        
+        //加入删除之前页面的逻辑 最多保留3个 MLWebViewController
+        self.deleteViewController()
     }
 
     override func viewWillDisappear(animated: Bool) {
@@ -100,6 +103,25 @@ class MLWebViewController: UIViewController {
             return request
         }
         return nil
+    }
+    
+    func deleteViewController() {
+        
+        var webViewControllers: [UIViewController] = []
+        if let viewControllers = self.navigationController?.viewControllers {
+            for vc in viewControllers {
+                if vc is MLWebViewController {
+                    webViewControllers.append(vc)
+                }
+            }
+            if webViewControllers.count > 3 {
+                print("self.navigationController?.viewControllers == \(self.navigationController?.viewControllers)")
+                print("count == \(self.navigationController?.viewControllers.count)")
+
+                self.navigationController?.viewControllers.removeAtIndex((self.navigationController?.viewControllers.indexOf(webViewControllers.first!))!)
+            }
+        }
+        
     }
     
 }
