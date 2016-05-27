@@ -29,23 +29,26 @@ Hybrid.callback = function (data) {
 };
 
 var bridgePostMsg = function (params) {
+    var url = _getHybridUrl(params);
+
+    //兼容ios6
+    var ifr = $('<iframe style="display: none;" src="' + url + '"/>');
+    $('body').append(ifr);
+    setTimeout(function () {
+        ifr.remove();
+        ifr = null;
+    }, 1000);
+
+    return;
+
     if ($.os.ios) {
 
-//使用jsCore与native通信
+        //使用jsCore与native通信
         window.HybridRequestNative && HybridRequestNative(JSON.stringify(params));
 
         return;
-//兼容ios6
-        var ifr = $('<iframe style="display: none;" src="' + url + '"/>');
-        $('body').append(ifr);
-        setTimeout(function () {
-            ifr.remove();
-            ifr = null;
-        }, 1000)
 
-    } else {
-
-        //Android实现
+        //兼容ios6
         var ifr = $('<iframe style="display: none;" src="' + url + '"/>');
         $('body').append(ifr);
         setTimeout(function () {
@@ -54,6 +57,7 @@ var bridgePostMsg = function (params) {
         }, 1000)
 
     }
+
 };
 var _getHybridUrl = function (params) {
     var k, paramStr = '', url = 'hybrid://', flag = '?';
