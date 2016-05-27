@@ -708,8 +708,20 @@
     window.Hybrid.ui = window.Hybrid.ui || {};
     Hybrid.callback = function (data) {
         var callbackId = data.callback;
+        if(!callbackId) return;
+
+        //alert(typeof data);
+        //alert(callbackId);
+        //
+        //showFormatData(Hybrid);
+
         if(typeof data == 'string') data = JSON.parse(data);
-        Hybrid[callbackId] && Hybrid[callbackId](data);
+
+        if(callbackId.indexOf('header_') != -1 && Hybrid['Header_Event']) {
+            Hybrid['Header_Event'][callbackId] && Hybrid['Header_Event'][callbackId](data);
+        } else {
+            Hybrid[callbackId] && Hybrid[callbackId](data);
+        }
     };
 
     var bridgePostMsg = function (params) {
