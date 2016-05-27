@@ -335,7 +335,7 @@ class MLWebView: UIView {
     func demoApi(args: [String: AnyObject], callbackID: String) {
         let dataString = "{data: {\"key\":\"value\"},errno: 0,msg: success}"
 //        let parms = [callbackID, dataString]
-        self.myWebView.stringByEvaluatingJavaScriptFromString("Hybrid.callback" + "(\(callbackID), \(dataString));")
+        self.myWebView.stringByEvaluatingJavaScriptFromString("Hybrid.callback" + "([\(callbackID),\(dataString)]);")
     }
     
     /**************************************************/
