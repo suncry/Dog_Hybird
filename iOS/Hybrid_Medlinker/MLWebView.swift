@@ -41,7 +41,6 @@ class MLWebView: UIView {
     //MARK: - property
     var context = JSContext()
     
-//    var didFinishPickingAssets : ((assets: [ALAsset]) -> ())?
     var requestNative: (@convention(block) String -> Bool)?
     
     var myWebView = UIWebView()
@@ -414,11 +413,12 @@ extension MLWebView: UIWebViewDelegate {
     
     func webViewDidFinishLoad(webView: UIWebView) {
         print("webViewDidFinishLoad")
-//        let jsObjDic = ["requestNative": self.requestNative]
+        let jsObjDic = ["Hybrid": unsafeBitCast(self.requestNative, AnyObject.self)]
 //        self.context.setObject(unsafeBitCast(jsObjDic, AnyObject.self), forKeyedSubscript: "Hybrid")
 //        self.context.setObject(object: AnyObject!, forKeyedSubscript: protocol<NSCopying, NSObjectProtocol>!)
 //        self.context.setObject(jsObjDic, forKeyedSubscript: "Hybrid")
-        self.context.setObject(unsafeBitCast(self.requestNative, AnyObject.self), forKeyedSubscript: "requestNative")
+        self.context.setObject(jsObjDic, forKeyedSubscript: "Hybrid")
+//        self.context.setObject(unsafeBitCast(self.requestNative, AnyObject.self), forKeyedSubscript: "requestNative")
         self.myWebView.stringByEvaluatingJavaScriptFromString("Hybrid.ready();")
         print("Hybrid.ready(); <----------------")
     }
