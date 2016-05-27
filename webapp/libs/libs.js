@@ -31,6 +31,7 @@ Hybrid.callback = function (data) {
 var bridgePostMsg = function (params) {
     var url = _getHybridUrl(params);
 
+    alert(url)
     //兼容ios6
     var ifr = $('<iframe style="display: none;" src="' + url + '"/>');
     $('body').append(ifr);
