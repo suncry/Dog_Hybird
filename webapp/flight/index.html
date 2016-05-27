@@ -102,12 +102,24 @@
 <script src="../libs/libs.js" type="text/javascript"></script>
 <script type="text/javascript">
 
+
+
+    function showFormatData (data) {
+        if(typeof  data != 'object') return;
+        var s = ''
+        for (var k in data) {
+            s += k + ': ' + typeof data[k] + ' \n'
+        }
+
+        alert(s);
+    }
+
+
     $.bindFastClick();
 
-
-Hybrid.ready = function() {
-    hybridInit();
-}
+    Hybrid.ready = function () {
+        hybridInit();
+    }
 
     function hybridInit() {
 
@@ -140,15 +152,15 @@ Hybrid.ready = function() {
                     }
                 },
                 {
-                    tagname: 'test',
+                    tagname: 'demoapi',
                     value: '测试',
-                    callback: function () {
-                        alert(2);
+                    callback: function (data) {
+
+                        showFormatData(data);
                     }
                 }
             ]
         });
-
 
         $('#goTransformer').click(function () {
             requestHybrid({
@@ -366,7 +378,14 @@ Hybrid.ready = function() {
                     param2: 'param2'
                 },
                 callback: function (data) {
-//                    alert(data)
+
+                    var s = ''
+                    for (var k in data) {
+                        s += k + ': ' + typeof data[k] + ' \n'
+                    }
+
+                    alert(s);
+
                 }
             });
         });

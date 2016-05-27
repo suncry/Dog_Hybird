@@ -1,28 +1,34 @@
 ﻿/**
-* @description Hybrid demo配套js文件，因为是demo保证可读性未做封装，请知悉，真实配套框架为：https://github.com/yexiaochai/blade
-* @author 叶小钗
-*/
+ * @description Hybrid demo配套js文件，因为是demo保证可读性未做封装，请知悉，真实配套框架为：https://github.com/yexiaochai/blade
+ * @author 叶小钗
+ */
 
 
 //Hybrid基本交互定义
 window.Hybrid = window.Hybrid || {};
 Hybrid.ui = {};
 
+Hybrid.callback = function (callbackId, data) {
+
+    alert(callbackId);
+    showFormatData(data);
+
+};
 
 var bridgePostMsg = function (params) {
     if ($.os.ios) {
 
 //使用jsCore与native通信
-window.requestNative && requestNative(JSON.stringify(params));
+        window.requestNative && requestNative(JSON.stringify(params));
 
-return;
+        return;
 //兼容ios6
-var ifr = $('<iframe style="display: none;" src="' + url + '"/>');
-$('body').append(ifr);
-setTimeout(function () {
-    ifr.remove();
-    ifr = null;
-}, 1000)
+        var ifr = $('<iframe style="display: none;" src="' + url + '"/>');
+        $('body').append(ifr);
+        setTimeout(function () {
+            ifr.remove();
+            ifr = null;
+        }, 1000)
 
     } else {
 
@@ -118,7 +124,7 @@ HybridHeader.prototype = {
 
         //语法糖适配
         if (opts.back) {
-            tmp = { tagname: 'back' };
+            tmp = {tagname: 'back'};
             if (typeof opts.back == 'string') tmp.value = opts.back;
             else if (typeof opts.back == 'function') tmp.callback = opts.back;
             else if (typeof opts.back == 'object') _.extend(tmp, opts.back);

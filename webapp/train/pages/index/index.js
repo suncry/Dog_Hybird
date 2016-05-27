@@ -83,6 +83,9 @@
             };
 
             this.header.set(opts);
+
+
+
         },
 
         initElement: function () {
