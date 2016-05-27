@@ -37,19 +37,6 @@ extension String{
         return CGFloat(width)
     }
 
-    func toJSONString(dict: NSDictionary!)->NSString{
-        if let jsonData = try? NSJSONSerialization.dataWithJSONObject(dict, options: NSJSONWritingOptions.PrettyPrinted) {
-            if let strJson = NSString(data: jsonData, encoding: NSUTF8StringEncoding) {
-                return strJson
-            }
-            else {
-                return ""
-            }
-        }
-        else {
-            return ""
-        }
-    }
 
 }
 
