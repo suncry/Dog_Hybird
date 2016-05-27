@@ -65,7 +65,7 @@ var _getHybridUrl = function (params) {
 
     if (params.callback) {
         flag = '&';
-        url += '&callback=' + params.callback;
+        url += '?callback=' + params.callback;
         //delete params.callback;
     }
     if (params.param) {

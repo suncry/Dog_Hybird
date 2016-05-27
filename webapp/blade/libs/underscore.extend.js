@@ -740,19 +740,18 @@
     };
 
     var _getHybridUrl = function (params) {
-        var k, paramStr = '', url = 'baidubus://';
-        url += params.tagname + '?t=' + new Date().getTime(); //时间戳，防止url不起效
+        var k, paramStr = '', url = 'hybrid://', flag = '?';
+        url += params.tagname; //时间戳，防止url不起效
 
         if (params.callback) {
-            url += '&callback=' + params.callback;
-            delete params.callback;
+            flag = '&';
+            url += '?callback=' + params.callback;
+            //delete params.callback;
         }
-
         if (params.param) {
             paramStr = typeof params.param == 'object' ? JSON.stringify(params.param) : params.param;
-            url += '&param=' + encodeURIComponent(paramStr);
+            url += flag + 'param=' + encodeURIComponent(paramStr);
         }
-
         return url;
     };
 
