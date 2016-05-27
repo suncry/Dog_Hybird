@@ -26,7 +26,9 @@ class MLWebView: UIView {
     let Forward = "forward"
     let Get = "get"
     let Post = "post"
-
+    let ShowLoading = "showLoading"
+    let HideLoading = "hideLoading"
+    
     //Event前缀
     let NaviHeaderEvent = "Hybrid.Header_Event."
     let HybirdEvent = "Hybrid."
@@ -42,10 +44,6 @@ class MLWebView: UIView {
     
 //    var didFinishPickingAssets : ((assets: [ALAsset]) -> ())?
     var requestNative: (@convention(block) String -> Bool)?
-    
-
-    
-    
     
     var myWebView = UIWebView()
     var urlStr = "" {
@@ -100,7 +98,6 @@ class MLWebView: UIView {
                 return false
             }
         }
-
         
     }
     
@@ -165,9 +162,13 @@ class MLWebView: UIView {
         } else if funType == Forward {
             self.forward(args)
         } else if funType == Get {
-            self.HybirdGet(args, callbackID: callbackID)
+            self.hybirdGet(args, callbackID: callbackID)
         } else if funType == Post {
-            self.HybirdPost(args, callbackID: callbackID)
+            self.hybirdPost(args, callbackID: callbackID)
+        } else if funType == ShowLoading {
+            self.showLoading(args, callbackID: callbackID)
+        } else if funType == HideLoading {
+            self.hideLoading(args, callbackID: callbackID)
         }
     }
     
@@ -180,6 +181,7 @@ class MLWebView: UIView {
             }
         }
     }
+    
     func setUpNaviTitleView(titleModel:Hybrid_titleModel) -> HybridNaviTitleView {
         let naviTitleView = HybridNaviTitleView()
         naviTitleView.frame = CGRectMake(0, 0, 150, 30)
@@ -188,6 +190,7 @@ class MLWebView: UIView {
         naviTitleView.loadTitleView(titleModel.title, subtitle: titleModel.subtitle, lefticonUrl: leftUrl, righticonUrl: rightUrl, callback: titleModel.callback, currentWebView: self.myWebView)
         return naviTitleView
     }
+    
     func setUpNaviButtons(buttonModels:[Hybrid_naviButtonModel]) -> [UIBarButtonItem] {
         var buttons = [UIBarButtonItem]()
         for buttonModel in buttonModels {
@@ -277,6 +280,18 @@ class MLWebView: UIView {
             print("self.delegate 未找到")
         }
     }
+    
+    func showLoading(args: [String: AnyObject], callbackID: String) {
+        if let vc = self.delegate as? MLWebViewController {
+            vc.startLoveEggAnimating()
+        }
+    }
+    
+    func hideLoading(args: [String: AnyObject], callbackID: String) {
+        if let vc = self.delegate as? MLWebViewController {
+            vc.stopAnimating()
+        }
+    }
 
     func jsonStringWithObject(object: AnyObject) throws -> String {
         let data = try NSJSONSerialization.dataWithJSONObject(object, options: NSJSONWritingOptions(rawValue: 0))
@@ -284,7 +299,7 @@ class MLWebView: UIView {
         return string
     }
 
-    func HybirdGet(args: [String: AnyObject], callbackID: String) {
+    func hybirdGet(args: [String: AnyObject], callbackID: String) {
         let sessionManager = AFHTTPSessionManager(baseURL: nil)
         var parameters = args
         parameters.removeValueForKey("url")
@@ -300,7 +315,7 @@ class MLWebView: UIView {
         })
     }
     
-    func HybirdPost(args: [String: AnyObject], callbackID: String) {
+    func hybirdPost(args: [String: AnyObject], callbackID: String) {
         let sessionManager = AFHTTPSessionManager(baseURL: nil)
         var parameters = args
         parameters.removeValueForKey("url")
@@ -321,9 +336,11 @@ class MLWebView: UIView {
     func loadRequest(request: NSURLRequest) {
         self.myWebView.loadRequest(request)
     }
+    
     func loadHTMLString(str: String, baseURL: NSURL?) {
         self.myWebView.loadHTMLString(str, baseURL: baseURL)
     }
+    
     func stopLoading() {
         self.myWebView.stopLoading()
     }
@@ -335,8 +352,11 @@ extension MLWebView: UIWebViewDelegate {
     func webViewDidStartLoad(webView: UIWebView) {
         self.context = webView.valueForKeyPath("documentView.webView.mainFrame.javaScriptContext") as? JSContext
         self.context.exceptionHandler = { context, exception in
+            let alert = UIAlertView(title: "JS Error", message: exception.description, delegate: nil, cancelButtonTitle: "ok")
+            alert.show()
             print("JS Error: \(exception)")
         }
+        print("webViewDidStartLoad")
 //        let requestNative: @convention(block) String -> Bool = { input in
 //            let args = self.decodeJsonStr(input)
 //            print("requestNative args == \(args)")
@@ -365,9 +385,10 @@ extension MLWebView: UIWebViewDelegate {
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
+        print("webViewDidFinishLoad")
 //        let jsObjDic = ["requestNative": self.requestNative]
 //        self.context.setObject(unsafeBitCast(jsObjDic, AnyObject.self), forKeyedSubscript: "Hybrid")
-//        self.context.setObject(<#T##object: AnyObject!##AnyObject!#>, forKeyedSubscript: <#T##protocol<NSCopying, NSObjectProtocol>!#>)
+//        self.context.setObject(object: AnyObject!, forKeyedSubscript: protocol<NSCopying, NSObjectProtocol>!)
 //        self.context.setObject(jsObjDic, forKeyedSubscript: "Hybrid")
         self.context.setObject(unsafeBitCast(self.requestNative, AnyObject.self), forKeyedSubscript: "requestNative")
         self.myWebView.stringByEvaluatingJavaScriptFromString("Hybrid.ready();")
