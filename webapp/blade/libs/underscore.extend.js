@@ -727,7 +727,7 @@
     var bridgePostMsg = function (params) {
         if ($.os.ios) {
             //使用jsCore与native通信
-            Hybrid.requestNative && Hybrid.requestNative(JSON.stringify(params));
+            window.HybridRequestNative && HybridRequestNative(JSON.stringify(params));
         } else {
             //Android实现
             var ifr = $('<iframe style="display: none;" src="' + url + '"/>');
@@ -852,6 +852,9 @@
 
     _.getHybridInfo = getHybridInfo;
     _.requestHybrid = requestHybrid;
+
+    window.requestHybrid = requestHybrid;
+
     _.hybridCallback = hybridCallback;
     _.versionAt = versionAt;
     _.versionBefore = versionBefore;
