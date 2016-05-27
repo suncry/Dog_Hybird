@@ -420,9 +420,9 @@ extension MLWebView: UIWebViewDelegate {
 
         
         if let requestStr = request.URL?.absoluteString {
-            var decodeStr =  self.decodeUrl(requestStr)
-            if decodeStr.hasPrefix("hybrid://") {
-                let dataString = decodeStr.stringByReplacingOccurrencesOfString("hybrid://", withString: "")
+//            var decodeStr =  self.decodeUrl(requestStr)
+            if requestStr.hasPrefix("hybrid://") {
+                let dataString = requestStr.stringByReplacingOccurrencesOfString("hybrid://", withString: "")
                 let dataArray = dataString.componentsSeparatedByString("?")
                 
 //                var componentList = [String]()
@@ -441,7 +441,8 @@ extension MLWebView: UIWebViewDelegate {
                 
                 let function: String = dataArray[0] ?? ""
                 
-                let paramArray = dataArray[1].componentsSeparatedByString("&")
+                let paramString = dataString.stringByReplacingOccurrencesOfString(dataArray[0] + "?", withString: "")
+                let paramArray = paramString.componentsSeparatedByString("&")
                 
                 var paramDic: Dictionary = ["": ""]
                 for str in paramArray {
@@ -452,7 +453,7 @@ extension MLWebView: UIWebViewDelegate {
 //                let callBackIdStr: String = componentList[2] ?? ""
 //                let jsonStr: String = componentList[3] ?? ""
                 
-                let args = self.decodeJsonStr(paramDic["param"] ?? "")
+                let args = self.decodeJsonStr(self.self.decodeUrl(paramDic["param"] ?? ""))
                 let callBackId = paramDic["callback"] ?? ""
                 
                 //                    self.handleCall(function, callBackId: callBackId, args: args)
