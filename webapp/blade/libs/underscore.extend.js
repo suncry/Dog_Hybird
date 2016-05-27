@@ -852,6 +852,9 @@
 
     _.getHybridInfo = getHybridInfo;
     _.requestHybrid = requestHybrid;
+
+    window.requestHybrid = requestHybrid;
+
     _.hybridCallback = hybridCallback;
     _.versionAt = versionAt;
     _.versionBefore = versionBefore;
