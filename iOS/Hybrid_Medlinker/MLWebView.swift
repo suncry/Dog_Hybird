@@ -395,6 +395,30 @@ extension MLWebView: UIWebViewDelegate {
     }
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        
+//        let url = request.URL
+//        let urlString = url?.absoluteString
+        
+//        let args = MLWebView().decodeJsonStr(input)
+//        //            print("requestNative args == \(args)")
+//        if let tagname = args["tagname"] as? String {
+//            let callBackId = args["callback"] as? String ?? ""
+//            if let param = args["param"] as? [String: AnyObject] {
+//                self.handleEvent(tagname, args: param, callbackID: callBackId)
+//            }
+//            else {
+//                self.handleEvent(tagname, args: ["":""], callbackID: callBackId)
+//            }
+//            return true
+//        }
+//        else {
+//            print("tagname 空了哟")
+//            let alert = UIAlertView(title: "提示", message: "tagname 空了哟", delegate: nil, cancelButtonTitle: "cancel")
+//            alert.show()
+//            return false
+//        }
+
+        
         return true
     }
 
