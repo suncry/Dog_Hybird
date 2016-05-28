@@ -136,14 +136,7 @@ var _hmt = _hmt || [];
             viewRootPath: viewRoot
         });
 
-        if(isHybrid) {
-            Hybrid.ready = function () {
-                window.APP.initApp();
-            };
-        } else {
-            window.APP.initApp();
-        }
-
+        window.APP.initApp();
 
     });
 
