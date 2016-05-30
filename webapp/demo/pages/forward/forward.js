@@ -20,7 +20,11 @@
                 },
                 'click .js-btn1': function () {
 //这里没写好,要改造
-this.forward('index', null, null, 'pop');
+                    this.forward('index', null, null, 'pop');
+                },
+                'click .js-btn2': function () {
+//这里没写好,要改造
+                    this.forward('index', null, null, 'present');
                 }
             }
 
