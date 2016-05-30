@@ -14,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+//        [NSURLProtocol registerClass:[TWTHasselhoffImageProtocol class]];
+        NSURLProtocol.registerClass(DogHybirdURLProtocol)
         return true
     }
 

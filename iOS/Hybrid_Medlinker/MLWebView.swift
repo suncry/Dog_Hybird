@@ -144,13 +144,13 @@ class MLWebView: UIView {
     //MARK: - h5交互协议
     
     func handleEvent(funType: String, args: [String: AnyObject], callbackID: String = "") {
-//        print("   ")
-//        print("****************************************")
-//        print("funType    === \(funType)")
-//        print("args       === \(args)")
-//        print("callbackID === \(callbackID)")
-//        print("****************************************")
-//        print("   ")
+        print("   ")
+        print("****************************************")
+        print("funType    === \(funType)")
+        print("args       === \(args)")
+        print("callbackID === \(callbackID)")
+        print("****************************************")
+        print("   ")
         if funType == UpdateHeader {
             self.updateHeader(args)
         } else if funType == Back {
@@ -221,7 +221,12 @@ class MLWebView: UIView {
     
     func back(args: [String: AnyObject]) {
         if let vc = self.delegate as? UIViewController {
-            vc.navigationController?.popViewControllerAnimated(true)
+            if vc.navigationController?.viewControllers.count > 1 {
+                vc.navigationController?.popViewControllerAnimated(true)
+            }
+            else {
+                vc.dismissViewControllerAnimated(true, completion: nil)
+            }
         }
     }
     
@@ -243,13 +248,20 @@ class MLWebView: UIView {
                             web.URLPath = BASE_URL + url
                         }
                     }
-                    if let animate = args["animate"] as? String where animate == "pop" {
-                        vc.animateType = .Pop
+                    if let animate = args["animate"] as? String where animate == "present" {
+                        let navi = UINavigationController(rootViewController: web)
+                        
+                        vc.presentViewController(navi, animated: true, completion: nil)
                     }
                     else {
-                        vc.animateType = .Normal
+                        if let animate = args["animate"] as? String where animate == "pop" {
+                            vc.animateType = .Pop
+                        }
+                        else {
+                            vc.animateType = .Normal
+                        }
+                        vc.navigationController?.pushViewController(web, animated: true)
                     }
-                    vc.navigationController?.pushViewController(web, animated: true)
                 }
             } else {
                 //这里指定跳转到本地某页面   需要一个判断映射的方法
@@ -394,14 +406,6 @@ extension MLWebView: UIWebViewDelegate {
     }
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        //此方法中还需对加载资源做出判断
-        
-        if let _ = NSBundle.mainBundle().pathForResource("localUrl", ofType: "html") {
-            //加载本地资源
-            
-            return false
-        }
-        
         if let requestStr = request.URL?.absoluteString {
             if requestStr.hasPrefix("hybrid://") {
                 let dataString = requestStr.stringByReplacingOccurrencesOfString("hybrid://", withString: "")

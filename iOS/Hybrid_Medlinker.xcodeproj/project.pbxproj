@@ -11,6 +11,7 @@
 		B555E6A11CF8213700003B4E /* UIView+ML.swift in Sources */ = {isa = PBXBuildFile; fileRef = B555E69F1CF8213700003B4E /* UIView+ML.swift */; };
 		B555E6A21CF8213700003B4E /* UIViewController+ML.swift in Sources */ = {isa = PBXBuildFile; fileRef = B555E6A01CF8213700003B4E /* UIViewController+ML.swift */; };
 		B586C9C21CF59D3700EAAE26 /* HybirdTransionPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = B586C9C11CF59D3700EAAE26 /* HybirdTransionPush.swift */; };
+		B5A076DD1CFC126C00795DF8 /* DogHybirdURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A076DC1CFC126C00795DF8 /* DogHybirdURLProtocol.swift */; };
 		B5D2202F1CE46F6900750A50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D2202E1CE46F6900750A50 /* AppDelegate.swift */; };
 		B5D220311CE46F6900750A50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D220301CE46F6900750A50 /* ViewController.swift */; };
 		B5D220341CE46F6900750A50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5D220321CE46F6900750A50 /* Main.storyboard */; };
@@ -70,6 +71,7 @@
 		B555E69F1CF8213700003B4E /* UIView+ML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ML.swift"; sourceTree = "<group>"; };
 		B555E6A01CF8213700003B4E /* UIViewController+ML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ML.swift"; sourceTree = "<group>"; };
 		B586C9C11CF59D3700EAAE26 /* HybirdTransionPush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HybirdTransionPush.swift; sourceTree = "<group>"; };
+		B5A076DC1CFC126C00795DF8 /* DogHybirdURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DogHybirdURLProtocol.swift; sourceTree = "<group>"; };
 		B5D2202B1CE46F6900750A50 /* Hybrid_Medlinker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hybrid_Medlinker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5D2202E1CE46F6900750A50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5D220301CE46F6900750A50 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		B555E6981CF699AE00003B4E /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				B5A076D81CFC0A6700795DF8 /* DogHybirdURLProtocol */,
 				B5D220861CE5840D00750A50 /* UIKit+AFNetworking */,
 				B5D220721CE583EE00750A50 /* AFNetworking */,
 				B5D220661CE4A3CA00750A50 /* YYkit */,
@@ -225,6 +228,14 @@
 				B586C9C11CF59D3700EAAE26 /* HybirdTransionPush.swift */,
 			);
 			name = HybirdTransion;
+			sourceTree = "<group>";
+		};
+		B5A076D81CFC0A6700795DF8 /* DogHybirdURLProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				B5A076DC1CFC126C00795DF8 /* DogHybirdURLProtocol.swift */,
+			);
+			name = DogHybirdURLProtocol;
 			sourceTree = "<group>";
 		};
 		B5D220221CE46F6900750A50 = {
@@ -514,6 +525,7 @@
 				B5D220B41CE5A46D00750A50 /* Hybrid_naviButtonModel.swift in Sources */,
 				B5D220851CE5840000750A50 /* AFURLSessionManager.m in Sources */,
 				B5D2209C1CE5840D00750A50 /* AFImageDownloader.m in Sources */,
+				B5A076DD1CFC126C00795DF8 /* DogHybirdURLProtocol.swift in Sources */,
 				B5D220AF1CE5A34900750A50 /* YYClassInfo.m in Sources */,
 				B5D220811CE5840000750A50 /* AFNetworkReachabilityManager.m in Sources */,
 				B5D220A31CE5840D00750A50 /* UIWebView+AFNetworking.m in Sources */,
