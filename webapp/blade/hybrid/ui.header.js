@@ -76,10 +76,12 @@ define([], function () {
     _addEvent: function (data) {
       if (!_.isArray(data)) data = [data];
       var i, len, tmp, fn;
-      var t = 'header_' + (new Date().getTime());
+      var t;
 
       for (i = 0, len = data.length; i < len; i++) {
         tmp = data[i];
+        if(!tmp.tagname) continue;
+        t = 'header_' + tmp.tagname + '_' + (new Date().getTime());
         if (tmp.callback) {
           fn = $.proxy(tmp.callback, this.view);
           tmp.callback = t;

@@ -768,9 +768,12 @@
     };
 
     var requestHybrid = function (params) {
+        if(!params.tagname) {
+            alert('必须包含tagname');
+        }
         //生成唯一执行函数，执行后销毁
         var tt = (new Date().getTime());
-        var t = 'hybrid_' + tt;
+        var t = 'hybrid_' + params.tagname +  '_' + tt;
         var tmpFn;
 
         //处理有回调的情况
