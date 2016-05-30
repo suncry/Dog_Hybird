@@ -144,13 +144,13 @@ class MLWebView: UIView {
     //MARK: - h5交互协议
     
     func handleEvent(funType: String, args: [String: AnyObject], callbackID: String = "") {
-//        print("   ")
-//        print("****************************************")
-//        print("funType    === \(funType)")
-//        print("args       === \(args)")
-//        print("callbackID === \(callbackID)")
-//        print("****************************************")
-//        print("   ")
+        print("   ")
+        print("****************************************")
+        print("funType    === \(funType)")
+        print("args       === \(args)")
+        print("callbackID === \(callbackID)")
+        print("****************************************")
+        print("   ")
         if funType == UpdateHeader {
             self.updateHeader(args)
         } else if funType == Back {
@@ -395,13 +395,6 @@ extension MLWebView: UIWebViewDelegate {
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         //此方法中还需对加载资源做出判断
-        
-        if let _ = NSBundle.mainBundle().pathForResource("localUrl", ofType: "html") {
-            //加载本地资源
-            
-            return false
-        }
-        
         if let requestStr = request.URL?.absoluteString {
             if requestStr.hasPrefix("hybrid://") {
                 let dataString = requestStr.stringByReplacingOccurrencesOfString("hybrid://", withString: "")
