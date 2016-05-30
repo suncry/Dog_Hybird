@@ -82,16 +82,33 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0m-OV-7C5">
+                                <rect key="frame" x="272" y="344" width="56" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="fbG-B0-P55"/>
+                                    <constraint firstAttribute="height" constant="46" id="gI7-kA-tGG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" title="返回"/>
+                                <connections>
+                                    <action selector="back:" destination="DvD-pw-4kD" eventType="touchUpInside" id="pdp-WH-EyV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="6In-1U-xv5" firstAttribute="centerX" secondItem="c10-6q-gfs" secondAttribute="centerX" id="9En-1o-beR"/>
+                            <constraint firstItem="i0m-OV-7C5" firstAttribute="centerX" secondItem="c10-6q-gfs" secondAttribute="centerX" id="Dxo-Cr-qKx"/>
+                            <constraint firstItem="i0m-OV-7C5" firstAttribute="centerY" secondItem="c10-6q-gfs" secondAttribute="centerY" constant="67" id="pUz-we-F6R"/>
                             <constraint firstItem="6In-1U-xv5" firstAttribute="centerY" secondItem="c10-6q-gfs" secondAttribute="centerY" id="wYV-EP-Q7F"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="uCP-I4-EGn">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="GJl-rH-6dz"/>
                     </navigationItem>
+                    <connections>
+                        <outletCollection property="back" destination="pUz-we-F6R" id="vYG-R2-y7g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cqa-Lx-v78" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

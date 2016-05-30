@@ -406,7 +406,6 @@ extension MLWebView: UIWebViewDelegate {
     }
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        //此方法中还需对加载资源做出判断
         if let requestStr = request.URL?.absoluteString {
             if requestStr.hasPrefix("hybrid://") {
                 let dataString = requestStr.stringByReplacingOccurrencesOfString("hybrid://", withString: "")
