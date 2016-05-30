@@ -396,7 +396,6 @@ extension MLWebView: UIWebViewDelegate {
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         //此方法中还需对加载资源做出判断
-        
         if let requestStr = request.URL?.absoluteString {
             if requestStr.hasPrefix("hybrid://") {
                 let dataString = requestStr.stringByReplacingOccurrencesOfString("hybrid://", withString: "")
@@ -416,23 +415,9 @@ extension MLWebView: UIWebViewDelegate {
                 let callBackId = paramDic["callback"] ?? ""
                 
                 self.handleEvent(function, args: args, callbackID: callBackId)
-
             }
         }
         return true
     }
-    private func getPrefixOfStr(urlStr: String) -> (preStr: String?, leftStr: String) {
-        let mutUrl = NSMutableString(string: urlStr)
-        let range = mutUrl.rangeOfString(":")
-        
-        if range.length > 0 {
-            let preStr = mutUrl.substringToIndex(range.location)
-            let leftStr = mutUrl.substringFromIndex(range.location + 1)
-            
-            return (preStr, leftStr)
-        }
-        
-        return (nil, urlStr)
-    }
-
+    
 }
