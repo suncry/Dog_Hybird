@@ -29,16 +29,34 @@ this.forward('index', null, null, 'present');
 </code>
 </pre>
 
-
-<div class="btn-primary js-btn" >
-    forward基本使用
+<div class="btn-primary js-btn3" >
+    forward去百度
 </div>
 <pre>
 <code>
-    <script>
+_.requestHybrid({
+    tagname: 'forward',
+    param: {
+        topage: 'https://www.baidu.com/',
+        type: 'h5'
+    }
+});
 
+</code>
+</pre>
 
-
-    </script>
+<div class="btn-primary js-btn4" >
+    forward跳Native没有导航
+</div>
+<pre>
+<code>
+_.requestHybrid({
+    tagname: 'forward',
+    param: {
+        topage: 'index2',
+        type: 'native',
+        navigateion: 'none'
+    }
+});
 </code>
 </pre>
