@@ -68,6 +68,7 @@ class MLWebView: UIView {
     }
     
     func initUI () {
+        NSURLCache.sharedURLCache().removeAllCachedResponses()
         myWebView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)
 //        myWebView.backgroundColor = UIColor(RGBString: "f5f5f5")
         myWebView.backgroundColor = UIColor.whiteColor()
