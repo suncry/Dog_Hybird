@@ -130,12 +130,11 @@ class MLWebView: UIView {
     }
     
     private func decodeJsonStr(jsonStr: String) -> [String: AnyObject] {
-        
-        if let jsonData = jsonStr.dataUsingEncoding(NSUTF8StringEncoding) {
+        if let jsonData = jsonStr.dataUsingEncoding(NSUTF8StringEncoding) where jsonStr.characters.count > 0 {
             do {
                 return try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers) as? [String: AnyObject] ?? ["":""]
             } catch let error as NSError {
-                print(error)
+                print("decodeJsonStr == \(error)")
             }
         }
         return [String: AnyObject]()
@@ -310,7 +309,7 @@ class MLWebView: UIView {
                     self.callBack(callbackString, errno: 0, msg: "成功", callback: callbackID)
                 }
             }, failure: { (sessionDataTask, error) in
-                print(error)
+                print("hybirdGet error == \(error)")
         })
     }
     
@@ -325,7 +324,7 @@ class MLWebView: UIView {
                     self.callBack(callbackString, errno: 0, msg: "成功", callback: callbackID)
                 }
             }, failure: { (sessionDataTask, error) in
-                print(error)
+                print("hybirdPost error == \(error)")
         })
     }
 
@@ -402,9 +401,6 @@ extension MLWebView: UIWebViewDelegate {
             
             return false
         }
-        
-
-        
         
         if let requestStr = request.URL?.absoluteString {
             if requestStr.hasPrefix("hybrid://") {
