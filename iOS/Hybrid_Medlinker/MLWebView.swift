@@ -395,50 +395,12 @@ extension MLWebView: UIWebViewDelegate {
     }
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        
-//        let url = request.URL
-//        let urlString = url?.absoluteString
-        
-//        let args = MLWebView().decodeJsonStr(input)
-//        //            print("requestNative args == \(args)")
-//        if let tagname = args["tagname"] as? String {
-//            let callBackId = args["callback"] as? String ?? ""
-//            if let param = args["param"] as? [String: AnyObject] {
-//                self.handleEvent(tagname, args: param, callbackID: callBackId)
-//            }
-//            else {
-//                self.handleEvent(tagname, args: ["":""], callbackID: callBackId)
-//            }
-//            return true
-//        }
-//        else {
-//            print("tagname 空了哟")
-//            let alert = UIAlertView(title: "提示", message: "tagname 空了哟", delegate: nil, cancelButtonTitle: "cancel")
-//            alert.show()
-//            return false
-//        }
-
+        //此方法中还需对加载资源做出判断
         
         if let requestStr = request.URL?.absoluteString {
-//            var decodeStr =  self.decodeUrl(requestStr)
             if requestStr.hasPrefix("hybrid://") {
                 let dataString = requestStr.stringByReplacingOccurrencesOfString("hybrid://", withString: "")
                 let dataArray = dataString.componentsSeparatedByString("?")
-                
-//                var componentList = [String]()
-//                var retPair: (preStr: String?, leftStr: String) = (nil, decodeStr)
-//                var i = 0
-//                while i < 3 {
-//                    retPair = self.getPrefixOfStr(retPair.leftStr)
-//                    componentList.append(retPair.preStr!)
-//                    i += 1
-//                }
-//                componentList.append(retPair.leftStr)
-//                
-//                
-//                if componentList.count > 3 {
-//                }
-                
                 let function: String = dataArray[0] ?? ""
                 
                 let paramString = dataString.stringByReplacingOccurrencesOfString(dataArray[0] + "?", withString: "")
@@ -450,19 +412,14 @@ extension MLWebView: UIWebViewDelegate {
                     paramDic.updateValue(tempArray[1], forKey: tempArray[0])
                 }
                 
-//                let callBackIdStr: String = componentList[2] ?? ""
-//                let jsonStr: String = componentList[3] ?? ""
-                
                 let args = self.decodeJsonStr(self.self.decodeUrl(paramDic["param"] ?? ""))
                 let callBackId = paramDic["callback"] ?? ""
                 
-                //                    self.handleCall(function, callBackId: callBackId, args: args)
                 self.handleEvent(function, args: args, callbackID: callBackId)
 
                 return false
             }
         }
-        
         return true
     }
     private func getPrefixOfStr(urlStr: String) -> (preStr: String?, leftStr: String) {
