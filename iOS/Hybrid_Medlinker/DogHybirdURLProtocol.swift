@@ -44,18 +44,24 @@ class DogHybirdURLProtocol: NSURLProtocol {
 //        }
         if let url = request.URL?.absoluteString {
             print(url)
-
             if url.hasPrefix(webAppBaseUrl) {
-                return true
-            }
-            if url.hasSuffix("n_main.css") {
-                return true
+                let str = url.stringByReplacingOccurrencesOfString(webAppBaseUrl, withString: "")
+                var tempArray = str.componentsSeparatedByString("?")
+                tempArray = tempArray[0].componentsSeparatedByString(".")
+                
+                if tempArray.count == 2 {
+                    let path = MLWebView().LocalResources + tempArray[0]
+                    let type = tempArray[1]
+                    if let localUrl = NSBundle.mainBundle().pathForResource(path, ofType: type) {
+                        print("文件存在 localUrl == \(localUrl)")
+                        print("path == \(path)")
+                        print("type == \(type)")
+                        return true
+                    }
+                }
             }
         }
-
         return false
-//        return true
-
     }
 
     override class func canonicalRequestForRequest(request: NSURLRequest) -> NSURLRequest {
@@ -63,71 +69,63 @@ class DogHybirdURLProtocol: NSURLProtocol {
     }
 
     override func startLoading() {
+
         dispatch_async(dispatch_get_main_queue()) {
             if let url = self.request.URL?.absoluteString {
-//                if url.hasPrefix(webAppBaseUrl) {
-                    if true {
-
-                    if let url = self.request.URL?.absoluteString {
-//                        let str = url.stringByReplacingOccurrencesOfString(webAppBaseUrl, withString: "")
-                        let str = url.stringByReplacingOccurrencesOfString(webAppBaseUrl, withString: "")
-
-                        var tempArray = str.componentsSeparatedByString("?")
+                if url.hasPrefix(webAppBaseUrl) {
+                    let str = url.stringByReplacingOccurrencesOfString(webAppBaseUrl, withString: "")
+                    var tempArray = str.componentsSeparatedByString("?")
+                    tempArray = tempArray[0].componentsSeparatedByString(".")
+                    
+                    if tempArray.count == 2 {
+                        let path = MLWebView().LocalResources + tempArray[0]
+                        let type = tempArray[1]
+                        let client: NSURLProtocolClient = self.client!
                         
-                        
-                        tempArray = tempArray[0].componentsSeparatedByString(".")
-                        
-                        tempArray = ["n_main","css"]
-                        if tempArray.count == 2 {
-                            let path = MLWebView().LocalResources + tempArray[0]
-                            let type = tempArray[1]
-                            if let localUrl = NSBundle.mainBundle().pathForResource(path, ofType: type) {
-
-                                print("文件存在")
-                                print("path == \(path)")
-                                print("type == \(type)")
-
-                                let client: NSURLProtocolClient = self.client!
-//                                let request = self.request
-                                //                            let headers = [ "Content-Type": "image/jpeg" ]
-//                                let headers = request.allHTTPHeaderFields
-                                
-                                var typeString = ""
-                                switch type {
-                                case "html":
-                                       typeString = "text/html"
-                                    break
-                                case "js":
-                                    typeString = "application/javascript"
-                                    break
-                                case "css":
-                                    typeString = "text/css"
-                                    break
-                                default:
-                                    break
-                                }
-                                print(typeString)
-                                
-                                let fileData = NSData(contentsOfFile: localUrl)
-                                
-                                let url = NSURL(fileURLWithPath: localUrl)
-                                
-//                                let response = NSHTTPURLResponse(URL: url, statusCode: 200, HTTPVersion: "HTTP/1.1", headerFields: headers)
-                                let dataLength = fileData?.length ?? 0
-                                
-                                print("dataLength == \(dataLength)")
-                                
-                                let response = NSURLResponse(URL: url, MIMEType: typeString, expectedContentLength: dataLength, textEncodingName: "UTF-8")
-                                print("response.MIMEType == \(response.MIMEType)")
-
-                                client.URLProtocol(self, didReceiveResponse: response, cacheStoragePolicy: .NotAllowed)
-                                client.URLProtocol(self, didLoadData: fileData!)
-                                client.URLProtocolDidFinishLoading(self)
-                                
+                        if let localUrl = NSBundle.mainBundle().pathForResource(path, ofType: type) {
+                            
+                            print("文件存在")
+                            print("path == \(path)")
+                            print("type == \(type)")
+                            
+                            
+                            var typeString = ""
+                            switch type {
+                            case "html":
+                                typeString = "text/html"
+                                break
+                            case "js":
+                                typeString = "application/javascript"
+                                break
+                            case "css":
+                                typeString = "text/css"
+                                break
+                            default:
+                                break
                             }
-                            else {
-                                
-                            }
+                            print(typeString)
+                            
+                            let fileData = NSData(contentsOfFile: localUrl)
+                            
+                            let url = NSURL(fileURLWithPath: localUrl)
+                            
+                            //                                let response = NSHTTPURLResponse(URL: url, statusCode: 200, HTTPVersion: "HTTP/1.1", headerFields: headers)
+                            let dataLength = fileData?.length ?? 0
+                            
+                            print("dataLength == \(dataLength)")
+                            
+                            let response = NSURLResponse(URL: url, MIMEType: typeString, expectedContentLength: dataLength, textEncodingName: "UTF-8")
+                            print("response.MIMEType == \(response.MIMEType)")
+                            
+                            client.URLProtocol(self, didReceiveResponse: response, cacheStoragePolicy: .NotAllowed)
+                            client.URLProtocol(self, didLoadData: fileData!)
+                            client.URLProtocolDidFinishLoading(self)
+                            
+                        }
+                        else {
+                            //
+                            print("没找到额")
+                            
                         }
                     }
                 }
@@ -142,7 +140,7 @@ class DogHybirdURLProtocol: NSURLProtocol {
 
     
 //    func cachedResponseForCurrentRequest() -> NSCachedURLResponse {
-//        
+//
 //        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
 //        let context = delegate.
 //        NSManagedObjectContext
