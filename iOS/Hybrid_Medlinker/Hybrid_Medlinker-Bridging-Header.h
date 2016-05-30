@@ -12,5 +12,3 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import <objc/runtime.h>
 
-#import "DogHybirdURLProtocol.h"
-
