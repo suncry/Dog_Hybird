@@ -33,6 +33,11 @@
 
 <div>
 
+    <div class="btn-primary" id="testWebview">
+        测试webview通信
+    </div>
+
+
     <div class="btn-primary" id="testFormat">
         测试数据格式
     </div>
@@ -43,7 +48,7 @@
 </div>
 
 <div class="btn-primary" id="goTransformer">
-    去转诊1
+    去demo页
 </div>
 
 <div class="btn-primary" id="ajaxget">
@@ -100,8 +105,8 @@
 </div>
 <script type="text/javascript">
 
-    function showFormatData (data) {
-        if(typeof  data != 'object') return;
+    function showFormatData(data) {
+        if (typeof  data != 'object') return;
         var s = ''
         for (var k in data) {
             s += k + ': ' + typeof data[k] + ' \n'
@@ -122,54 +127,32 @@
 <script type="text/javascript">
 
 
-
     $.bindFastClick();
 
-//    Hybrid.ready = function () {
-//        hybridInit();
-//    };
+    //    Hybrid.ready = function () {
+    //        hybridInit();
+    //    };
 
     hybridInit();
 
 
     function hybridInit() {
 
-        Hybrid.ui.header.set({
-            back: function () {
-                requestHybrid({
-                    tagname: 'back'
-                });
-
-                return;
-
-                requestHybrid({
-                    tagname: 'forward',
-                    param: {
-                        topage: 'rootview',
-                        type: 'h5'
-                    }
-                });
-            },
-            title: '设置右边按钮',
-            right: [
-                {
-                    tagname: 'gohome',
-                    value: '刷新',
-                    callback: function () {
-
-                        alert('刷新')
-                        window.location.reload()
-
-                    }
-                },
-                {
-                    tagname: 'demoapi',
-                    value: '测试',
-                    callback: function (data) {
-                        showFormatData(data);
-                    }
-                }
-            ]
+        $('#testWebview').click(function() {
+requestHybrid({
+    tagname: 'showpageview',
+    param: {
+        src: 'http://sandbox.runjs.cn/show/imbacaz7',
+        callbacks: {
+            //请注意,这里的key值
+            clickAction: function(val) {
+                //parentCallback(val);
+                //关闭当前webview
+                //Hybrid.ui.hidepageview()
+            }
+        }
+    }
+});
         });
 
         $('#testFormat').click(function () {
@@ -189,6 +172,14 @@
 
         $('#goTransformer').click(function () {
 
+            requestHybrid({
+                tagname: 'forward',
+                param: {
+                    topage: 'demo/index.html?a=1&b=2&c=3',
+                    type: 'h5'
+                }
+            });
+            return;
             requestHybrid({
                 tagname: 'forward',
                 param: {
@@ -399,19 +390,10 @@
             requestHybrid({
                 tagname: 'get',
                 param: {
-                    url: 'http://api.kuai.baidu.com/city/getstartcitys',
-                    param1: 'param1',
-                    param2: 'param2'
+                    url: 'http://api/demain.com',
+                    param: {a: 1, b: 2}
                 },
                 callback: function (data) {
-
-                    var s = ''
-                    for (var k in data) {
-                        s += k + ': ' + typeof data[k] + ' \n'
-                    }
-
-                    alert(s);
-
                 }
             });
         });
@@ -428,7 +410,50 @@
                 }
             });
         });
+
+
+        Hybrid.ui.header.set({
+            back: function () {
+                requestHybrid({
+                    tagname: 'back'
+                });
+
+                return;
+
+                requestHybrid({
+                    tagname: 'forward',
+                    param: {
+                        topage: 'rootview',
+                        type: 'h5'
+                    }
+                });
+            },
+            title: '设置右边按钮',
+            right: [
+                {
+                    tagname: 'gohome',
+                    value: '刷新',
+                    callback: function () {
+
+                        alert('刷新')
+                        window.location.reload()
+
+                    }
+                },
+                {
+                    tagname: 'demoapi',
+                    value: '测试',
+                    callback: function (data) {
+                        showFormatData(data);
+                    }
+                }
+            ]
+        });
+
     }
+
+
+
 
 </script>
 </body>

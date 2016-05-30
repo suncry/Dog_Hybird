@@ -645,6 +645,15 @@ define([
             if (viewId) {
                 this.forward(viewId, param, replace, 'pop')
             } else {
+                //hybrid跳转封装
+                if(_.getHybridInfo().platform == 'hybrid') {
+                    _.requestHybrid({
+                        tagname: 'back'
+                    });
+                    return;
+                }
+
+
                 if (window.history.length == 1) {
                     this.forward(this.defaultView, param, replace)
                 } else {
