@@ -84,6 +84,9 @@ var requestHybrid = function (params) {
     if (params.callback) {
         tmpFn = params.callback;
         params.callback = t;
+
+        console.log(params);
+
         window.Hybrid[t] = function (data) {
             tmpFn(data);
             delete window.Hybrid[t];
