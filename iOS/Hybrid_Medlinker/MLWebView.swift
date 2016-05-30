@@ -221,7 +221,12 @@ class MLWebView: UIView {
     
     func back(args: [String: AnyObject]) {
         if let vc = self.delegate as? UIViewController {
-            vc.navigationController?.popViewControllerAnimated(true)
+            if vc.navigationController?.viewControllers.count > 1 {
+                vc.navigationController?.popViewControllerAnimated(true)
+            }
+            else {
+                vc.dismissViewControllerAnimated(true, completion: nil)
+            }
         }
     }
     
@@ -243,13 +248,20 @@ class MLWebView: UIView {
                             web.URLPath = BASE_URL + url
                         }
                     }
-                    if let animate = args["animate"] as? String where animate == "pop" {
-                        vc.animateType = .Pop
+                    if let animate = args["animate"] as? String where animate == "present" {
+                        let navi = UINavigationController(rootViewController: web)
+                        
+                        vc.presentViewController(navi, animated: true, completion: nil)
                     }
                     else {
-                        vc.animateType = .Normal
+                        if let animate = args["animate"] as? String where animate == "pop" {
+                            vc.animateType = .Pop
+                        }
+                        else {
+                            vc.animateType = .Normal
+                        }
+                        vc.navigationController?.pushViewController(web, animated: true)
                     }
-                    vc.navigationController?.pushViewController(web, animated: true)
                 }
             } else {
                 //这里指定跳转到本地某页面   需要一个判断映射的方法
