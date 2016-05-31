@@ -34,35 +34,62 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zp3-P1-5Q0">
-                                <rect key="frame" x="270" y="285" width="60" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="D31-Du-saA"/>
-                                    <constraint firstAttribute="height" constant="30" id="JFw-Fg-nSW"/>
-                                </constraints>
-                                <state key="normal" title="混合开发"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="268"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <state key="normal" title="H5页面">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="buttonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p17-PP-sEY"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bfi-ew-a6b">
-                                <rect key="frame" x="41" y="104" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bfi-ew-a6b">
+                                <rect key="frame" x="0.0" y="332" width="600" height="268"/>
+                                <color key="backgroundColor" red="0.25098040700000002" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <state key="normal" title="本地页面">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <segue destination="DvD-pw-4kD" kind="show" id="laQ-w5-RB7"/>
+                                    <action selector="localPageClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zQ8-bZ-7kM"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="zp3-P1-5Q0" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Q7M-fY-gl6"/>
-                            <constraint firstItem="zp3-P1-5Q0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yzC-dh-S3q"/>
+                            <constraint firstAttribute="trailing" secondItem="zp3-P1-5Q0" secondAttribute="trailing" id="67V-Ja-nSQ"/>
+                            <constraint firstItem="zp3-P1-5Q0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Bnu-nF-h2J"/>
+                            <constraint firstItem="Bfi-ew-a6b" firstAttribute="top" secondItem="zp3-P1-5Q0" secondAttribute="bottom" id="Qmt-oM-ZyC"/>
+                            <constraint firstItem="Bfi-ew-a6b" firstAttribute="top" secondItem="zp3-P1-5Q0" secondAttribute="bottom" id="US2-0j-GKK"/>
+                            <constraint firstItem="Bfi-ew-a6b" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="grd-1T-z6d"/>
+                            <constraint firstItem="Bfi-ew-a6b" firstAttribute="height" secondItem="zp3-P1-5Q0" secondAttribute="height" id="lce-0E-NRD"/>
+                            <constraint firstAttribute="trailing" secondItem="Bfi-ew-a6b" secondAttribute="trailing" id="nou-sQ-bJA"/>
+                            <constraint firstItem="zp3-P1-5Q0" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="pcb-Gz-0As"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Bfi-ew-a6b" secondAttribute="bottom" id="wqZ-89-hln"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="wuy-OP-J8n"/>
+                    <navigationItem key="navigationItem" id="ZNm-ka-JnQ">
+                        <nil key="title"/>
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入需要跳转的链接" textAlignment="center" minimumFontSize="17" id="aUw-8R-ZI4">
+                            <rect key="frame" x="20" y="7" width="560" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="gZ2-Qn-sTy"/>
+                            </constraints>
+                            <string key="text">hybrid://forward?param=%7B%22topage%22%3A%22http%3A%2F%2Fkuai.baidu.com%2Fwebapp%2Fdemo%2Findex.html%22%2C%22type%22%3A%22h5%22%7D</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="hybirdUrlTextField" destination="aUw-8R-ZI4" id="b5P-tC-bJz"/>
+                        <segue destination="DvD-pw-4kD" kind="show" identifier="show" id="z8l-KJ-kJD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-279" y="409"/>
+            <point key="canvasLocation" x="-316" y="409"/>
         </scene>
         <!--Title-->
         <scene sceneID="Ybv-br-pOm">

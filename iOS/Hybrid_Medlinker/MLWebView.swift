@@ -13,6 +13,12 @@ import CoreMotion
 @objc protocol MLWebViewDelegate {
 }
 
+enum AnimateType {
+    case Normal
+    case Push
+    case Pop
+}
+
 class MLWebView: UIView {
 
     //地址相关
@@ -42,6 +48,8 @@ class MLWebView: UIView {
     //MARK: - property
     var context = JSContext()
     
+    var animateType: AnimateType = .Normal
+
     var requestNative: (@convention(block) String -> Bool)?
     
     var myWebView = UIWebView()
@@ -124,13 +132,13 @@ class MLWebView: UIView {
     /**
      * url decode
      */
-    private func decodeUrl (url: String) -> String {
+    func decodeUrl (url: String) -> String {
         let mutStr = NSMutableString(string: url)
         mutStr.replaceOccurrencesOfString("+", withString: " ", options: NSStringCompareOptions.LiteralSearch, range: NSMakeRange(0, mutStr.length))
         return mutStr.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding) ?? ""
     }
     
-    private func decodeJsonStr(jsonStr: String) -> [String: AnyObject] {
+    func decodeJsonStr(jsonStr: String) -> [String: AnyObject] {
         if let jsonData = jsonStr.dataUsingEncoding(NSUTF8StringEncoding) where jsonStr.characters.count > 0 {
             do {
                 return try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers) as? [String: AnyObject] ?? ["":""]
@@ -236,7 +244,7 @@ class MLWebView: UIView {
     }
     
     func forward(args: [String: AnyObject]) {
-        if let vc = self.delegate as? MLWebViewController {
+        if let vc = self.delegate as? UIViewController {
             if  args["type"] as? String == "h5" {
                 if let url = args["topage"] as? String {
                     let web = MLWebViewController()
@@ -262,10 +270,10 @@ class MLWebView: UIView {
                     }
                     else {
                         if let animate = args["animate"] as? String where animate == "pop" {
-                            vc.animateType = .Pop
+                            self.animateType = .Pop
                         }
                         else {
-                            vc.animateType = .Normal
+                            self.animateType = .Normal
                         }
                         vc.navigationController?.pushViewController(web, animated: true)
                     }
@@ -402,14 +410,14 @@ extension MLWebView: UIWebViewDelegate {
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
-        self.context = webView.valueForKeyPath("documentView.webView.mainFrame.javaScriptContext") as? JSContext
-        self.context.exceptionHandler = { context, exception in
-            let alert = UIAlertView(title: "JS Error", message: exception.description, delegate: nil, cancelButtonTitle: "ok")
-            alert.show()
-            print("JS Error: \(exception)")
-        }
-        self.context.setObject(unsafeBitCast(self.requestNative, AnyObject.self), forKeyedSubscript: "HybridRequestNative")
-        self.myWebView.stringByEvaluatingJavaScriptFromString("Hybrid.ready();")
+//        self.context = webView.valueForKeyPath("documentView.webView.mainFrame.javaScriptContext") as? JSContext
+//        self.context.exceptionHandler = { context, exception in
+//            let alert = UIAlertView(title: "JS Error", message: exception.description, delegate: nil, cancelButtonTitle: "ok")
+//            alert.show()
+//            print("JS Error: \(exception)")
+//        }
+//        self.context.setObject(unsafeBitCast(self.requestNative, AnyObject.self), forKeyedSubscript: "HybridRequestNative")
+//        self.myWebView.stringByEvaluatingJavaScriptFromString("Hybrid.ready();")
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
@@ -433,7 +441,7 @@ extension MLWebView: UIWebViewDelegate {
                         paramDic.updateValue(tempArray[1], forKey: tempArray[0])
                     }
                 }
-                let args = self.decodeJsonStr(self.self.decodeUrl(paramDic["param"] ?? ""))
+                let args = self.decodeJsonStr(self.decodeUrl(paramDic["param"] ?? ""))
                 let callBackId = paramDic["callback"] ?? ""
                 self.handleEvent(function, args: args, callbackID: callBackId)
             }
