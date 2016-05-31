@@ -28,7 +28,8 @@ class MLWebView: UIView {
     let Post = "post"
     let ShowLoading = "showLoading"
     let HideLoading = "hideLoading"
-    
+    let ShowHeader = "showheader"
+
     //Event前缀
     let HybirdEvent = "Hybrid.callback"
 
@@ -165,8 +166,8 @@ class MLWebView: UIView {
             self.showLoading(args, callbackID: callbackID)
         } else if funType == HideLoading {
             self.hideLoading(args, callbackID: callbackID)
-        } else if funType == "demoapi" {
-            self.demoApi(args, callbackID: callbackID)
+        } else if funType == ShowHeader {
+            self.setNavigationBarHidden(args, callbackID: callbackID)
         }
     }
     
@@ -309,6 +310,14 @@ class MLWebView: UIView {
         }
     }
 
+    func setNavigationBarHidden(args: [String: AnyObject], callbackID: String) {
+        let hidden: Bool = !(args["display"] as? Bool ?? true)
+        let animated: Bool = args["animate"] as? Bool ?? true
+        if let vc = self.delegate as? MLWebViewController {
+            vc.navigationController?.setNavigationBarHidden(hidden, animated: animated)
+        }
+    }
+    
     func jsonStringWithObject(object: AnyObject) throws -> String {
         let data = try NSJSONSerialization.dataWithJSONObject(object, options: NSJSONWritingOptions(rawValue: 0))
         let string = String(data: data, encoding: NSUTF8StringEncoding)!
@@ -344,10 +353,6 @@ class MLWebView: UIView {
             }, failure: { (sessionDataTask, error) in
                 print("hybirdPost error == \(error)")
         })
-    }
-
-    func demoApi(args: [String: AnyObject], callbackID: String) {
-        self.callBack("磊哥你好", errno: 0, msg: "成功", callback: callbackID)
     }
     
     func toJSONString(dict: NSDictionary!)->NSString{
