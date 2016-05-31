@@ -768,6 +768,28 @@
         return url;
     };
 
+    _setEvent = function (t, tmpFn) {
+        window.Hybrid[t] = function (data) {
+            tmpFn(data);
+            delete window.Hybrid[t];
+        };
+    };
+
+    //处理组件通信的情况
+    var _handleMessage = function(events, tagname) {
+        var tmpFn, data = {};
+        var t;
+
+        for(var key in events) {
+            t = 'hybrid_' + tagname +  '_' + key;
+            data[key] = t;
+            tmpFn = events[key];
+            _setEvent(t, tmpFn);
+        }
+
+        return data;
+    };
+
     var requestHybrid = function (params) {
         if(!params.tagname) {
             alert('必须包含tagname');
@@ -776,6 +798,11 @@
         var tt = (new Date().getTime());
         var t = 'hybrid_' + params.tagname +  '_' + tt;
         var tmpFn;
+
+        //针对组件通信做的特殊处理
+        if(params.param && params.param.events) {
+            params.param.events =  _handleMessage(params.param.events, params.tagname);
+        }
 
         //处理有回调的情况
         if (params.callback) {

@@ -19,14 +19,17 @@
                     var scope = this;
 
                     _.requestHybrid({
-                       tagname: 'showpageview',
+                        tagname: 'showpageview',
                         param: {
                             src: 'http://sandbox.runjs.cn/show/imbacaz7',
                             width: '200',
                             height: '200',
                             events: {
                                 clickAction: function (val) {
-                                    scope.showToast(val);
+                                    scope.showToast(111);
+                                },
+                                clickAction2: function (val) {
+                                    scope.showToast(222);
                                 }
                             }
                         }
