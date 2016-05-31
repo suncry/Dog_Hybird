@@ -275,6 +275,14 @@ class MLWebView: UIView {
                         else {
                             self.animateType = .Normal
                         }
+                        if let navi = vc.navigationController {
+                            navi.pushViewController(web, animated: true)
+                        }
+                        else {
+                            let navi = UINavigationController(rootViewController: web)
+                            let viewController = UIApplication.sharedApplication().keyWindow?.rootViewController ?? UIViewController()
+                            viewController.presentViewController(navi, animated: true, completion: nil)
+                        }
                     }
                 }
             } else {
