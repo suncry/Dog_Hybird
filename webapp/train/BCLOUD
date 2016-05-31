@@ -1,1 +1,0 @@
-BUILD_SUBMITTER -u ./ -c " export MAC=64 && cd app/search/bus/fe/h5/release/train && sh build.sh" -o "output/*" -e GCC3 -m app/search/bus/fe/h5/release/train -x
