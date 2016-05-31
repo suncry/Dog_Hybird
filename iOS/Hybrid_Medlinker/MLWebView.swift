@@ -10,7 +10,13 @@
 import UIKit
 import CoreMotion
 
-@objc protocol MLWebViewDelegate {
+//@objc protocol MLWebViewDelegate {
+//}
+
+enum AnimateType {
+    case Normal
+    case Push
+    case Pop
 }
 
 class MLWebView: UIView {
@@ -27,7 +33,6 @@ class MLWebView: UIView {
     let Get = "get"
     let Post = "post"
     let ShowLoading = "showLoading"
-    let HideLoading = "hideLoading"
     let ShowHeader = "showheader"
 
     //Event前缀
@@ -42,6 +47,8 @@ class MLWebView: UIView {
     //MARK: - property
     var context = JSContext()
     
+    var animateType: AnimateType = .Normal
+
     var requestNative: (@convention(block) String -> Bool)?
     
     var myWebView = UIWebView()
@@ -51,7 +58,8 @@ class MLWebView: UIView {
             self.loadUrl()
         }
     }
-    weak var delegate: MLWebViewDelegate?
+    weak var delegate: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController
+
     var errorDataView: UIView?
     var motionManager: CMMotionManager = CMMotionManager()
     
@@ -76,26 +84,25 @@ class MLWebView: UIView {
         myWebView.delegate = self
         self.addSubview(myWebView)
         
-        self.requestNative = { input in
-            let args = MLWebView().decodeJsonStr(input)
-//            print("requestNative args == \(args)")
-            if let tagname = args["tagname"] as? String {
-                let callBackId = args["callback"] as? String ?? ""
-                if let param = args["param"] as? [String: AnyObject] {
-                    self.handleEvent(tagname, args: param, callbackID: callBackId)
-                }
-                else {
-                    self.handleEvent(tagname, args: ["":""], callbackID: callBackId)
-                }
-                return true
-            }
-            else {
-                print("tagname 空了哟")
-                let alert = UIAlertView(title: "提示", message: "tagname 空了哟", delegate: nil, cancelButtonTitle: "cancel")
-                alert.show()
-                return false
-            }
-        }
+//        self.requestNative = { input in
+//            let args = MLWebView().decodeJsonStr(input)
+//            if let tagname = args["tagname"] as? String {
+//                let callBackId = args["callback"] as? String ?? ""
+//                if let param = args["param"] as? [String: AnyObject] {
+//                    self.handleEvent(tagname, args: param, callbackID: callBackId)
+//                }
+//                else {
+//                    self.handleEvent(tagname, args: ["":""], callbackID: callBackId)
+//                }
+//                return true
+//            }
+//            else {
+//                print("tagname 空了哟")
+//                let alert = UIAlertView(title: "提示", message: "tagname 空了哟", delegate: nil, cancelButtonTitle: "cancel")
+//                alert.show()
+//                return false
+//            }
+//        }
         
     }
     
@@ -124,13 +131,13 @@ class MLWebView: UIView {
     /**
      * url decode
      */
-    private func decodeUrl (url: String) -> String {
+    func decodeUrl (url: String) -> String {
         let mutStr = NSMutableString(string: url)
         mutStr.replaceOccurrencesOfString("+", withString: " ", options: NSStringCompareOptions.LiteralSearch, range: NSMakeRange(0, mutStr.length))
         return mutStr.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding) ?? ""
     }
     
-    private func decodeJsonStr(jsonStr: String) -> [String: AnyObject] {
+    func decodeJsonStr(jsonStr: String) -> [String: AnyObject] {
         if let jsonData = jsonStr.dataUsingEncoding(NSUTF8StringEncoding) where jsonStr.characters.count > 0 {
             do {
                 return try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers) as? [String: AnyObject] ?? ["":""]
@@ -164,8 +171,6 @@ class MLWebView: UIView {
             self.hybirdPost(args, callbackID: callbackID)
         } else if funType == ShowLoading {
             self.showLoading(args, callbackID: callbackID)
-        } else if funType == HideLoading {
-            self.hideLoading(args, callbackID: callbackID)
         } else if funType == ShowHeader {
             self.setNavigationBarHidden(args, callbackID: callbackID)
         }
@@ -173,7 +178,7 @@ class MLWebView: UIView {
     
     func updateHeader(args: [String: AnyObject]) {
         if let header = Hybrid_headerModel.yy_modelWithJSON(args) {
-            if let vc = self.delegate as? UIViewController, let titleModel = header.title, let rightButtons = header.right, let leftButtons = header.left {
+            if let vc = self.delegate, let titleModel = header.title, let rightButtons = header.right, let leftButtons = header.left {
                 vc.navigationItem.titleView = self.setUpNaviTitleView(titleModel)
                 vc.navigationItem.setRightBarButtonItems(self.setUpNaviButtons(rightButtons), animated: true)
                 vc.navigationItem.setLeftBarButtonItems(self.setUpNaviButtons(leftButtons), animated: true)
@@ -225,7 +230,7 @@ class MLWebView: UIView {
     }
     
     func back(args: [String: AnyObject]) {
-        if let vc = self.delegate as? UIViewController {
+        if let vc = self.delegate {
             if vc.navigationController?.viewControllers.count > 1 {
                 vc.navigationController?.popViewControllerAnimated(true)
             }
@@ -236,7 +241,7 @@ class MLWebView: UIView {
     }
     
     func forward(args: [String: AnyObject]) {
-        if let vc = self.delegate as? MLWebViewController {
+        if let vc = self.delegate {
             if  args["type"] as? String == "h5" {
                 if let url = args["topage"] as? String {
                     let web = MLWebViewController()
@@ -262,32 +267,43 @@ class MLWebView: UIView {
                     }
                     else {
                         if let animate = args["animate"] as? String where animate == "pop" {
-                            vc.animateType = .Pop
+                            self.animateType = .Pop
                         }
                         else {
-                            vc.animateType = .Normal
+                            self.animateType = .Normal
                         }
-                        vc.navigationController?.pushViewController(web, animated: true)
+                        if let navi = vc.navigationController {
+                            navi.pushViewController(web, animated: true)
+                        }
+                        else {
+                            let navi = UINavigationController(rootViewController: web)
+                            let viewController = UIApplication.sharedApplication().keyWindow?.rootViewController ?? UIViewController()
+                            viewController.presentViewController(navi, animated: true, completion: nil)
+                        }
                     }
                 }
             } else {
                 //这里指定跳转到本地某页面   需要一个判断映射的方法
                 if  args["topage"] as! String == "index2" {
                     let webTestViewController = WebTestViewController.instance()
-                    
                     if let animate =  args["animate"] as? String where animate == "present" {
-                        
                         let navi = UINavigationController(rootViewController: webTestViewController)
                         vc.presentViewController(navi, animated: true, completion: nil)
                     }
                     else {
                         if let animate =  args["navigateion"] as? String where animate == "none" {
                             vc.navigationController?.navigationBarHidden = true
-                            vc.navigationController?.pushViewController(webTestViewController, animated: true)
                         }
                         else {
                             vc.navigationController?.navigationBarHidden = false
-                            vc.navigationController?.pushViewController(webTestViewController, animated: true)
+                        }
+                        if let navi = vc.navigationController {
+                            navi.pushViewController(webTestViewController, animated: true)
+                        }
+                        else {
+                            let navi = UINavigationController(rootViewController: webTestViewController)
+                            let viewController = UIApplication.sharedApplication().keyWindow?.rootViewController ?? UIViewController()
+                            viewController.presentViewController(navi, animated: true, completion: nil)
                         }
                     }
                 }
@@ -299,21 +315,20 @@ class MLWebView: UIView {
     }
     
     func showLoading(args: [String: AnyObject], callbackID: String) {
-        if let vc = self.delegate as? MLWebViewController {
-            vc.startLoveEggAnimating()
-        }
-    }
-    
-    func hideLoading(args: [String: AnyObject], callbackID: String) {
-        if let vc = self.delegate as? MLWebViewController {
-            vc.stopAnimating()
+        if let vc = self.delegate  {
+            if args["display"] as? Bool ?? true {
+                vc.startLoveEggAnimating()
+            }
+            else {
+                vc.stopAnimating()
+            }
         }
     }
 
     func setNavigationBarHidden(args: [String: AnyObject], callbackID: String) {
         let hidden: Bool = !(args["display"] as? Bool ?? true)
         let animated: Bool = args["animate"] as? Bool ?? true
-        if let vc = self.delegate as? MLWebViewController {
+        if let vc = self.delegate {
             vc.navigationController?.setNavigationBarHidden(hidden, animated: animated)
         }
     }
@@ -402,14 +417,14 @@ extension MLWebView: UIWebViewDelegate {
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
-        self.context = webView.valueForKeyPath("documentView.webView.mainFrame.javaScriptContext") as? JSContext
-        self.context.exceptionHandler = { context, exception in
-            let alert = UIAlertView(title: "JS Error", message: exception.description, delegate: nil, cancelButtonTitle: "ok")
-            alert.show()
-            print("JS Error: \(exception)")
-        }
-        self.context.setObject(unsafeBitCast(self.requestNative, AnyObject.self), forKeyedSubscript: "HybridRequestNative")
-        self.myWebView.stringByEvaluatingJavaScriptFromString("Hybrid.ready();")
+//        self.context = webView.valueForKeyPath("documentView.webView.mainFrame.javaScriptContext") as? JSContext
+//        self.context.exceptionHandler = { context, exception in
+//            let alert = UIAlertView(title: "JS Error", message: exception.description, delegate: nil, cancelButtonTitle: "ok")
+//            alert.show()
+//            print("JS Error: \(exception)")
+//        }
+//        self.context.setObject(unsafeBitCast(self.requestNative, AnyObject.self), forKeyedSubscript: "HybridRequestNative")
+//        self.myWebView.stringByEvaluatingJavaScriptFromString("Hybrid.ready();")
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
@@ -433,7 +448,7 @@ extension MLWebView: UIWebViewDelegate {
                         paramDic.updateValue(tempArray[1], forKey: tempArray[0])
                     }
                 }
-                let args = self.decodeJsonStr(self.self.decodeUrl(paramDic["param"] ?? ""))
+                let args = self.decodeJsonStr(self.decodeUrl(paramDic["param"] ?? ""))
                 let callBackId = paramDic["callback"] ?? ""
                 self.handleEvent(function, args: args, callbackID: callBackId)
             }

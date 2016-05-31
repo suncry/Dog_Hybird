@@ -8,11 +8,6 @@
 
 import UIKit
 
-enum AnimateType {
-    case Normal
-    case Push
-    case Pop
-}
 class MLWebViewController: UIViewController {
 
     var URLPath: String?
@@ -23,7 +18,6 @@ class MLWebViewController: UIViewController {
     var localUrl: String = ""
 
     
-    var animateType: AnimateType = .Normal
     private var percentDrivenTransition: UIPercentDrivenInteractiveTransition?
 
     private var webView: MLWebView!
@@ -125,10 +119,6 @@ class MLWebViewController: UIViewController {
     
 }
 
-extension MLWebViewController: MLWebViewDelegate {
-    
-}
-
 extension MLWebViewController: UINavigationControllerDelegate {
     
     func edgePanGesture(edgePan: UIScreenEdgePanGestureRecognizer) {
@@ -151,7 +141,7 @@ extension MLWebViewController: UINavigationControllerDelegate {
 
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if operation == UINavigationControllerOperation.Push {
-            if self.animateType == .Pop {
+            if self.webView.animateType == .Pop {
                 return HybirdTransionPush()
             }
             else {
