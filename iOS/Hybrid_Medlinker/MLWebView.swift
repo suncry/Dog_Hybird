@@ -68,7 +68,6 @@ class MLWebView: UIView {
     }
     
     func initUI () {
-        NSURLCache.sharedURLCache().removeAllCachedResponses()
         myWebView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)
 //        myWebView.backgroundColor = UIColor(RGBString: "f5f5f5")
         myWebView.backgroundColor = UIColor.whiteColor()
@@ -212,7 +211,11 @@ class MLWebView: UIView {
                 button.setImage(UIImage(named: NaviImageHeader + buttonModel.tagname), forState: .Normal)
             }
             button.addBlockForControlEvents(.TouchUpInside, block: { (sender) in
-                self.callBack("", errno: 0, msg: "成功", callback: buttonModel.callback)
+                let backString = self.callBack("", errno: 0, msg: "成功", callback: buttonModel.callback)
+                if buttonModel.tagname == "back" && backString == "" {
+                    //假死 则执行本地的普通返回事件
+                    self.back(["":""])
+                }
             })
             let menuButton = UIBarButtonItem(customView: button)
             buttons.append(menuButton)
@@ -243,11 +246,13 @@ class MLWebView: UIView {
                         web.localUrl = localUrl
                     }
                     else {
-                        if url.hasPrefix("http") {
-                            web.URLPath = url
-                        } else {
-                            web.URLPath = BASE_URL + url
-                        }
+                        web.URLPath = url
+                        //不需要补全url了
+//                        if url.hasPrefix("http") {
+//                            web.URLPath = url
+//                        } else {
+//                            web.URLPath = BASE_URL + url
+//                        }
                     }
                     if let animate = args["animate"] as? String where animate == "present" {
                         let navi = UINavigationController(rootViewController: web)
@@ -288,7 +293,7 @@ class MLWebView: UIView {
             }
         }
         else {
-            print("self.delegate 未找到")
+            print("self.delegate not found!")
         }
     }
     
@@ -425,7 +430,6 @@ extension MLWebView: UIWebViewDelegate {
                 }
                 let args = self.decodeJsonStr(self.self.decodeUrl(paramDic["param"] ?? ""))
                 let callBackId = paramDic["callback"] ?? ""
-                
                 self.handleEvent(function, args: args, callbackID: callBackId)
             }
         }

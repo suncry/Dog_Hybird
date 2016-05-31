@@ -106,9 +106,6 @@
                     <navigationItem key="navigationItem" title="Title" id="uCP-I4-EGn">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="GJl-rH-6dz"/>
                     </navigationItem>
-                    <connections>
-                        <outletCollection property="back" destination="pUz-we-F6R" id="vYG-R2-y7g"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cqa-Lx-v78" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
