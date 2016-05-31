@@ -110,8 +110,6 @@ class MLWebViewController: UIViewController {
                 }
             }
             if webViewControllers.count > 3 {
-//                print("self.navigationController?.viewControllers == \(self.navigationController?.viewControllers)")
-//                print("count == \(self.navigationController?.viewControllers.count)")
                 self.navigationController?.viewControllers.removeAtIndex((self.navigationController?.viewControllers.indexOf(webViewControllers.first!))!)
             }
         }
