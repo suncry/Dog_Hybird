@@ -19,15 +19,14 @@ class DogHybirdURLProtocol: NSURLProtocol {
                 let str = url.stringByReplacingOccurrencesOfString(webAppBaseUrl, withString: "")
                 var tempArray = str.componentsSeparatedByString("?")
                 tempArray = tempArray[0].componentsSeparatedByString(".")
-                if tempArray.count == 2 {
-                    let path = MLWebView().LocalResources + tempArray[0]
-                    let type = tempArray[1]
-                    if let _ = NSBundle.mainBundle().pathForResource(path, ofType: type) {
-                        print("文件存在")
-                        print("path == \(path)")
-                        print("type == \(type)")
-                        return true
-                    }
+                let type = tempArray.last
+                tempArray.removeLast()
+                let path = MLWebView().LocalResources + tempArray.joinWithSeparator(".")
+                if let _ = NSBundle.mainBundle().pathForResource(path, ofType: type) {
+                    print("文件存在")
+                    print("path == \(path)")
+                    print("type == \(type)")
+                    return true
                 }
             }
         }
@@ -45,43 +44,45 @@ class DogHybirdURLProtocol: NSURLProtocol {
                     let str = url.stringByReplacingOccurrencesOfString(webAppBaseUrl, withString: "")
                     var tempArray = str.componentsSeparatedByString("?")
                     tempArray = tempArray[0].componentsSeparatedByString(".")
-                    if tempArray.count == 2 {
-                        let path = MLWebView().LocalResources + tempArray[0]
-                        let type = tempArray[1]
-                        let client: NSURLProtocolClient = self.client!
-                        if let localUrl = NSBundle.mainBundle().pathForResource(path, ofType: type) {
-                            var typeString = ""
-                            switch type {
-                            case "html":
-                                typeString = "text/html"
-                                break
-                            case "js":
-                                typeString = "application/javascript"
-                                break
-                            case "css":
-                                typeString = "text/css"
-                                break
-                            case "jpg":
-                                typeString = "image/jpeg"
-                                break
-                            case "png":
-                                typeString = "image/png"
-                                break
-                            default:
-                                break
-                            }
-                            let fileData = NSData(contentsOfFile: localUrl)
-                            let url = NSURL(fileURLWithPath: localUrl)
-                            let dataLength = fileData?.length ?? 0
-                            let response = NSURLResponse(URL: url, MIMEType: typeString, expectedContentLength: dataLength, textEncodingName: "UTF-8")
-                            client.URLProtocol(self, didReceiveResponse: response, cacheStoragePolicy: .NotAllowed)
-                            client.URLProtocol(self, didLoadData: fileData!)
-                            client.URLProtocolDidFinishLoading(self)
+                    let type = tempArray.last!
+                    tempArray.removeLast()
+                    let path = MLWebView().LocalResources + tempArray.joinWithSeparator(".")
+                    let client: NSURLProtocolClient = self.client!
+                    if let localUrl = NSBundle.mainBundle().pathForResource(path, ofType: type) {
+                        var typeString = ""
+                        switch type {
+                        case "html":
+                            typeString = "text/html"
+                            break
+                        case "js":
+                            typeString = "application/javascript"
+                            break
+                        case "css":
+                            typeString = "text/css"
+                            break
+                        case "jpg":
+                            typeString = "image/jpeg"
+                            break
+                        case "png":
+                            typeString = "image/png"
+                            break
+                        default:
+                            break
                         }
-                        else {
-                            print(">>>>> 没找到额 <<<<<")
-                        }
+                        let fileData = NSData(contentsOfFile: localUrl)
+                        let url = NSURL(fileURLWithPath: localUrl)
+                        let dataLength = fileData?.length ?? 0
+                        let response = NSURLResponse(URL: url, MIMEType: typeString, expectedContentLength: dataLength, textEncodingName: "UTF-8")
+                        client.URLProtocol(self, didReceiveResponse: response, cacheStoragePolicy: .NotAllowed)
+                        client.URLProtocol(self, didLoadData: fileData!)
+                        client.URLProtocolDidFinishLoading(self)
                     }
+                    else {
+                        print(">>>>> 未找到对应文件 \(path)\(type)<<<<<")
+                    }
+                }
+                else {
+                    print(">>>>> url不符合规则 <<<<<")
                 }
             }
         }
