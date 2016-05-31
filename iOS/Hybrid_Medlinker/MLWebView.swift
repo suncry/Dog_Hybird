@@ -25,7 +25,6 @@ class MLWebView: UIView {
             self.loadUrl()
         }
     }
-//    weak var delegate: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController
 
     var errorDataView: UIView?
     var motionManager: CMMotionManager = CMMotionManager()
