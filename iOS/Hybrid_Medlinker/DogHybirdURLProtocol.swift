@@ -14,6 +14,7 @@ let webAppBaseUrl = "http://kuai.baidu.com/webapp"
 class DogHybirdURLProtocol: NSURLProtocol {
 
     override class func canInitWithRequest(request: NSURLRequest) -> Bool {
+        print("request.URL?.absoluteString == \(request.URL?.absoluteString)")
         if let url = request.URL?.absoluteString {
             if url.hasPrefix(webAppBaseUrl) {
                 let str = url.stringByReplacingOccurrencesOfString(webAppBaseUrl, withString: "")

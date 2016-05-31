@@ -36,7 +36,8 @@ class MLWebViewController: UIViewController {
         
         super.viewDidLoad()
         self.hidesBottomBarWhenPushed = true
-        
+        NSURLCache.sharedURLCache().removeAllCachedResponses()
+
         
         self.webView = MLWebView(frame: CGRectMake(0, viewInitY, self.view.bounds.size.width, self.view.bounds.height - viewInitY))
         self.webView.autoresizingMask = [ .FlexibleHeight, .FlexibleWidth ]

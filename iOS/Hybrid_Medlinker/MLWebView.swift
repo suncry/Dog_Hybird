@@ -68,7 +68,6 @@ class MLWebView: UIView {
     }
     
     func initUI () {
-        NSURLCache.sharedURLCache().removeAllCachedResponses()
         myWebView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)
 //        myWebView.backgroundColor = UIColor(RGBString: "f5f5f5")
         myWebView.backgroundColor = UIColor.whiteColor()
@@ -212,7 +211,11 @@ class MLWebView: UIView {
                 button.setImage(UIImage(named: NaviImageHeader + buttonModel.tagname), forState: .Normal)
             }
             button.addBlockForControlEvents(.TouchUpInside, block: { (sender) in
-                self.callBack("", errno: 0, msg: "成功", callback: buttonModel.callback)
+                let backString = self.callBack("", errno: 0, msg: "成功", callback: buttonModel.callback)
+                if buttonModel.tagname == "back" && backString == "true" {
+                    print("假死了，执行默认返回")
+                    self.back(["":""])
+                }
             })
             let menuButton = UIBarButtonItem(customView: button)
             buttons.append(menuButton)
@@ -288,7 +291,7 @@ class MLWebView: UIView {
             }
         }
         else {
-            print("self.delegate 未找到")
+            print("self.delegate not found!")
         }
     }
     
