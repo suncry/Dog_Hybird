@@ -93,7 +93,8 @@ define([], function () {
 
     show: function () {
       _.requestHybrid({
-        tagname: 'showheader'
+        tagname: 'showheader',
+        animate: true
       });
     },
 
