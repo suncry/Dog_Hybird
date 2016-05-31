@@ -85,6 +85,9 @@ class DogHybirdURLProtocol: NSURLProtocol {
                     print(">>>>> url不符合规则 <<<<<")
                 }
             }
+            else {
+                print(">>>>> url字符串获取失败 <<<<<")
+            }
         }
     }
     
