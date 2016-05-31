@@ -95,6 +95,7 @@ define([], function () {
       _.requestHybrid({
         tagname: 'showheader',
         param: {
+          display: true,
           animate: true
         }
       });
@@ -102,7 +103,10 @@ define([], function () {
 
     hide: function () {
       _.requestHybrid({
-        tagname: 'hideheader'
+        tagname: 'showheader',
+        param: {
+          display: false
+        }
       });
     },
 
