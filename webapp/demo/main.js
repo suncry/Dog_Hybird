@@ -78,6 +78,12 @@
         //如果处于手白或者地图中，需要去头处理
         if (isHybrid) {
             setTimeout(function () {
+                _.requestHybrid({
+                    tagname: 'showloading',
+                    param: {
+                        display: false
+                    }
+                });
                 $('body').addClass('baidubox');
             }, 1);
         }
