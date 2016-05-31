@@ -597,7 +597,7 @@ define([
                 _.requestHybrid({
                     tagname: 'forward',
                     param: {
-                        topage: hybridPage,
+                        topage: window.location.origin + '/webapp/' + hybridPage,
                         type: 'h5',
                         animate: animateName || 'push'
                     }
