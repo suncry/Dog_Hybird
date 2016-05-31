@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum AnimateType {
+    case Normal
+    case Push
+    case Pop
+}
+
 class MLWebViewController: UIViewController {
 
     var URLPath: String?
@@ -17,12 +23,10 @@ class MLWebViewController: UIViewController {
     var viewInitY: CGFloat = 0
     var localUrl: String = ""
 
-    
     private var percentDrivenTransition: UIPercentDrivenInteractiveTransition?
+    var webView: MLWebView!
+    var animateType: AnimateType = .Normal
 
-    private var webView: MLWebView!
-    
-    
     /**************************************************/
     //MARK: - life cycle
     
@@ -35,7 +39,7 @@ class MLWebViewController: UIViewController {
         
         self.webView = MLWebView(frame: CGRectMake(0, viewInitY, self.view.bounds.size.width, self.view.bounds.height - viewInitY))
         self.webView.autoresizingMask = [ .FlexibleHeight, .FlexibleWidth ]
-        self.webView.delegate = self
+//        self.webView.delegate = self
 
         self.navigationController?.delegate = self
         //手势监听器
@@ -121,7 +125,6 @@ extension MLWebViewController: UINavigationControllerDelegate {
     
     func edgePanGesture(edgePan: UIScreenEdgePanGestureRecognizer) {
         let progress = edgePan.translationInView(self.view).x / self.view.bounds.width
-        
         if edgePan.state == UIGestureRecognizerState.Began {
             self.percentDrivenTransition = UIPercentDrivenInteractiveTransition()
             self.navigationController?.popViewControllerAnimated(true)
@@ -139,7 +142,7 @@ extension MLWebViewController: UINavigationControllerDelegate {
 
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if operation == UINavigationControllerOperation.Push {
-            if self.webView.animateType == .Pop {
+            if self.animateType == .Pop {
                 return HybirdTransionPush()
             }
             else {

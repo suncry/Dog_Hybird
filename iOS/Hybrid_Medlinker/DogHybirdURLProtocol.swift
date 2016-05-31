@@ -27,7 +27,7 @@ class DogHybirdURLProtocol: NSURLProtocol {
                 tempArray = tempArray[0].componentsSeparatedByString(".")
                 let type = tempArray.last
                 tempArray.removeLast()
-                let path = MLWebView().LocalResources + tempArray.joinWithSeparator(".")
+                let path = MLTools().LocalResources + tempArray.joinWithSeparator(".")
                 if let _ = NSBundle.mainBundle().pathForResource(path, ofType: type) {
                     print("文件存在")
                     print("path == \(path)")
@@ -56,7 +56,7 @@ class DogHybirdURLProtocol: NSURLProtocol {
                     tempArray = tempArray[0].componentsSeparatedByString(".")
                     let type = tempArray.last!
                     tempArray.removeLast()
-                    let path = MLWebView().LocalResources + tempArray.joinWithSeparator(".")
+                    let path = MLTools().LocalResources + tempArray.joinWithSeparator(".")
                     let client: NSURLProtocolClient = self.client!
                     if let localUrl = NSBundle.mainBundle().pathForResource(path, ofType: type) {
                         var typeString = ""

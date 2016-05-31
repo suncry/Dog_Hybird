@@ -13,8 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var hybirdUrlTextField: UITextField!
     @IBAction func buttonClick(sender: AnyObject) {
 
-        self.pageControl(self.hybirdUrlTextField.text)
-        
+        MLTools().analysisUrl(self.hybirdUrlTextField.text)
 //        let web = MLWebViewController()
 //        web.hidesBottomBarWhenPushed = true
 //        web.URLPath = "http://kuai.baidu.com/webapp/demo/index.html"
@@ -30,29 +29,5 @@ class ViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    func pageControl(url: String?) {
-        let requestStr = url ?? ""
-        if requestStr.hasPrefix("hybrid://") {
-            let dataString = requestStr.stringByReplacingOccurrencesOfString("hybrid://", withString: "")
-            let dataArray = dataString.componentsSeparatedByString("?")
-            let function: String = dataArray[0] ?? ""
-            
-            let paramString = dataString.stringByReplacingOccurrencesOfString(dataArray[0] + "?", withString: "")
-            let paramArray = paramString.componentsSeparatedByString("&")
-            
-            var paramDic: Dictionary = ["": ""]
-            for str in paramArray {
-                let tempArray = str.componentsSeparatedByString("=")
-                if tempArray.count > 1 {
-                    paramDic.updateValue(tempArray[1], forKey: tempArray[0])
-                }
-            }
-            let webView = MLWebView()
-            webView.delegate = self
-            let args = webView.decodeJsonStr(webView.decodeUrl(paramDic["param"] ?? ""))
-            let callBackId = paramDic["callback"] ?? ""
-            webView.handleEvent(function, args: args, callbackID: callBackId)
-        }
-    }
 }
 

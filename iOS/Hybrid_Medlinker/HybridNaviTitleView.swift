@@ -63,8 +63,8 @@ class HybridNaviTitleView: UIView {
                         "msg": "title click",
                         "callback": callback]
             
-            let dataString = MLWebView().toJSONString(data)
-            currentWebView.stringByEvaluatingJavaScriptFromString(MLWebView().HybirdEvent + "(\(dataString));")
+            let dataString = MLTools().toJSONString(data)
+            currentWebView.stringByEvaluatingJavaScriptFromString(MLTools().HybirdEvent + "(\(dataString));")
         }
         self.addSubview(self.callBackButton)
     }
