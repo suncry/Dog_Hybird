@@ -32,7 +32,7 @@ class MLWebView: UIView {
     let Forward = "forward"
     let Get = "get"
     let Post = "post"
-    let ShowLoading = "showLoading"
+    let ShowLoading = "showloading"
     let ShowHeader = "showheader"
 
     //Event前缀
@@ -77,32 +77,12 @@ class MLWebView: UIView {
     }
     
     func initUI () {
-        myWebView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)
-//        myWebView.backgroundColor = UIColor(RGBString: "f5f5f5")
-        myWebView.backgroundColor = UIColor.whiteColor()
-
-        myWebView.delegate = self
-        self.addSubview(myWebView)
+        self.myWebView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height)
+        self.myWebView.backgroundColor = UIColor.whiteColor()
         
-//        self.requestNative = { input in
-//            let args = MLWebView().decodeJsonStr(input)
-//            if let tagname = args["tagname"] as? String {
-//                let callBackId = args["callback"] as? String ?? ""
-//                if let param = args["param"] as? [String: AnyObject] {
-//                    self.handleEvent(tagname, args: param, callbackID: callBackId)
-//                }
-//                else {
-//                    self.handleEvent(tagname, args: ["":""], callbackID: callBackId)
-//                }
-//                return true
-//            }
-//            else {
-//                print("tagname 空了哟")
-//                let alert = UIAlertView(title: "提示", message: "tagname 空了哟", delegate: nil, cancelButtonTitle: "cancel")
-//                alert.show()
-//                return false
-//            }
-//        }
+        self.myWebView.delegate = self
+        self.addSubview(self.myWebView)
+
         
     }
     
@@ -315,12 +295,14 @@ class MLWebView: UIView {
     }
     
     func showLoading(args: [String: AnyObject], callbackID: String) {
-        if let vc = self.delegate  {
-            if args["display"] as? Bool ?? true {
-                vc.startLoveEggAnimating()
-            }
-            else {
-                vc.stopAnimating()
+        dispatch_async(dispatch_get_main_queue()) {
+            if let vc = self.delegate  {
+                if args["display"] as? Bool ?? true {
+                    vc.startLoveEggAnimating()
+                }
+                else {
+                    vc.stopAnimating()
+                }
             }
         }
     }
@@ -413,10 +395,32 @@ class MLWebView: UIView {
 extension MLWebView: UIWebViewDelegate {
     
     func webViewDidStartLoad(webView: UIWebView) {
-        
+        if let vc = self.delegate {
+            vc.startLoveEggAnimating()
+        }
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
+        //        self.requestNative = { input in
+        //            let args = MLWebView().decodeJsonStr(input)
+        //            if let tagname = args["tagname"] as? String {
+        //                let callBackId = args["callback"] as? String ?? ""
+        //                if let param = args["param"] as? [String: AnyObject] {
+        //                    self.handleEvent(tagname, args: param, callbackID: callBackId)
+        //                }
+        //                else {
+        //                    self.handleEvent(tagname, args: ["":""], callbackID: callBackId)
+        //                }
+        //                return true
+        //            }
+        //            else {
+        //                print("tagname 空了哟")
+        //                let alert = UIAlertView(title: "提示", message: "tagname 空了哟", delegate: nil, cancelButtonTitle: "cancel")
+        //                alert.show()
+        //                return false
+        //            }
+        //        }
+
 //        self.context = webView.valueForKeyPath("documentView.webView.mainFrame.javaScriptContext") as? JSContext
 //        self.context.exceptionHandler = { context, exception in
 //            let alert = UIAlertView(title: "JS Error", message: exception.description, delegate: nil, cancelButtonTitle: "ok")
