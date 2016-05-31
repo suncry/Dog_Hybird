@@ -359,14 +359,14 @@ class MLWebView: UIView {
         }
     }
 
-    func callBack(data:AnyObject, errno: Int, msg: String, callback: String) {
+    func callBack(data:AnyObject, errno: Int, msg: String, callback: String) -> String {
         let data = ["data": data,
                     "errno": errno,
                     "msg": msg,
                     "callback": callback]
         
         let dataString = self.toJSONString(data)
-        self.myWebView.stringByEvaluatingJavaScriptFromString(self.HybirdEvent + "(\(dataString));")
+        return self.myWebView.stringByEvaluatingJavaScriptFromString(self.HybirdEvent + "(\(dataString));") ?? ""
     }
     /**************************************************/
     //MARK: -  public
