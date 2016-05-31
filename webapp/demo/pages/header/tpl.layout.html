@@ -92,11 +92,17 @@ this.header.set(opts);
 </div>
 <pre>
 <code>
-    <script>
+//这种情况要报错,需要执行app默认回调
+var opts = {
+    view: this,
+    back: function () {
+        sss11.show()
+        this.back();
 
-
-
-    </script>
+    },
+    title: '假死了'
+};
+this.header.set(opts);
 </code>
 </pre>
 
