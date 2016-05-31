@@ -73,6 +73,18 @@
                         ]
                     };
                     this.header.set(opts);
+                },
+                'click .js-setheader4': function () {
+                    var opts = {
+                        view: this,
+                        back: function () {
+                            sss11.show()
+                            this.back();
+
+                        },
+                        title: '假死了'
+                    };
+                    this.header.set(opts);
                 }
 
 
