@@ -10,8 +10,8 @@
 import UIKit
 import CoreMotion
 
-@objc protocol MLWebViewDelegate {
-}
+//@objc protocol MLWebViewDelegate {
+//}
 
 enum AnimateType {
     case Normal
@@ -33,7 +33,6 @@ class MLWebView: UIView {
     let Get = "get"
     let Post = "post"
     let ShowLoading = "showLoading"
-    let HideLoading = "hideLoading"
     let ShowHeader = "showheader"
 
     //Event前缀
@@ -59,7 +58,8 @@ class MLWebView: UIView {
             self.loadUrl()
         }
     }
-    weak var delegate: MLWebViewDelegate?
+    weak var delegate: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController
+
     var errorDataView: UIView?
     var motionManager: CMMotionManager = CMMotionManager()
     
@@ -84,26 +84,25 @@ class MLWebView: UIView {
         myWebView.delegate = self
         self.addSubview(myWebView)
         
-        self.requestNative = { input in
-            let args = MLWebView().decodeJsonStr(input)
-//            print("requestNative args == \(args)")
-            if let tagname = args["tagname"] as? String {
-                let callBackId = args["callback"] as? String ?? ""
-                if let param = args["param"] as? [String: AnyObject] {
-                    self.handleEvent(tagname, args: param, callbackID: callBackId)
-                }
-                else {
-                    self.handleEvent(tagname, args: ["":""], callbackID: callBackId)
-                }
-                return true
-            }
-            else {
-                print("tagname 空了哟")
-                let alert = UIAlertView(title: "提示", message: "tagname 空了哟", delegate: nil, cancelButtonTitle: "cancel")
-                alert.show()
-                return false
-            }
-        }
+//        self.requestNative = { input in
+//            let args = MLWebView().decodeJsonStr(input)
+//            if let tagname = args["tagname"] as? String {
+//                let callBackId = args["callback"] as? String ?? ""
+//                if let param = args["param"] as? [String: AnyObject] {
+//                    self.handleEvent(tagname, args: param, callbackID: callBackId)
+//                }
+//                else {
+//                    self.handleEvent(tagname, args: ["":""], callbackID: callBackId)
+//                }
+//                return true
+//            }
+//            else {
+//                print("tagname 空了哟")
+//                let alert = UIAlertView(title: "提示", message: "tagname 空了哟", delegate: nil, cancelButtonTitle: "cancel")
+//                alert.show()
+//                return false
+//            }
+//        }
         
     }
     
@@ -172,8 +171,6 @@ class MLWebView: UIView {
             self.hybirdPost(args, callbackID: callbackID)
         } else if funType == ShowLoading {
             self.showLoading(args, callbackID: callbackID)
-        } else if funType == HideLoading {
-            self.hideLoading(args, callbackID: callbackID)
         } else if funType == ShowHeader {
             self.setNavigationBarHidden(args, callbackID: callbackID)
         }
@@ -181,7 +178,7 @@ class MLWebView: UIView {
     
     func updateHeader(args: [String: AnyObject]) {
         if let header = Hybrid_headerModel.yy_modelWithJSON(args) {
-            if let vc = self.delegate as? UIViewController, let titleModel = header.title, let rightButtons = header.right, let leftButtons = header.left {
+            if let vc = self.delegate, let titleModel = header.title, let rightButtons = header.right, let leftButtons = header.left {
                 vc.navigationItem.titleView = self.setUpNaviTitleView(titleModel)
                 vc.navigationItem.setRightBarButtonItems(self.setUpNaviButtons(rightButtons), animated: true)
                 vc.navigationItem.setLeftBarButtonItems(self.setUpNaviButtons(leftButtons), animated: true)
@@ -233,7 +230,7 @@ class MLWebView: UIView {
     }
     
     func back(args: [String: AnyObject]) {
-        if let vc = self.delegate as? UIViewController {
+        if let vc = self.delegate {
             if vc.navigationController?.viewControllers.count > 1 {
                 vc.navigationController?.popViewControllerAnimated(true)
             }
@@ -244,7 +241,7 @@ class MLWebView: UIView {
     }
     
     func forward(args: [String: AnyObject]) {
-        if let vc = self.delegate as? UIViewController {
+        if let vc = self.delegate {
             if  args["type"] as? String == "h5" {
                 if let url = args["topage"] as? String {
                     let web = MLWebViewController()
@@ -318,21 +315,20 @@ class MLWebView: UIView {
     }
     
     func showLoading(args: [String: AnyObject], callbackID: String) {
-        if let vc = self.delegate as? MLWebViewController {
-            vc.startLoveEggAnimating()
-        }
-    }
-    
-    func hideLoading(args: [String: AnyObject], callbackID: String) {
-        if let vc = self.delegate as? MLWebViewController {
-            vc.stopAnimating()
+        if let vc = self.delegate  {
+            if args["display"] as? Bool ?? true {
+                vc.startLoveEggAnimating()
+            }
+            else {
+                vc.stopAnimating()
+            }
         }
     }
 
     func setNavigationBarHidden(args: [String: AnyObject], callbackID: String) {
         let hidden: Bool = !(args["display"] as? Bool ?? true)
         let animated: Bool = args["animate"] as? Bool ?? true
-        if let vc = self.delegate as? MLWebViewController {
+        if let vc = self.delegate {
             vc.navigationController?.setNavigationBarHidden(hidden, animated: animated)
         }
     }

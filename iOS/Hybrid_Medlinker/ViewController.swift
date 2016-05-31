@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, MLWebViewDelegate {
+class ViewController: UIViewController {
 
     @IBOutlet weak var hybirdUrlTextField: UITextField!
     @IBAction func buttonClick(sender: AnyObject) {

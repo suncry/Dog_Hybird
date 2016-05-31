@@ -119,10 +119,6 @@ class MLWebViewController: UIViewController {
     
 }
 
-extension MLWebViewController: MLWebViewDelegate {
-    
-}
-
 extension MLWebViewController: UINavigationControllerDelegate {
     
     func edgePanGesture(edgePan: UIScreenEdgePanGestureRecognizer) {
