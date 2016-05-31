@@ -27,9 +27,6 @@
                             events: {
                                 clickAction: function (val) {
                                     scope.showToast(111);
-                                },
-                                clickAction2: function (val) {
-                                    scope.showToast(222);
                                 }
                             }
                         }

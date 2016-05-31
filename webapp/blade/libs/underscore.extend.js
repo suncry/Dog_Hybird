@@ -799,10 +799,10 @@
         var t = 'hybrid_' + params.tagname +  '_' + tt;
         var tmpFn;
 
-        //针对组件通信做的特殊处理
-        if(params.param && params.param.events) {
-            params.param.events =  _handleMessage(params.param.events, params.tagname);
-        }
+        ////针对组件通信做的特殊处理
+        //if(params.param && params.param.events) {
+        //    params.param.events =  _handleMessage(params.param.events, params.tagname);
+        //}
 
         //处理有回调的情况
         if (params.callback) {
