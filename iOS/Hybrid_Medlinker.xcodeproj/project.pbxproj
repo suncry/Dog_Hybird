@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B555E69B1CF69DB000003B4E /* DogHybirdResources in Resources */ = {isa = PBXBuildFile; fileRef = B555E69A1CF69DB000003B4E /* DogHybirdResources */; };
+		0D756DC41CFDDCFB00C71E9E /* DogHybirdResources in Resources */ = {isa = PBXBuildFile; fileRef = 0D756DC31CFDDCFB00C71E9E /* DogHybirdResources */; };
 		B555E6A11CF8213700003B4E /* UIView+ML.swift in Sources */ = {isa = PBXBuildFile; fileRef = B555E69F1CF8213700003B4E /* UIView+ML.swift */; };
 		B555E6A21CF8213700003B4E /* UIViewController+ML.swift in Sources */ = {isa = PBXBuildFile; fileRef = B555E6A01CF8213700003B4E /* UIViewController+ML.swift */; };
 		B586C9C21CF59D3700EAAE26 /* HybirdTransionPush.swift in Sources */ = {isa = PBXBuildFile; fileRef = B586C9C11CF59D3700EAAE26 /* HybirdTransionPush.swift */; };
@@ -68,7 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B555E69A1CF69DB000003B4E /* DogHybirdResources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DogHybirdResources; sourceTree = "<group>"; };
+		0D756DC31CFDDCFB00C71E9E /* DogHybirdResources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DogHybirdResources; sourceTree = "<group>"; };
 		B555E69F1CF8213700003B4E /* UIView+ML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ML.swift"; sourceTree = "<group>"; };
 		B555E6A01CF8213700003B4E /* UIViewController+ML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ML.swift"; sourceTree = "<group>"; };
 		B586C9C11CF59D3700EAAE26 /* HybirdTransionPush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HybirdTransionPush.swift; sourceTree = "<group>"; };
@@ -260,7 +260,7 @@
 		B5D220221CE46F6900750A50 = {
 			isa = PBXGroup;
 			children = (
-				B555E69A1CF69DB000003B4E /* DogHybirdResources */,
+				0D756DC31CFDDCFB00C71E9E /* DogHybirdResources */,
 				B5D220601CE4710A00750A50 /* CFNetwork.framework */,
 				B5D2205E1CE470FA00750A50 /* JavaScriptCore.framework */,
 				B5D2202D1CE46F6900750A50 /* Hybrid_Medlinker */,
@@ -495,7 +495,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5D220391CE46F6900750A50 /* LaunchScreen.storyboard in Resources */,
-				B555E69B1CF69DB000003B4E /* DogHybirdResources in Resources */,
+				0D756DC41CFDDCFB00C71E9E /* DogHybirdResources in Resources */,
 				B5D220361CE46F6900750A50 /* Assets.xcassets in Resources */,
 				B5D220341CE46F6900750A50 /* Main.storyboard in Resources */,
 			);
