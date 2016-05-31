@@ -94,7 +94,9 @@ define([], function () {
     show: function () {
       _.requestHybrid({
         tagname: 'showheader',
-        animate: true
+        param: {
+          animate: true
+        }
       });
     },
 
