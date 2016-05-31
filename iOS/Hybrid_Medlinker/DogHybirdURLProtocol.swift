@@ -88,9 +88,6 @@ class DogHybirdURLProtocol: NSURLProtocol {
                                 print("type == \(type)")
 
                                 let client: NSURLProtocolClient = self.client!
-//                                let request = self.request
-                                //                            let headers = [ "Content-Type": "image/jpeg" ]
-//                                let headers = request.allHTTPHeaderFields
                                 
                                 var typeString = ""
                                 switch type {
@@ -102,6 +99,12 @@ class DogHybirdURLProtocol: NSURLProtocol {
                                     break
                                 case "css":
                                     typeString = "text/css"
+                                    break
+                                case "png":
+                                    typeString = "image/jpeg"
+                                    break
+                                case "png":
+                                    typeString = "image/png"
                                     break
                                 default:
                                     break
