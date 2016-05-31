@@ -34,11 +34,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hybrid_Medlinker/MLWebView.swift"
-            timestampString = "486368501.55852"
+            timestampString = "486368883.450087"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "442"
-            endingLineNumber = "442">
+            startingLineNumber = "441"
+            endingLineNumber = "441">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -48,11 +48,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hybrid_Medlinker/MLWebView.swift"
-            timestampString = "486368501.55852"
+            timestampString = "486368883.450087"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "456"
-            endingLineNumber = "456">
+            startingLineNumber = "455"
+            endingLineNumber = "455">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -84,70 +84,6 @@
             startingLineNumber = "20"
             endingLineNumber = "20"
             landmarkName = "+canInitWithRequest:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Hybrid_Medlinker/DogHybirdURLProtocol.swift"
-            timestampString = "486368354.884009"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "canInitWithRequest(_:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static Hybrid_Medlinker.DogHybirdURLProtocol.canInitWithRequest (__ObjC.NSURLRequest) -&gt; Swift.Bool"
-                  moduleName = "Hybrid_Medlinker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/caiyang/Dog_Hybird/iOS/Hybrid_Medlinker/DogHybirdURLProtocol.swift"
-                  timestampString = "486368214.30526"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
-                  offsetFromSymbolStart = "28">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static Hybrid_Medlinker.DogHybirdURLProtocol.canInitWithRequest (__ObjC.NSURLRequest) -&gt; Swift.Bool"
-                  moduleName = "Hybrid_Medlinker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/caiyang/Dog_Hybird/iOS/Hybrid_Medlinker/DogHybirdURLProtocol.swift"
-                  timestampString = "486368214.305397"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
-                  offsetFromSymbolStart = "310">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Hybrid_Medlinker/DogHybirdURLProtocol.swift"
-            timestampString = "486368354.884009"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "canInitWithRequest(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -10,11 +10,16 @@ import UIKit
 import Foundation
 
 let webAppBaseUrl = "http://kuai.baidu.com/webapp"
+let DogHybirdURLProtocolHandled = "DogHybirdURLProtocolHandled"
 
 class DogHybirdURLProtocol: NSURLProtocol {
 
     override class func canInitWithRequest(request: NSURLRequest) -> Bool {
-        print("request.URL?.absoluteString == \(request.URL?.absoluteString)")
+        //如果被标记为已处理 直接跳过
+        if let hasHandled = NSURLProtocol.propertyForKey(DogHybirdURLProtocolHandled, inRequest: request) as? Bool where hasHandled == true {
+            print("重复的url == \(request.URL?.absoluteString)")
+            return false
+        }
         if let url = request.URL?.absoluteString {
             if url.hasPrefix(webAppBaseUrl) {
                 let str = url.stringByReplacingOccurrencesOfString(webAppBaseUrl, withString: "")
@@ -39,6 +44,10 @@ class DogHybirdURLProtocol: NSURLProtocol {
     }
 
     override func startLoading() {
+        //标记请求  防止重复处理
+        let mutableReqeust: NSMutableURLRequest = self.request.mutableCopy() as! NSMutableURLRequest
+        NSURLProtocol.setProperty(true, forKey: DogHybirdURLProtocolHandled, inRequest: mutableReqeust)
+        
         dispatch_async(dispatch_get_main_queue()) {
             if let url = self.request.URL?.absoluteString {
                 if url.hasPrefix(webAppBaseUrl) {

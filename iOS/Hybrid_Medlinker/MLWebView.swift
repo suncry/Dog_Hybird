@@ -213,7 +213,7 @@ class MLWebView: UIView {
             button.addBlockForControlEvents(.TouchUpInside, block: { (sender) in
                 let backString = self.callBack("", errno: 0, msg: "成功", callback: buttonModel.callback)
                 if buttonModel.tagname == "back" && backString == "" {
-                    print("假死了，执行默认返回")
+                    //假死 则执行本地的普通返回事件
                     self.back(["":""])
                 }
             })
@@ -428,7 +428,6 @@ extension MLWebView: UIWebViewDelegate {
                 }
                 let args = self.decodeJsonStr(self.self.decodeUrl(paramDic["param"] ?? ""))
                 let callBackId = paramDic["callback"] ?? ""
-                
                 self.handleEvent(function, args: args, callbackID: callBackId)
             }
         }
