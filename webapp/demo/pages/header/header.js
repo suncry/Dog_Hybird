@@ -75,19 +75,23 @@
                     this.header.set(opts);
                 },
                 'click .js-setheader4': function () {
-var opts = {
-    view: this,
-    back: function () {
-        sss11.show()
-        this.back();
+                    var opts = {
+                        view: this,
+                        back: function () {
+                            sss11.show()
+                            this.back();
 
-    },
-    title: '假死了'
-};
-this.header.set(opts);
+                        },
+                        title: '假死了'
+                    };
+                    this.header.set(opts);
+                },
+                'click .js-setheader5': function () {
+                    this.header.hide();
+                },
+                'click .js-setheader6': function () {
+                    this.header.show();
                 }
-
-
             }
 
         },

@@ -92,11 +92,15 @@ define([], function () {
     },
 
     show: function () {
-
+      _.requestHybrid({
+        tagname: 'showheader'
+      });
     },
 
     hide: function () {
-
+      _.requestHybrid({
+        tagname: 'hideheader'
+      });
     },
 
     //只更新title
