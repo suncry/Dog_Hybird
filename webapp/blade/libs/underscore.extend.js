@@ -722,6 +722,7 @@
         } else {
             Hybrid[callbackId] && Hybrid[callbackId](data);
         }
+        return true;
     };
 
     var bridgePostMsg = function (params) {
