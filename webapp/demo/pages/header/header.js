@@ -78,6 +78,9 @@
                     var opts = {
                         view: this,
                         back: function () {
+
+                            return '123'
+
                             sss11.show()
                             this.back();
 
