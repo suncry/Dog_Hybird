@@ -246,11 +246,13 @@ class MLWebView: UIView {
                         web.localUrl = localUrl
                     }
                     else {
-                        if url.hasPrefix("http") {
-                            web.URLPath = url
-                        } else {
-                            web.URLPath = BASE_URL + url
-                        }
+                        web.URLPath = url
+                        //不需要补全url了
+//                        if url.hasPrefix("http") {
+//                            web.URLPath = url
+//                        } else {
+//                            web.URLPath = BASE_URL + url
+//                        }
                     }
                     if let animate = args["animate"] as? String where animate == "present" {
                         let navi = UINavigationController(rootViewController: web)
