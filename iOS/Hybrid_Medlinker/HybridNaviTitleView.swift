@@ -58,8 +58,6 @@ class HybridNaviTitleView: UIView {
         self.callBackButton.backgroundColor = UIColor.clearColor()
 
         self.callBackButton.addBlockForControlEvents(.TouchUpInside) { (sender) in
-//            let callbackString = "Hybrid.Header_Event." + "\(callback)();"
-//            currentWebView.stringByEvaluatingJavaScriptFromString(callbackString)
             let data = ["data": "",
                         "errno": 0,
                         "msg": "title click",

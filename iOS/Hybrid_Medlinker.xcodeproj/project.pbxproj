@@ -166,9 +166,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		017B17281CFCA06700D93BFC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5D220A41CE589B700750A50 /* HybridNaviTitleView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		017B17291CFCA08100D93BFC /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				B555E69F1CF8213700003B4E /* UIView+ML.swift */,
+				B555E6A01CF8213700003B4E /* UIViewController+ML.swift */,
+			);
+			name = Loading;
+			sourceTree = "<group>";
+		};
 		B555E6981CF699AE00003B4E /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				B586C9C01CF59CF400EAAE26 /* HybirdTransion */,
+				017B17291CFCA08100D93BFC /* Loading */,
 				B5A076D81CFC0A6700795DF8 /* DogHybirdURLProtocol */,
 				B5D220861CE5840D00750A50 /* UIKit+AFNetworking */,
 				B5D220721CE583EE00750A50 /* AFNetworking */,
@@ -181,14 +200,11 @@
 		B555E6991CF699FA00003B4E /* DogHybird */ = {
 			isa = PBXGroup;
 			children = (
-				B555E69F1CF8213700003B4E /* UIView+ML.swift */,
-				B555E6A01CF8213700003B4E /* UIViewController+ML.swift */,
+				017B17281CFCA06700D93BFC /* View */,
 				B5D220B01CE5A3A100750A50 /* Model */,
 				B555E6981CF699AE00003B4E /* Tool */,
-				B586C9C01CF59CF400EAAE26 /* HybirdTransion */,
 				B5D220621CE4728800750A50 /* MLWebViewController.swift */,
 				B5D2205C1CE4708000750A50 /* MLWebView.swift */,
-				B5D220A41CE589B700750A50 /* HybridNaviTitleView.swift */,
 			);
 			name = DogHybird;
 			sourceTree = "<group>";

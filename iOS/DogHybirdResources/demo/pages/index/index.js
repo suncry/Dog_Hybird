@@ -13,7 +13,6 @@
         propertys: function ($super) {
 
             $super();
-
             this.template = layoutHtml;
             this.commonstyle = commonStyle;
             this.style = indexStyle;
