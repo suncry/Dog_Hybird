@@ -275,27 +275,30 @@ class MLWebView: UIView {
                         else {
                             self.animateType = .Normal
                         }
-                        vc.navigationController?.pushViewController(web, animated: true)
                     }
                 }
             } else {
                 //这里指定跳转到本地某页面   需要一个判断映射的方法
                 if  args["topage"] as! String == "index2" {
                     let webTestViewController = WebTestViewController.instance()
-                    
                     if let animate =  args["animate"] as? String where animate == "present" {
-                        
                         let navi = UINavigationController(rootViewController: webTestViewController)
                         vc.presentViewController(navi, animated: true, completion: nil)
                     }
                     else {
                         if let animate =  args["navigateion"] as? String where animate == "none" {
                             vc.navigationController?.navigationBarHidden = true
-                            vc.navigationController?.pushViewController(webTestViewController, animated: true)
                         }
                         else {
                             vc.navigationController?.navigationBarHidden = false
-                            vc.navigationController?.pushViewController(webTestViewController, animated: true)
+                        }
+                        if let navi = vc.navigationController {
+                            navi.pushViewController(webTestViewController, animated: true)
+                        }
+                        else {
+                            let navi = UINavigationController(rootViewController: webTestViewController)
+                            let viewController = UIApplication.sharedApplication().keyWindow?.rootViewController ?? UIViewController()
+                            viewController.presentViewController(navi, animated: true, completion: nil)
                         }
                     }
                 }
